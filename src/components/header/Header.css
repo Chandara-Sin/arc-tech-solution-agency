@@ -1,0 +1,77 @@
+.header {
+  background-color: #301134 !important;
+  max-height: 5.5vh !important;
+}
+
+.tool-bar {
+  min-height: 5.5vh !important;
+}
+
+.user-card {
+  width: 250px;
+  background-color: #f8f8f8 !important;
+  padding: 5px 0px !important;
+}
+
+.notify-card {
+  width: 250px !important;
+  height: 300px !important;
+  background-color: #f8f8f8 !important;
+  padding: 5px 0px !important;
+}
+
+.user-profile-icon {
+  font-size: 2.5rem !important;
+  padding: 5px 0px 0px 20px !important;
+}
+
+.user-setting {
+  height: 68px;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+.user-details {
+  height: 40px;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  color: #fff;
+}
+
+.user-status-button {
+  display: flex !important;
+  justify-content: flex-start !important;
+  text-transform: none !important;
+  border: 1px solid #d5d5d5 !important;
+  color: #6c757d !important;
+}
+
+.user-status-button:hover {
+  color: #293241 !important;
+  background-color: #f8f8f8 !important;
+}
+
+.user-button {
+  display: flex !important;
+  justify-content: flex-start !important;
+  padding: 3px !important;
+  border-radius: 0px !important;
+  color: #293241 !important;
+  text-transform: none !important;
+}
+
+.user-button:hover {
+  background-color: #2d649e !important;
+  border-radius: 0px !important;
+  color: #fff !important;
+}
+
+.user-button-text {
+  padding-left: 20px !important;
+}
+
+.medium-text {
+  font-weight: 500 !important;
+}
