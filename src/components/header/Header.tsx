@@ -23,6 +23,7 @@ import {
   AccessTime,
   HelpOutline,
   SentimentVerySatisfiedSharp,
+  AccountCircle,
 } from "@mui/icons-material";
 import HeaderNotify from "../header-notify/HeaderNotify";
 import SideBar from "../sidebar/SideBar";
@@ -229,7 +230,7 @@ function Header() {
                   onClick={(event) => handleClick(event, "user")}
                   sx={{ color: "#ffffff", p: "0px" }}
                 >
-                  <Person fontSize="large" />
+                  <AccountCircle fontSize="large" />
                 </IconButton>
               </Tooltip>
             </Grid>
