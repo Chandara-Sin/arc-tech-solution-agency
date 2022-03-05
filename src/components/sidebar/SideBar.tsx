@@ -1,147 +1,172 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import { useState } from "react";
+import React, { useState } from "react";
+import "./SideBar.css";
+import {
+  Drawer,
+  List,
+  Divider,
+  ListItem,
+  ListItemText,
+  IconButton,
+  ListItemButton,
+  Typography,
+  Paper,
+  Box,
+} from "@mui/material";
+import {
+  ArrowForwardIos,
+  ArrowRight,
+  BorderColorRounded,
+  MoreVert,
+  PeopleAlt,
+  Person,
+} from "@mui/icons-material";
+import { channels, direstMessage } from "./example-data";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
-
-function NavBar() {
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
+function SideBar() {
+  const [openChannels, setOpenChannels] = useState(true);
+  const [openDirectMessage, setOpenDirectMessage] = useState(true);
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
-          >
-            LOGO
-          </Typography>
-
-          {/* Responsive Mobile - Hamberger Menu*/}
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+    <Drawer variant="permanent" className="sidebar">
+      <Paper className="sidebar-card full-height">
+        <List>
+          <ListItem component="div" className="group-section" disablePadding>
+            <ListItemButton>
+              <ListItemText
+                primary="Slack"
+                primaryTypographyProps={{
+                  color: "rgba(255,255,255,0.8)",
+                  fontWeight: "bold",
+                  variant: "subtitle1",
+                }}
+              />
+              <ArrowForwardIos className="group-section-icon" />
+            </ListItemButton>
             <IconButton
               size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "none" },
+                "& svg": {
+                  color: "rgba(255,255,255,0.8)",
+                  transition: "0.2s",
+                  transform: "translateX(0) rotate(0)",
+                },
+                "&:hover, &:focus": {
+                  bgcolor: "unset",
+                  "& svg:first-of-type": {
+                    transform: "translateX(-4px) ",
+                  },
+                  "& svg:last-of-type": {
+                    right: 0,
+                    opacity: 1,
+                  },
+                },
+                "&:after": {
+                  content: '""',
+                  position: "absolute",
+                  height: "80%",
+                  display: "block",
+                  left: 0,
+                  width: "1px",
+                  bgcolor: "rgba(255,255,255,0.3)",
+                },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          {/* End of Reponsive Mobile */}
+              <BorderColorRounded />
+              <ArrowRight sx={{ position: "absolute", right: 4, opacity: 0 }} />
+            </IconButton>
+          </ListItem>
+          <ListItem button>
+            <PeopleAlt className="text-grey-2 pr-2" />
+            <ListItemText primary="Slack Connect" className="text-grey-2" />
+          </ListItem>
+          <ListItem button>
+            <MoreVert className="text-grey-2 pr-2" />
+            <ListItemText primary="Browse Slack" className="text-grey-2" />
+          </ListItem>
 
-          {/* Responsive Logo */}
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-          >
-            LOGO
-          </Typography>
-          {/* End of Responsive Logo */}
-
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
+          {/* Channels */}
+          <ListItemButton onClick={() => setOpenChannels(!openChannels)}>
+            <ArrowRight
+              sx={{
+                opacity: 1,
+                transform: openChannels ? "rotate(90deg)" : "rotate(0)",
+                transition: "0.2s",
+              }}
+              className="text-grey-2 "
+            />
+            <ListItemText
+              primary="Channels"
+              primaryTypographyProps={{
+                fontWeight: "bold",
+                variant: "subtitle1",
+              }}
+              className="text-grey-2 pl-2"
+            />
+          </ListItemButton>
+          {openChannels &&
+            channels.map(({ title, isActive }, index) => (
+              <ListItem button key={index}>
+                <ListItemText
+                  primary={
+                    <>
+                      <Typography
+                        variant="subtitle2"
+                        className="text-bold pl-2"
+                      >
+                        <strong className="pr-2">#</strong> {title}
+                      </Typography>
+                    </>
+                  }
+                  className="text-grey-2"
+                />
+              </ListItem>
             ))}
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+          <ListItemButton
+            onClick={() => setOpenDirectMessage(!openDirectMessage)}
+          >
+            <ArrowRight
+              sx={{
+                opacity: 1,
+                transform: openDirectMessage ? "rotate(90deg)" : "rotate(0)",
+                transition: "0.2s",
               }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
+              className="text-grey-2 "
+            />
+            <ListItemText
+              primary="Direct Message"
+              primaryTypographyProps={{
+                fontWeight: "bold",
+                variant: "subtitle1",
               }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+              className="text-grey-2 pl-2"
+            />
+          </ListItemButton>
+          {openDirectMessage &&
+            direstMessage.map(({ title, isActive }, index) => (
+              <ListItem button key={index}>
+                <ListItemText
+                  primary={
+                    <Box
+                      className="flex-start full-width pl-1"
+                      alignContent="center"
+                    >
+                      <Person fontSize="small" />
+                      <Typography
+                        variant="subtitle2"
+                        className="text-bold pl-2"
+                      >
+                        {title}
+                      </Typography>
+                    </Box>
+                  }
+                  className="text-grey-2"
+                />
+              </ListItem>
+            ))}
+        </List>
+        <Divider />
+      </Paper>
+    </Drawer>
   );
 }
-export default NavBar;
+
+export default SideBar;
