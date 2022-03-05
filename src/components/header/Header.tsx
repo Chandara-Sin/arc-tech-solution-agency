@@ -25,6 +25,7 @@ import {
   SentimentVerySatisfiedSharp,
 } from "@mui/icons-material";
 import HeaderNotify from "../header-notify/HeaderNotify";
+import SideBar from "../sidebar/SideBar";
 
 const SearchInput = styled(InputBase)(() => ({
   "& .MuiInputBase-input": {
@@ -32,7 +33,7 @@ const SearchInput = styled(InputBase)(() => ({
     backgroundColor: "#5a495c",
     fontSize: 16,
     height: "6px",
-    width: "95vh",
+    width: "60vw",
     padding: "10px 12px",
     color: "#fff",
     "&:hover": {
@@ -193,70 +194,71 @@ function Header() {
   const open = Boolean(anchorEl);
 
   return (
-    <AppBar position="static" elevation={0} className="header">
-      <Toolbar className="tool-bar">
-        <Grid alignItems="center" container>
-          <Grid xs={2} display="flex" justifyContent="space-evenly" item>
-            <IconButton sx={{ p: "0px" }}>
-              <ArrowBack fontSize="medium" />
-            </IconButton>
-            <IconButton sx={{ p: "0px" }}>
-              <ArrowForward fontSize="medium" />
-            </IconButton>
-            <Tooltip
-              title="History"
-              arrow
-              onClick={(event) => handleClick(event, "history")}
-            >
+    <Box display="flex">
+      <AppBar position="fixed" elevation={0} className="header">
+        <Toolbar className="tool-bar">
+          <Grid alignItems="center" container>
+            <Grid xs={2} display="flex" justifyContent="space-evenly" item>
               <IconButton sx={{ p: "0px" }}>
-                <AccessTime fontSize="medium" />
+                <ArrowBack fontSize="medium" />
               </IconButton>
-            </Tooltip>
-          </Grid>
-
-          <Grid xs={8} item>
-            <SearchInput placeholder="Search" />
-          </Grid>
-
-          <Grid xs={2} display="flex" justifyContent="flex-end" item>
-            <Tooltip title="Help" arrow>
-              <IconButton sx={{ color: "#ffffff", px: "20px" }}>
-                <HelpOutline fontSize="medium" />
+              <IconButton sx={{ p: "0px" }}>
+                <ArrowForward fontSize="medium" />
               </IconButton>
-            </Tooltip>
-            <Tooltip title="Chandara" arrow>
-              <IconButton
-                onClick={(event) => handleClick(event, "user")}
-                sx={{ color: "#ffffff", p: "0px" }}
+              <Tooltip
+                title="History"
+                arrow
+                onClick={(event) => handleClick(event, "history")}
               >
-                <Person fontSize="large" />
-              </IconButton>
-            </Tooltip>
-          </Grid>
+                <IconButton sx={{ p: "0px" }}>
+                  <AccessTime fontSize="medium" />
+                </IconButton>
+              </Tooltip>
+            </Grid>
+            <Grid xs={8} item>
+              <SearchInput placeholder="Search" />
+            </Grid>
+            <Grid xs={2} display="flex" justifyContent="flex-end" item>
+              <Tooltip title="Help" arrow>
+                <IconButton sx={{ color: "#ffffff", px: "20px" }}>
+                  <HelpOutline fontSize="medium" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Chandara" arrow>
+                <IconButton
+                  onClick={(event) => handleClick(event, "user")}
+                  sx={{ color: "#ffffff", p: "0px" }}
+                >
+                  <Person fontSize="large" />
+                </IconButton>
+              </Tooltip>
+            </Grid>
 
-          {menuSelected && (
-            <Popover
-              sx={{ mt: "15px" }}
-              open={open}
-              onClose={handleClose}
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "right",
-              }}
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              elevation={3}
-            >
-              {menuSelected === "history" && <UserHistory />}
-              {menuSelected === "user" && <UserCard />}
-            </Popover>
-          )}
-        </Grid>
-      </Toolbar>
-    </AppBar>
+            {menuSelected && (
+              <Popover
+                sx={{ mt: "15px" }}
+                open={open}
+                onClose={handleClose}
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "right",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                elevation={3}
+              >
+                {menuSelected === "history" && <UserHistory />}
+                {menuSelected === "user" && <UserCard />}
+              </Popover>
+            )}
+          </Grid>
+        </Toolbar>
+      </AppBar>
+      <SideBar />
+    </Box>
   );
 }
 export default Header;

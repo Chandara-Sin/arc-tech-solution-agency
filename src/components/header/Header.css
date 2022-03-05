@@ -1,10 +1,11 @@
 .header {
   background-color: #301134 !important;
-  max-height: 5.5vh !important;
+  max-height: 40px !important;
+  z-index: 3 !important;
 }
 
 .tool-bar {
-  min-height: 5.5vh !important;
+  min-height: 40px !important;
 }
 
 .user-card {
