@@ -10,11 +10,11 @@ import {
   Typography,
   IconButton,
   Grid,
-  InputBase,
   Paper,
-  styled,
   Popover,
   Skeleton,
+  TextField,
+  Link,
 } from "@mui/material";
 import {
   Person,
@@ -24,24 +24,146 @@ import {
   HelpOutline,
   SentimentVerySatisfiedSharp,
   AccountCircle,
+  Search,
+  Close,
+  TipsAndUpdates,
 } from "@mui/icons-material";
 import HeaderNotify from "../header-notify/HeaderNotify";
 import SideBar from "../sidebar/SideBar";
 
-const SearchInput = styled(InputBase)(() => ({
-  "& .MuiInputBase-input": {
-    borderRadius: 6,
-    backgroundColor: "#5a495c",
-    fontSize: 16,
-    height: "6px",
-    width: "60vw",
-    padding: "10px 12px",
-    color: "#fff",
-    "&:hover": {
-      boxShadow: "#ced4da 0 0 0 1px",
-    },
-  },
-}));
+function SearchDialog() {
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const openDialog = Boolean(anchorEl);
+  return (
+    <>
+      <Button
+        variant="outlined"
+        startIcon={<Search />}
+        className="search-button"
+        onClick={handleClick}
+      >
+        Search xxx
+      </Button>
+      {openDialog && (
+        <Popover
+          sx={{ mt: "-10px" }}
+          open={openDialog}
+          onClose={handleClose}
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+          elevation={3}
+          PaperProps={{
+            sx: { borderRadius: "7px" },
+          }}
+        >
+          <Paper className="search-dialog">
+            <Grid container sx={{ p: "10px 20px 5px" }}>
+              <Grid xs={1} item className="flex-center pt-1">
+                <Search />
+              </Grid>
+              <Grid xs={10} item>
+                <TextField
+                  className="search-input"
+                  fullWidth
+                  variant="standard"
+                  InputProps={{
+                    disableUnderline: true,
+                  }}
+                  placeholder="Search for files, facts, figures, and stats"
+                />
+              </Grid>
+              <Grid xs={1} item className="flex-end">
+                <Close
+                  onClick={handleClose}
+                  sx={{ color: "#5a495c", "&:hover": { cursor: "pointer" } }}
+                />
+              </Grid>
+            </Grid>
+            <Divider className="mb-2" />
+            <Box
+              className="text-center"
+              sx={{ bgcolor: "#e9ecef", py: "20px" }}
+            >
+              <Box className="content-center" py="5px">
+                <TipsAndUpdates sx={{ color: "#e9c46a" }} />
+                <Typography className="text-bold pl-2">
+                  Search messages, files, and more
+                </Typography>
+              </Box>
+              <Typography>
+                Looking for a particular message, doc, or decision?
+              </Typography>
+              <Typography>
+                If it happened in Slack, you can find it in search.
+              </Typography>
+            </Box>
+            <Divider />
+            <Box p="10px 40px">
+              <Box pb="10px">
+                <Typography variant="caption" className="text-grey-4">
+                  From our Help Center
+                </Typography>
+              </Box>
+
+              <Box className="flex-start full-width pb-2" alignContent="center">
+                <HelpOutline fontSize="small" />
+                <Link
+                  href="#"
+                  variant="subtitle2"
+                  className="pl-1"
+                  color="inherit"
+                  underline="hover"
+                >
+                  <strong>How to Search in Slack </strong>Access the right
+                  information instantly
+                </Link>
+              </Box>
+              <Box className="flex-start full-width pb-2" alignContent="center">
+                <HelpOutline fontSize="small" />
+                <Link
+                  href="#"
+                  variant="subtitle2"
+                  className="pl-1"
+                  color="inherit"
+                  underline="hover"
+                >
+                  <strong>Using Slack </strong>Learn how Slack works from top to
+                  bottom
+                </Link>
+              </Box>
+            </Box>
+            <Divider />
+            <Box sx={{ bgcolor: "#e9ecef", p: "10px" }} className="text-end">
+              <Typography variant="caption">
+                Not the results you expected?{" "}
+                <Link href="#" underline="hover">
+                  Give feedback
+                </Link>{" "}
+                or{" "}
+                <Link href="#" underline="hover">
+                  Learn more
+                </Link>
+              </Typography>
+            </Box>
+          </Paper>
+        </Popover>
+      )}
+    </>
+  );
+}
 
 function UserHistory() {
   return (
@@ -200,10 +322,10 @@ function Header() {
         <Toolbar className="tool-bar">
           <Grid alignItems="center" container>
             <Grid xs={2} display="flex" justifyContent="space-evenly" item>
-              <IconButton sx={{ p: "0px" }}>
+              <IconButton sx={{ color: "#848484" }}>
                 <ArrowBack fontSize="medium" />
               </IconButton>
-              <IconButton sx={{ p: "0px" }}>
+              <IconButton>
                 <ArrowForward fontSize="medium" />
               </IconButton>
               <Tooltip
@@ -217,7 +339,7 @@ function Header() {
               </Tooltip>
             </Grid>
             <Grid xs={8} item>
-              <SearchInput placeholder="Search" />
+              <SearchDialog />
             </Grid>
             <Grid xs={2} display="flex" justifyContent="flex-end" item>
               <Tooltip title="Help" arrow>

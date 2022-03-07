@@ -76,3 +76,27 @@
 .medium-text {
   font-weight: 500 !important;
 }
+
+.search-button {
+  border-radius: 6px !important;
+  text-transform: none !important;
+  height: 25px;
+  width: 55vw;
+  padding: 10px 12px;
+  background-color: #5a495c !important;
+  color: rgb(240, 235, 235) !important;
+  border: none !important;
+}
+.search-button:hover {
+  background-color: #645966 !important;
+}
+
+.search-dialog {
+  width: 55vw !important;
+  background-color: #f8f8f8 !important;
+  border-radius: 7px !important;
+}
+
+.search-input {
+  border: none !important;
+}
