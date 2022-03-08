@@ -21,6 +21,29 @@
   font-size: 0.7rem !important;
 }
 
+.group-section-card {
+  width: 290px;
+  background-color: #f8f8f8 !important;
+  padding: 5px 0px !important;
+}
+
+.group-name {
+  background-color: #6e6d6d !important;
+  border-radius: 5px;
+  width: 40px;
+  height: 40px;
+}
+
+.sidebar-button:hover {
+  background-color: #4e1c4e !important;
+}
+
+.group-setting-button {
+  position: absolute;
+  left: 200px;
+  background-color: #f8f8f8;
+  border-radius: 30px;
+}
 /* LG - Desktop */
 @media (min-width: 1905px) {
 }
