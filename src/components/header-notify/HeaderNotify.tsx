@@ -13,9 +13,11 @@ import {
 import { AccessTime, ArrowForwardIos } from "@mui/icons-material";
 import "./HeaderNotify.css";
 
-const NotifyTooptip = styled(({ className, ...props }: TooltipProps) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))({
+export const TooltipDetails = styled(
+  ({ className, ...props }: TooltipProps) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  )
+)({
   [`& .${tooltipClasses.tooltip}`]: {
     color: "#293241",
     backgroundColor: "#f8f8f8",
@@ -28,7 +30,7 @@ const NotifyTooptip = styled(({ className, ...props }: TooltipProps) => (
 
 function HeaderNotify() {
   return (
-    <NotifyTooptip
+    <TooltipDetails
       placement="left-start"
       title={
         <Paper className="user-card">
@@ -91,7 +93,7 @@ function HeaderNotify() {
           <ArrowForwardIos sx={{ fontSize: "0.6rem" }} />
         </Box>
       </Button>
-    </NotifyTooptip>
+    </TooltipDetails>
   );
 }
 
