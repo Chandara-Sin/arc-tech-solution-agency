@@ -16,9 +16,9 @@
 
 .group-section-icon {
   position: absolute;
-  left: 63px;
+  left: 60px;
   color: rgba(255, 255, 255, 0.8);
-  font-size: 0.7rem !important;
+  font-size: 1.2rem !important;
 }
 
 .group-section-card {
@@ -43,6 +43,20 @@
   left: 200px;
   background-color: #f8f8f8;
   border-radius: 30px;
+}
+
+.sidebar-browse {
+  color: #d8d8d8 !important;
+}
+.sidebar-browse:hover {
+  color: #fff !important;
+}
+
+.group-setting {
+  height: 125px;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
 }
 /* LG - Desktop */
 @media (min-width: 1905px) {
