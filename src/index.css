@@ -181,6 +181,9 @@ code {
 }
 
 /* padding */
+.p-0 {
+  padding: 0px !important;
+}
 .pl-1 {
   padding-left: 5px !important;
 }
@@ -218,4 +221,11 @@ code {
 }
 .mb-2 {
   margin-bottom: 10px !important;
+}
+
+.mt-1 {
+  margin-top: 5px !important;
+}
+.mt-2 {
+  margin-top: 10px !important;
 }
