@@ -27,14 +27,14 @@
 }
 
 .user-setting {
-  height: 68px;
+  min-height: 68px;
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
 }
 
 .user-details {
-  height: 40px;
+  min-height: 40px;
   display: flex !important;
   justify-content: flex-start !important;
   align-items: center !important;
