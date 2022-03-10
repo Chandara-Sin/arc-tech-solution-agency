@@ -27,6 +27,7 @@ import {
   Search,
   Close,
   TipsAndUpdates,
+  Numbers,
 } from "@mui/icons-material";
 import HeaderNotify from "../header-notify/HeaderNotify";
 import SideBar from "../sidebar/SideBar";
@@ -187,19 +188,22 @@ function UserHistory() {
           </Typography>
         </Box>
       </Button>
-      <Button className="user-button" fullWidth>
-        <Typography variant="subtitle2" className="pl-4 text-bold">
-          <strong className="pr-2">#</strong> general
+      <Button className="user-button user-button-text" fullWidth>
+        <Numbers className="numbers-button" />
+        <Typography variant="subtitle2" className="pl-1 text-bold">
+          general
         </Typography>
       </Button>
-      <Button className="user-button" fullWidth>
-        <Typography variant="subtitle2" className="text-bold pl-4">
-          <strong className="text-bold pr-2">#</strong> slack-clone-project
+      <Button className="user-button user-button-text" fullWidth>
+        <Numbers className="numbers-button" />
+        <Typography variant="subtitle2" className="text-bold pl-1">
+          slack-clone-project
         </Typography>
       </Button>
-      <Button className="user-button" fullWidth>
-        <Typography variant="subtitle2" className=" text-bold pl-4">
-          <strong className="pr-2">#</strong> slack-clone-git
+      <Button className="user-button user-button-text" fullWidth>
+        <Numbers className="numbers-button" />
+        <Typography variant="subtitle2" className=" text-bold pl-1">
+          slack-clone-git
         </Typography>
       </Button>
       <Box sx={{ p: "0px 80px 10px 20px " }}>
