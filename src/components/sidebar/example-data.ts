@@ -13,7 +13,7 @@ export const channels = [
   },
 ];
 
-export const direstMessage = [
+export const directMessage = [
   {
     title: "Chandara",
     isActive: false,
