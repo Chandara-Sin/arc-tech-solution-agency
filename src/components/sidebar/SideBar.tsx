@@ -25,7 +25,6 @@ import {
   MobileFriendly,
   MoreVert,
   PeopleAlt,
-  Person,
   Notes,
   ForumRounded,
   AlternateEmail,
@@ -34,8 +33,11 @@ import {
   LayersRounded,
   ContactsRounded,
   AppRegistrationRounded,
+  Numbers,
+  AddRounded,
+  AccountCircleRounded,
 } from "@mui/icons-material";
-import { channels, direstMessage } from "./example-data";
+import { channels, directMessage } from "./example-data";
 import { TooltipDetails } from "../header-notify/HeaderNotify";
 
 function GroupBrowse() {
@@ -343,12 +345,19 @@ function SideBar() {
               <ListItemText
                 primary="Slack"
                 primaryTypographyProps={{
-                  color: "rgba(255,255,255,0.8)",
+                  variant: "body1",
                   fontWeight: "bold",
-                  variant: "subtitle1",
+                }}
+                className="text-grey-2"
+              />
+              <KeyboardArrowRight
+                className="group-section-icon"
+                sx={{
+                  transform:
+                    menuSelected === "setting" ? "rotate(90deg)" : "rotate(0)",
+                  transition: "0.2s",
                 }}
               />
-              <KeyboardArrowRight className="group-section-icon" />
             </ListItemButton>
             <Tooltip arrow title="New Messages">
               <Box className="group-setting-button">
@@ -359,17 +368,15 @@ function SideBar() {
             </Tooltip>
           </ListItem>
 
-          <ListItemButton className="p-0 mt-2">
-            <Box className="sidebar-button full-width">
-              <Box className="content-center" pl={2.5}>
-                <PeopleAlt className="text-grey-2 pr-2" />
-                <ListItemText primary="Slack Connect" className="text-grey-2" />
-              </Box>
+          <ListItemButton className="p-0 mt-2 sidebar-button">
+            <Box className="content-center" pl={2.5}>
+              <PeopleAlt className="text-grey-2 pr-2" />
+              <ListItemText primary="Slack Connect" className="text-grey-2" />
             </Box>
           </ListItemButton>
 
           <ListItemButton
-            className="sidebar-browse p-0 pt-1"
+            className="sidebar-browse p-0 mt-2"
             onClick={(event) => handleClick(event, "browse")}
           >
             <Box className="content-center" pl={2.5}>
@@ -398,85 +405,111 @@ function SideBar() {
             </Popover>
           )}
 
-          {/* Channels */}
-          <ListItemButton onClick={() => setOpenChannels(!openChannels)}>
-            <ArrowRight
-              sx={{
-                opacity: 1,
-                transform: openChannels ? "rotate(90deg)" : "rotate(0)",
-                transition: "0.2s",
-              }}
-              className="text-grey-2 "
-            />
-            <ListItemText
-              primary="Channels"
-              primaryTypographyProps={{
-                fontWeight: "bold",
-                variant: "subtitle1",
-              }}
-              className="text-grey-2 pl-2"
-            />
+          <ListItemButton
+            className="p-0 sidebar-button mt-2"
+            onClick={() => setOpenChannels(!openChannels)}
+          >
+            <Box className="content-center" pl={2.5}>
+              <ArrowRight
+                sx={{
+                  transform: openChannels ? "rotate(90deg)" : "rotate(0)",
+                  transition: "0.2s",
+                }}
+                className="text-grey-2"
+              />
+              <ListItemText
+                primary="Channels"
+                primaryTypographyProps={{
+                  variant: "subtitle1",
+                }}
+                className="text-grey-2 pl-2"
+              />
+            </Box>
           </ListItemButton>
           {openChannels &&
             channels.map(({ title, isActive }, index) => (
-              <ListItem button key={index}>
-                <ListItemText
-                  primary={
-                    <>
-                      <Typography
-                        variant="subtitle2"
-                        className="text-bold pl-2"
-                      >
-                        <strong className="pr-2">#</strong> {title}
-                      </Typography>
-                    </>
-                  }
-                  className="text-grey-2"
-                />
-              </ListItem>
+              <ListItemButton className="p-0 sidebar-button my-0" key={index}>
+                <Box className="d-flex align-center" pl={4.5}>
+                  <Numbers className="text-grey-2 numbers-button" />
+                  <ListItemText
+                    primary={title}
+                    primaryTypographyProps={{
+                      variant: "subtitle1",
+                    }}
+                    className="text-grey-2 pl-2 m-0"
+                  />
+                </Box>
+              </ListItemButton>
             ))}
+          {openChannels && (
+            <ListItemButton className="p-0 sidebar-button">
+              <Box className="d-flex align-center" pl={4.2}>
+                <IconButton className="add-button">
+                  <AddRounded className="text-grey-2 numbers-button" />
+                </IconButton>
+                <ListItemText
+                  primary="Add channels"
+                  primaryTypographyProps={{
+                    variant: "subtitle1",
+                  }}
+                  className="text-grey-2 pl-2"
+                />
+              </Box>
+            </ListItemButton>
+          )}
+
           <ListItemButton
+            className="p-0 sidebar-button mt-2"
             onClick={() => setOpenDirectMessage(!openDirectMessage)}
           >
-            <ArrowRight
-              sx={{
-                opacity: 1,
-                transform: openDirectMessage ? "rotate(90deg)" : "rotate(0)",
-                transition: "0.2s",
-              }}
-              className="text-grey-2 "
-            />
-            <ListItemText
-              primary="Direct Message"
-              primaryTypographyProps={{
-                fontWeight: "bold",
-                variant: "subtitle1",
-              }}
-              className="text-grey-2 pl-2"
-            />
+            <Box className="content-center" pl={2.5}>
+              <ArrowRight
+                sx={{
+                  transform: openDirectMessage ? "rotate(90deg)" : "rotate(0)",
+                  transition: "0.2s",
+                }}
+                className="text-grey-2"
+              />
+              <ListItemText
+                primary="Direct Message"
+                primaryTypographyProps={{
+                  variant: "subtitle1",
+                }}
+                className="text-grey-2 pl-2"
+              />
+            </Box>
           </ListItemButton>
           {openDirectMessage &&
-            direstMessage.map(({ title, isActive }, index) => (
-              <ListItem button key={index}>
-                <ListItemText
-                  primary={
-                    <Box
-                      className="flex-start full-width pl-1"
-                      alignContent="center"
-                    >
-                      <Person fontSize="small" />
-                      <Typography
-                        variant="subtitle2"
-                        className="text-bold pl-2"
-                      >
-                        {title}
-                      </Typography>
-                    </Box>
-                  }
-                  className="text-grey-2"
-                />
-              </ListItem>
+            directMessage.map(({ title, isActive }, index) => (
+              <ListItemButton className="p-0 sidebar-button my-0" key={index}>
+                <Box className="d-flex align-center" pl={4.5}>
+                  <AccountCircleRounded className="text-grey-2 numbers-button" />
+                  <ListItemText
+                    primary={title}
+                    primaryTypographyProps={{
+                      variant: "subtitle1",
+                    }}
+                    className="text-grey-2 pl-2 m-0"
+                  />
+                </Box>
+              </ListItemButton>
             ))}
+          {openDirectMessage && (
+            <ListItemButton className="p-0 sidebar-button">
+              <Box className="d-flex align-center" pl={4.2}>
+                <IconButton className="add-button">
+                  <AddRounded className="text-grey-2 numbers-button" />
+                </IconButton>
+                <ListItemText
+                  primary="Add teammates"
+                  primaryTypographyProps={{
+                    variant: "subtitle1",
+                  }}
+                  className="text-grey-2 pl-2"
+                />
+              </Box>
+            </ListItemButton>
+          )}
         </List>
         <Divider />
       </Paper>

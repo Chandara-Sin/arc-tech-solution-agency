@@ -7,6 +7,7 @@
   overflow: auto !important;
   background-color: #3f0f3f !important;
   margin-top: 32px !important;
+  border-radius: 0px !important;
 }
 
 .group-section {
@@ -48,6 +49,7 @@
 .sidebar-browse {
   color: #d8d8d8 !important;
 }
+
 .sidebar-browse:hover {
   color: #fff !important;
 }
@@ -57,6 +59,12 @@
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
+}
+
+.add-button {
+  background-color: #5f255f !important;
+  border-radius: 5px !important;
+  padding: 2px !important;
 }
 /* LG - Desktop */
 @media (min-width: 1905px) {
