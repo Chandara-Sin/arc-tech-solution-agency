@@ -1,4 +1,5 @@
 import React from "react";
+import "./HeaderNotify.css";
 import {
   Box,
   Button,
@@ -11,7 +12,6 @@ import {
   Typography,
 } from "@mui/material";
 import { AccessTime, ArrowForwardIos } from "@mui/icons-material";
-import "./HeaderNotify.css";
 
 export const TooltipDetails = styled(
   ({ className, ...props }: TooltipProps) => (
