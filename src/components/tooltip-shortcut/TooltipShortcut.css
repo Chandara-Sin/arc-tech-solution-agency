@@ -1,0 +1,10 @@
+.tooltip-shortcut {
+  background-color: #494343 !important;
+  color: #ffffff !important;
+  min-height: 22px !important;
+  min-width: 22px !important;
+}
+
+.tooltip-shortcut-button {
+  font-size: 1.1rem !important;
+}
