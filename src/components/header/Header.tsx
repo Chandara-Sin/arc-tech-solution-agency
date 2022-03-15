@@ -207,10 +207,10 @@ function UserHistory() {
         </Typography>
       </Button>
       <Box sx={{ p: "0px 80px 10px 20px " }}>
-        <Skeleton variant="text" className="mr-1" />
-        <Skeleton variant="text" className="mr-1" />
-        <Skeleton variant="text" className="mr-1" />
-        <Skeleton variant="text" className="mr-1" />
+        <Skeleton variant="text" className="mr-1 mb-1 mt-1" />
+        <Skeleton variant="text" className="mr-1 mb-1" />
+        <Skeleton variant="text" className="mr-1 mb-1" />
+        <Skeleton variant="text" className="mr-1 mb-1" />
       </Box>
       <Divider />
       <Box className="user-details">
@@ -329,7 +329,7 @@ function Header() {
               <IconButton sx={{ color: "#848484" }}>
                 <ArrowBack fontSize="medium" />
               </IconButton>
-              <IconButton>
+              <IconButton className="header-button">
                 <ArrowForward fontSize="medium" />
               </IconButton>
               <Tooltip
@@ -337,7 +337,7 @@ function Header() {
                 arrow
                 onClick={(event) => handleClick(event, "history")}
               >
-                <IconButton sx={{ p: "0px" }}>
+                <IconButton className="header-button">
                   <AccessTime fontSize="medium" />
                 </IconButton>
               </Tooltip>
@@ -347,14 +347,15 @@ function Header() {
             </Grid>
             <Grid xs={2} display="flex" justifyContent="flex-end" item>
               <Tooltip title="Help" arrow>
-                <IconButton sx={{ color: "#ffffff", px: "20px" }}>
+                <IconButton className="header-button mr-3">
                   <HelpOutline fontSize="medium" />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Chandara" arrow>
                 <IconButton
                   onClick={(event) => handleClick(event, "user")}
-                  sx={{ color: "#ffffff", p: "0px" }}
+                  sx={{ p: "0px" }}
+                  className="header-button"
                 >
                   <AccountCircle fontSize="large" />
                 </IconButton>
