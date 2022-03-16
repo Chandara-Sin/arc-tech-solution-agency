@@ -16,14 +16,14 @@ export interface ITooltipShortcutProps {
     | "top-end"
     | "top-start";
   hasArrow?: boolean;
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
   tooltipContent: IToolTipContent;
 }
 
 export interface IToolTipContent {
   title: {
     name: string;
-    style: React.CSSProperties;
+    style?: React.CSSProperties;
   };
   content?: {
     style?: React.CSSProperties;
