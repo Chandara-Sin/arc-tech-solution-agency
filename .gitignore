@@ -2,7 +2,7 @@
 node_modules
 /dist
 .firebase
-src/assets/video
+src/assets/video/trial_video.mov
 
 
 # local env files
