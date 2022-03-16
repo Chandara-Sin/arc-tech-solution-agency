@@ -19,9 +19,7 @@ import {
 } from "@mui/material";
 import {
   ArrowForwardIos,
-  ArrowRight,
   BorderColorRounded,
-  KeyboardArrowRight,
   MobileFriendly,
   MoreVert,
   PeopleAlt,
@@ -36,6 +34,8 @@ import {
   Numbers,
   AddRounded,
   AccountCircleRounded,
+  KeyboardArrowRightRounded,
+  ArrowRightRounded,
 } from "@mui/icons-material";
 import { channels, directMessage } from "./example-data";
 import { TooltipDetails } from "../header-notify/HeaderNotify";
@@ -350,7 +350,7 @@ function SideBar() {
                 }}
                 className="text-grey-2"
               />
-              <KeyboardArrowRight
+              <KeyboardArrowRightRounded
                 className="group-section-icon"
                 sx={{
                   transform:
@@ -409,11 +409,12 @@ function SideBar() {
             className="p-0 sidebar-button mt-2"
             onClick={() => setOpenChannels(!openChannels)}
           >
-            <Box className="content-center" pl={2.5}>
-              <ArrowRight
+            <Box className="content-center" pl={2.3}>
+              <ArrowRightRounded
                 sx={{
                   transform: openChannels ? "rotate(90deg)" : "rotate(0)",
                   transition: "0.2s",
+                  fontSize: "1.8rem",
                 }}
                 className="text-grey-2"
               />
@@ -462,11 +463,12 @@ function SideBar() {
             className="p-0 sidebar-button mt-2"
             onClick={() => setOpenDirectMessage(!openDirectMessage)}
           >
-            <Box className="content-center" pl={2.5}>
-              <ArrowRight
+            <Box className="content-center" pl={2.3}>
+              <ArrowRightRounded
                 sx={{
                   transform: openDirectMessage ? "rotate(90deg)" : "rotate(0)",
                   transition: "0.2s",
+                  fontSize: "1.8rem",
                 }}
                 className="text-grey-2"
               />
