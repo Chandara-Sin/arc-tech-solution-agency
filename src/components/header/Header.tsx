@@ -18,9 +18,6 @@ import {
 } from "@mui/material";
 import {
   Person,
-  ArrowBack,
-  ArrowForward,
-  AccessTime,
   HelpOutline,
   SentimentVerySatisfiedSharp,
   AccountCircle,
@@ -28,6 +25,10 @@ import {
   Close,
   TipsAndUpdates,
   Numbers,
+  HelpOutlineRounded,
+  AccessTimeRounded,
+  ArrowForwardRounded,
+  ArrowBackRounded,
 } from "@mui/icons-material";
 import HeaderNotify from "../header-notify/HeaderNotify";
 import SideBar from "../sidebar/SideBar";
@@ -327,18 +328,18 @@ function Header() {
           <Grid alignItems="center" container>
             <Grid xs={2} display="flex" justifyContent="space-evenly" item>
               <IconButton sx={{ color: "#848484" }}>
-                <ArrowBack fontSize="medium" />
+                <ArrowBackRounded fontSize="medium" />
               </IconButton>
-              <IconButton className="header-button">
-                <ArrowForward fontSize="medium" />
+              <IconButton className="header-button text-white">
+                <ArrowForwardRounded fontSize="medium" />
               </IconButton>
               <Tooltip
                 title="History"
                 arrow
                 onClick={(event) => handleClick(event, "history")}
               >
-                <IconButton className="header-button">
-                  <AccessTime fontSize="medium" />
+                <IconButton className="header-button text-white">
+                  <AccessTimeRounded fontSize="medium" />
                 </IconButton>
               </Tooltip>
             </Grid>
@@ -347,15 +348,15 @@ function Header() {
             </Grid>
             <Grid xs={2} display="flex" justifyContent="flex-end" item>
               <Tooltip title="Help" arrow>
-                <IconButton className="header-button mr-3">
-                  <HelpOutline fontSize="medium" />
+                <IconButton className="header-button text-white mr-3">
+                  <HelpOutlineRounded fontSize="medium" />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Chandara" arrow>
                 <IconButton
                   onClick={(event) => handleClick(event, "user")}
                   sx={{ p: "0px" }}
-                  className="header-button"
+                  className="header-button text-white"
                 >
                   <AccountCircle fontSize="large" />
                 </IconButton>

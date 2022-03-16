@@ -101,10 +101,6 @@
   border: none !important;
 }
 
-.header-button {
-  color: #ffffff !important;
-}
-
 .header-button:hover {
   background-color: #4e1c4e !important;
 }
