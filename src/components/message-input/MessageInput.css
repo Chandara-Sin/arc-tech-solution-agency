@@ -1,0 +1,95 @@
+.message-card {
+  border: 1px solid #d3d3d3;
+  border-radius: 8px !important;
+  /* min-height: 125px !important; */
+  min-height: 85px !important;
+  position: fixed;
+  top: auto !important;
+  bottom: 20px !important;
+}
+
+@media (min-width: 1905px) {
+  .message-card {
+    width: 84.5vw;
+  }
+}
+@media (max-width: 1904px) and (min-width: 1792px) {
+  .message-card {
+    width: 83vw;
+  }
+}
+@media (max-width: 1791px) and (min-width: 1680px) {
+  .message-card {
+    width: 82vw;
+  }
+}
+@media (max-width: 1679px) and (min-width: 1536px) {
+  .message-card {
+    width: 81vw;
+  }
+}
+@media (max-width: 1535px) and (min-width: 1440px) {
+  .message-card {
+    width: 79.3vw;
+  }
+}
+
+.message-top-section {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  min-height: 40px !important;
+}
+
+.message-bottom-section {
+  min-height: 40px !important;
+}
+
+.message-input-button {
+  font-size: 1.4rem !important;
+}
+
+.message-icon-divider {
+  height: 28px !important;
+}
+
+.message-submit-button {
+  background-color: #36795a;
+  border-radius: 4px;
+  height: 28px;
+  width: 65px;
+  margin-right: 6px;
+}
+
+.submit-button:hover {
+  background-color: #3b8361 !important;
+}
+
+.schedule-button {
+  border-top-right-radius: 4px !important;
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 4px !important;
+  padding: 3px 2px !important;
+}
+
+.send-button {
+  border-top-right-radius: 0px !important;
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+  border-bottom-right-radius: 0px !important;
+  padding: 3px 8px !important;
+}
+
+.message-attachment-card {
+  width: 350px !important;
+  padding: 5px 0px !important;
+}
+
+.add-attachment-button {
+  background-color: #eeeded !important;
+}
+
+.add-attachment-button:hover,
+.active-button {
+  background-color: #d3d3d3 !important;
+}
