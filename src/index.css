@@ -74,6 +74,7 @@ code {
 .text-medium {
   font-weight: 500 !important;
 }
+
 .text-small {
   font-size: 0.625rem !important;
 }
@@ -159,8 +160,8 @@ code {
   justify-content: flex-end;
 }
 .flex-start {
-  display: flex;
-  justify-content: flex-start;
+  display: flex !important;
+  justify-content: flex-start !important;
 }
 
 .numbers-button {
