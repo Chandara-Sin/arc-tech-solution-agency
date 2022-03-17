@@ -49,34 +49,34 @@ function HeaderNotify() {
               />
             </Tooltip>
           </Box>
-          <Button className="user-button" fullWidth>
+          <Button className="user-button flex-start" fullWidth>
             <Typography variant="subtitle2" className="pl-4">
               For 30 minutes
             </Typography>
           </Button>
-          <Button className="user-button" fullWidth>
+          <Button className="user-button flex-start" fullWidth>
             <Typography variant="subtitle2" className="pl-4">
               For 1 hour
             </Typography>
           </Button>
-          <Button className="user-button" fullWidth>
+          <Button className="user-button flex-start" fullWidth>
             <Typography variant="subtitle2" className="pl-4">
               For 2 hours
             </Typography>
           </Button>
-          <Button className="user-button" fullWidth>
+          <Button className="user-button flex-start" fullWidth>
             <Typography variant="subtitle2" className="pl-4">
               Until Tomorrow
             </Typography>
           </Button>
-          <Button className="user-button" fullWidth>
+          <Button className="user-button flex-start" fullWidth>
             <Typography variant="subtitle2" className="pl-4">
               Custom...
             </Typography>
           </Button>
           <Divider />
           <Box className="user-details">
-            <Button className="user-button" fullWidth>
+            <Button className="user-button flex-start" fullWidth>
               <Typography variant="subtitle2" className="pl-4">
                 Set a notification schedule
               </Typography>
@@ -85,7 +85,7 @@ function HeaderNotify() {
         </Paper>
       }
     >
-      <Button className="user-button" fullWidth>
+      <Button className="user-button flex-start" fullWidth>
         <Box className="flex-between full-width" alignItems="center" pr={2}>
           <Typography variant="subtitle2" className="pl-4">
             Pause Notification
