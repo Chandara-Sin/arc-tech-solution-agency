@@ -8,3 +8,11 @@
 .tooltip-shortcut-button {
   font-size: 1.1rem !important;
 }
+
+.tooltip-shortcut-card {
+  margin-top: -5px !important;
+}
+
+.tooltip-shortcut-title {
+  font-weight: bold !important;
+}

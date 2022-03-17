@@ -12,8 +12,15 @@ function TooltipShortcut(props: ITooltipShortcutProps) {
     <Tooltip
       placement={placement}
       title={
-        <Box className="content-center flex-column" style={style}>
-          <Typography variant="subtitle1" style={title.style}>
+        <Box
+          className="content-center flex-column tooltip-shortcut-card"
+          style={style}
+        >
+          <Typography
+            variant="subtitle1"
+            style={title.style}
+            className="tooltip-shortcut-title"
+          >
             {title.name}
           </Typography>
           {content && (
