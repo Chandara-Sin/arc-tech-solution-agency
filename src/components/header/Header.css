@@ -28,9 +28,6 @@
 
 .user-setting {
   min-height: 68px;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
 }
 
 .user-details {
@@ -55,8 +52,6 @@
 }
 
 .user-button {
-  display: flex !important;
-  justify-content: flex-start !important;
   padding: 3px !important;
   border-radius: 0px !important;
   color: #293241 !important;

@@ -173,7 +173,7 @@ function UserHistory() {
       <Typography variant="caption" className="pl-4 text-grey-4" py="5px">
         Recent
       </Typography>
-      <Button className="user-button" fullWidth>
+      <Button className="user-button flex-start" fullWidth>
         <Box className="flex-start full-width" alignContent="center" pl={2}>
           <HelpOutline fontSize="small" />
           <Typography variant="subtitle2" className="text-bold pl-1">
@@ -181,7 +181,7 @@ function UserHistory() {
           </Typography>
         </Box>
       </Button>
-      <Button className="user-button" fullWidth>
+      <Button className="user-button flex-start" fullWidth>
         <Box className="flex-start full-width" alignContent="center" pl={2}>
           <Person fontSize="small" />
           <Typography variant="subtitle2" className="text-bold pl-1">
@@ -189,19 +189,19 @@ function UserHistory() {
           </Typography>
         </Box>
       </Button>
-      <Button className="user-button user-button-text" fullWidth>
+      <Button className="user-button flex-start user-button-text" fullWidth>
         <Numbers className="numbers-button" />
         <Typography variant="subtitle2" className="pl-1 text-bold">
           general
         </Typography>
       </Button>
-      <Button className="user-button user-button-text" fullWidth>
+      <Button className="user-button flex-start user-button-text" fullWidth>
         <Numbers className="numbers-button" />
         <Typography variant="subtitle2" className="text-bold pl-1">
           slack-clone-project
         </Typography>
       </Button>
-      <Button className="user-button user-button-text" fullWidth>
+      <Button className="user-button flex-start user-button-text" fullWidth>
         <Numbers className="numbers-button" />
         <Typography variant="subtitle2" className=" text-bold pl-1">
           slack-clone-git
@@ -215,7 +215,7 @@ function UserHistory() {
       </Box>
       <Divider />
       <Box className="user-details">
-        <Button className="user-button" fullWidth>
+        <Button className="user-button flex-start" fullWidth>
           <Typography variant="subtitle2" className="pl-4">
             Show more
           </Typography>
@@ -258,7 +258,11 @@ function UserCard() {
         </Button>
       </Box>
       <Box className="user-profile">
-        <Button className="user-button" fullWidth onClick={handleUserStatus}>
+        <Button
+          className="user-button flex-start"
+          fullWidth
+          onClick={handleUserStatus}
+        >
           <Typography variant="subtitle2" className="pl-4">
             Set yourself as
             <span className="text-bold">
@@ -269,13 +273,13 @@ function UserCard() {
         <HeaderNotify />
       </Box>
       <Divider />
-      <Box className="user-setting">
-        <Button className="user-button" fullWidth>
+      <Box className="user-setting d-flex flex-column justify-center">
+        <Button className="user-button flex-start" fullWidth>
           <Typography variant="subtitle2" className="pl-4">
             Profile
           </Typography>
         </Button>
-        <Button className="user-button" fullWidth>
+        <Button className="user-button flex-start" fullWidth>
           <Typography variant="subtitle2" className="pl-4">
             Preferences
           </Typography>
@@ -283,7 +287,7 @@ function UserCard() {
       </Box>
       <Divider />
       <Box className="user-details">
-        <Button className="user-button" fullWidth>
+        <Button className="user-button flex-start" fullWidth>
           <Typography variant="subtitle2" className="pl-4">
             Downloads
           </Typography>
@@ -291,7 +295,7 @@ function UserCard() {
       </Box>
       <Divider />
       <Box className="user-details">
-        <Button className="user-button" fullWidth>
+        <Button className="user-button flex-start" fullWidth>
           <Typography variant="subtitle2" className="pl-4">
             Sign out of xxx
           </Typography>
@@ -362,27 +366,24 @@ function Header() {
                 </IconButton>
               </Tooltip>
             </Grid>
-
-            {menuSelected && (
-              <Popover
-                sx={{ mt: "15px" }}
-                open={open}
-                onClose={handleClose}
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "right",
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                elevation={3}
-              >
-                {menuSelected === "history" && <UserHistory />}
-                {menuSelected === "user" && <UserCard />}
-              </Popover>
-            )}
+            <Popover
+              sx={{ mt: "15px" }}
+              open={open}
+              onClose={handleClose}
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              elevation={3}
+            >
+              {menuSelected === "history" && <UserHistory />}
+              {menuSelected === "user" && <UserCard />}
+            </Popover>
           </Grid>
         </Toolbar>
       </AppBar>
