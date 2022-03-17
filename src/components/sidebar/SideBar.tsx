@@ -15,7 +15,6 @@ import {
   Button,
   Link,
   Grid,
-  Tooltip,
 } from "@mui/material";
 import {
   ArrowForwardIos,
@@ -39,12 +38,13 @@ import {
 } from "@mui/icons-material";
 import { channels, directMessage } from "./example-data";
 import { TooltipDetails } from "../header-notify/HeaderNotify";
+import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
 
 function GroupBrowse() {
   return (
     <Paper className="group-section-card">
       <Box className="group-setting">
-        <Button className="user-button" fullWidth>
+        <Button className="user-button flex-start" fullWidth>
           <Box className="flex-start full-width" alignContent="center" pl={2}>
             <Notes fontSize="small" />
             <Typography variant="subtitle2" className="pl-2">
@@ -52,7 +52,7 @@ function GroupBrowse() {
             </Typography>
           </Box>
         </Button>
-        <Button className="user-button" fullWidth>
+        <Button className="user-button flex-start" fullWidth>
           <Box className="flex-start full-width" alignContent="center" pl={2}>
             <ForumRounded fontSize="small" />
             <Typography variant="subtitle2" className="pl-2">
@@ -60,7 +60,7 @@ function GroupBrowse() {
             </Typography>
           </Box>
         </Button>
-        <Button className="user-button" fullWidth>
+        <Button className="user-button flex-start" fullWidth>
           <Box className="flex-start full-width" alignContent="center" pl={2}>
             <AlternateEmail fontSize="small" />
             <Typography variant="subtitle2" className="pl-2">
@@ -68,7 +68,7 @@ function GroupBrowse() {
             </Typography>
           </Box>
         </Button>
-        <Button className="user-button" fullWidth>
+        <Button className="user-button flex-start" fullWidth>
           <Box className="flex-start full-width" alignContent="center" pl={2}>
             <BookmarkBorderRounded fontSize="small" />
             <Typography variant="subtitle2" className="pl-2">
@@ -79,7 +79,7 @@ function GroupBrowse() {
       </Box>
       <Divider />
       <Box className="group-setting">
-        <Button className="user-button" fullWidth>
+        <Button className="user-button flex-start" fullWidth>
           <Box className="flex-start full-width" alignContent="center" pl={2}>
             <ManageSearchRounded fontSize="small" />
             <Typography variant="subtitle2" className="pl-2">
@@ -87,7 +87,7 @@ function GroupBrowse() {
             </Typography>
           </Box>
         </Button>
-        <Button className="user-button" fullWidth>
+        <Button className="user-button flex-start" fullWidth>
           <Box className="flex-start full-width" alignContent="center" pl={2}>
             <LayersRounded fontSize="small" />
             <Typography variant="subtitle2" className="pl-2">
@@ -95,7 +95,7 @@ function GroupBrowse() {
             </Typography>
           </Box>
         </Button>
-        <Button className="user-button" fullWidth>
+        <Button className="user-button flex-start" fullWidth>
           <Box className="flex-start full-width" alignContent="center" pl={2}>
             <ContactsRounded fontSize="small" />
             <Typography variant="subtitle2" className="pl-2">
@@ -103,7 +103,7 @@ function GroupBrowse() {
             </Typography>
           </Box>
         </Button>
-        <Button className="user-button" fullWidth>
+        <Button className="user-button flex-start" fullWidth>
           <Box className="flex-start full-width" alignContent="center" pl={2}>
             <AppRegistrationRounded fontSize="small" />
             <Typography variant="subtitle2" className="pl-2">
@@ -114,7 +114,7 @@ function GroupBrowse() {
       </Box>
       <Divider />
       <Box className="user-details">
-        <Button className="user-button" fullWidth>
+        <Button className="user-button flex-start" fullWidth>
           <Typography variant="subtitle2" className="pl-4">
             Customize this list in your{" "}
             <Link href="#" underline="hover" color="inherit">
@@ -148,8 +148,8 @@ function GroupSetting() {
         </Grid>
       </Grid>
       <Divider />
-      <Box className="user-setting">
-        <Button className="user-button user-button-text" fullWidth>
+      <Box className="user-setting d-flex flex-column justify-center">
+        <Button className="user-button user-button-text flex-start" fullWidth>
           <Typography variant="body2" align="left">
             Your work place is currently on the free version of Slack.{" "}
             <Link href="#" underline="hover" color="inherit">
@@ -159,21 +159,21 @@ function GroupSetting() {
         </Button>
       </Box>
       <Divider />
-      <Box className="user-setting">
-        <Button className="user-button" fullWidth>
+      <Box className="user-setting d-flex flex-column justify-center">
+        <Button className="user-button flex-start" fullWidth>
           <Typography variant="subtitle2" className="pl-4">
             Invite people to Slack
           </Typography>
         </Button>
-        <Button className="user-button" fullWidth>
+        <Button className="user-button flex-start" fullWidth>
           <Typography variant="subtitle2" className="pl-4">
             Create a channel
           </Typography>
         </Button>
       </Box>
       <Divider />
-      <Box className="user-setting">
-        <Button className="user-button" fullWidth>
+      <Box className="user-setting d-flex flex-column justify-center">
+        <Button className="user-button flex-start" fullWidth>
           <Typography variant="subtitle2" className="pl-4">
             Preferences
           </Typography>
@@ -187,12 +187,12 @@ function GroupSetting() {
                   Settings
                 </Typography>
               </Box>
-              <Button className="user-button" fullWidth>
+              <Button className="user-button flex-start" fullWidth>
                 <Typography variant="subtitle2" className="pl-4">
                   Workspace settings
                 </Typography>
               </Button>
-              <Button className="user-button" fullWidth>
+              <Button className="user-button flex-start" fullWidth>
                 <Typography variant="subtitle2" className="pl-4">
                   Customize Slack
                 </Typography>
@@ -203,12 +203,12 @@ function GroupSetting() {
                   Administration
                 </Typography>
               </Box>
-              <Button className="user-button" fullWidth>
+              <Button className="user-button flex-start" fullWidth>
                 <Typography variant="subtitle2" className="pl-4">
                   Manage members
                 </Typography>
               </Button>
-              <Button className="user-button" fullWidth>
+              <Button className="user-button flex-start" fullWidth>
                 <Typography variant="subtitle2" className="pl-4">
                   Manage apps
                 </Typography>
@@ -216,7 +216,7 @@ function GroupSetting() {
             </Paper>
           }
         >
-          <Button className="user-button" fullWidth>
+          <Button className="user-button flex-start" fullWidth>
             <Box className="flex-between full-width" alignItems="center" pr={2}>
               <Typography variant="subtitle2" className="pl-4">
                 Setting & administration
@@ -231,12 +231,12 @@ function GroupSetting() {
         placement="right-start"
         title={
           <Paper className="user-card">
-            <Button className="user-button" fullWidth>
+            <Button className="user-button flex-start" fullWidth>
               <Typography variant="subtitle2" className="pl-4">
                 Workflow Builder
               </Typography>
             </Button>
-            <Button className="user-button" fullWidth>
+            <Button className="user-button flex-start" fullWidth>
               <Typography variant="subtitle2" className="pl-4">
                 Analytics
               </Typography>
@@ -245,7 +245,7 @@ function GroupSetting() {
         }
       >
         <Box className="user-details">
-          <Button className="user-button" fullWidth>
+          <Button className="user-button flex-start" fullWidth>
             <Box className="flex-between full-width" alignItems="center" pr={2}>
               <Typography variant="subtitle2" className="pl-4">
                 Tools
@@ -260,17 +260,17 @@ function GroupSetting() {
         placement="right-start"
         title={
           <Paper className="user-card">
-            <Button className="user-button" fullWidth>
+            <Button className="user-button flex-start" fullWidth>
               <Typography variant="subtitle2" className="pl-4">
                 Sign in to another workspace
               </Typography>
             </Button>
-            <Button className="user-button" fullWidth>
+            <Button className="user-button flex-start" fullWidth>
               <Typography variant="subtitle2" className="pl-4">
                 Create a new workspace
               </Typography>
             </Button>
-            <Button className="user-button" fullWidth>
+            <Button className="user-button flex-start" fullWidth>
               <Typography variant="subtitle2" className="pl-4">
                 Find workspaces
               </Typography>
@@ -279,7 +279,7 @@ function GroupSetting() {
         }
       >
         <Box className="user-details">
-          <Button className="user-button" fullWidth>
+          <Button className="user-button flex-start" fullWidth>
             <Box className="flex-between full-width" alignItems="center" pr={2}>
               <Typography variant="subtitle2" className="pl-4">
                 Add workspaces
@@ -291,7 +291,7 @@ function GroupSetting() {
       </TooltipDetails>
       <Divider />
       <Box className="user-details">
-        <Button className="user-button" fullWidth>
+        <Button className="user-button flex-start" fullWidth>
           <Box className="flex-between full-width" alignItems="center" pr={2}>
             <Typography variant="subtitle2" className="pl-4">
               Sign in on Mobile
@@ -302,7 +302,7 @@ function GroupSetting() {
       </Box>
       <Divider />
       <Box className="user-details">
-        <Button className="user-button" fullWidth>
+        <Button className="user-button flex-start" fullWidth>
           <Typography variant="subtitle2" className="pl-4">
             Sign out of Slack
           </Typography>
@@ -359,22 +359,40 @@ function SideBar() {
                 }}
               />
             </ListItemButton>
-            <Tooltip arrow title="New Messages">
+            <TooltipShortcut
+              style={{ marginTop: "-5px" }}
+              hasArrow
+              tooltipContent={{
+                title: {
+                  name: "New message",
+                  style: { fontSize: "0.9rem", fontWeight: "bold" },
+                },
+                content: {
+                  shortcutKey: [
+                    {
+                      key: "commentKey",
+                      style: { marginRight: "5px" },
+                    },
+                    {
+                      key: "N",
+                    },
+                  ],
+                },
+              }}
+            >
               <Box className="group-setting-button">
                 <IconButton sx={{ color: "#4e1c4e", p: "6px 8px 8px" }}>
                   <BorderColorRounded fontSize="small" />
                 </IconButton>
               </Box>
-            </Tooltip>
+            </TooltipShortcut>
           </ListItem>
-
           <ListItemButton className="p-0 mt-2 sidebar-button">
             <Box className="content-center" pl={2.5}>
               <PeopleAlt className="text-grey-2 pr-2" />
               <ListItemText primary="Slack Connect" className="text-grey-2" />
             </Box>
           </ListItemButton>
-
           <ListItemButton
             className="sidebar-browse p-0 mt-2"
             onClick={(event) => handleClick(event, "browse")}
@@ -384,27 +402,23 @@ function SideBar() {
               <ListItemText primary="Browse Slack" />
             </Box>
           </ListItemButton>
-
-          {open && (
-            <Popover
-              open={open}
-              onClose={handleClose}
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "right",
-              }}
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              elevation={3}
-            >
-              {menuSelected === "setting" && <GroupSetting />}
-              {menuSelected === "browse" && <GroupBrowse />}
-            </Popover>
-          )}
-
+          <Popover
+            open={open}
+            onClose={handleClose}
+            anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            elevation={3}
+          >
+            {menuSelected === "setting" && <GroupSetting />}
+            {menuSelected === "browse" && <GroupBrowse />}
+          </Popover>
           <ListItemButton
             className="p-0 sidebar-button mt-2"
             onClick={() => setOpenChannels(!openChannels)}
@@ -458,7 +472,6 @@ function SideBar() {
               </Box>
             </ListItemButton>
           )}
-
           <ListItemButton
             className="p-0 sidebar-button mt-2"
             onClick={() => setOpenDirectMessage(!openDirectMessage)}
