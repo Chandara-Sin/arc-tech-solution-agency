@@ -10,6 +10,7 @@ function TooltipShortcut(props: ITooltipShortcutProps) {
 
   return (
     <Tooltip
+      disableHoverListener={!title.name}
       placement={placement}
       title={
         <Box
