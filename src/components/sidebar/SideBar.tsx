@@ -30,11 +30,11 @@ import {
   LayersRounded,
   ContactsRounded,
   AppRegistrationRounded,
-  Numbers,
   AddRounded,
   AccountCircleRounded,
   KeyboardArrowRightRounded,
   ArrowRightRounded,
+  NumbersRounded,
 } from "@mui/icons-material";
 import { channels, directMessage } from "./example-data";
 import { TooltipDetails } from "../header-notify/HeaderNotify";
@@ -341,6 +341,7 @@ function SideBar() {
             <ListItemButton
               className="sidebar-button"
               onClick={(event) => handleClick(event, "setting")}
+              sx={{ p: "10px 18px" }}
             >
               <ListItemText
                 primary="Slack"
@@ -445,7 +446,7 @@ function SideBar() {
             channels.map(({ title, isActive }, index) => (
               <ListItemButton className="p-0 sidebar-button my-0" key={index}>
                 <Box className="d-flex align-center" pl={4.5}>
-                  <Numbers className="text-grey-2 numbers-button" />
+                  <NumbersRounded className="text-grey-2 numbers-button" />
                   <ListItemText
                     primary={title}
                     primaryTypographyProps={{
