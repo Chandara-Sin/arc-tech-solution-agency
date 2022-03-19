@@ -1,4 +1,4 @@
-export interface ITrialDialog {
+export interface ITrialDialogProps {
   onClose: (value: boolean) => void;
   open: boolean;
 }

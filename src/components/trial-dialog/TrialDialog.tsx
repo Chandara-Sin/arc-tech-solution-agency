@@ -11,10 +11,10 @@ import {
   Link,
   Typography,
 } from "@mui/material";
-import { ITrialDialog } from "./TrialDialogType";
+import { ITrialDialogProps } from "./TrialDialogType";
 import { CloseRounded } from "@mui/icons-material";
 
-function TrialDialog(props: ITrialDialog) {
+function TrialDialog(props: ITrialDialogProps) {
   const { onClose, open } = props;
 
   const handleClose = () => {
