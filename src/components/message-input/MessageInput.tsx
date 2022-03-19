@@ -517,9 +517,7 @@ function MessageAttachments(props: IMessageAttachmentsProps) {
           </IconButton>
         </TooltipShortcut>
       </Box>
-
       <TrialDialog open={openTrialDialog} onClose={handleCloseTrailDialog} />
-
       <Popover
         sx={{
           mt: "-5px",
@@ -595,7 +593,7 @@ function MessageInput() {
   };
 
   return (
-    <Paper component="form" className="message-card" elevation={0}>
+    <Paper component="form" className="message-input-card" elevation={0}>
       <Grid container>
         {!inputAttachments.format && (
           <Grid xs={12} item>
@@ -622,7 +620,7 @@ function MessageInput() {
                 hasArrow
                 tooltipContent={{
                   title: {
-                    name: "Send now",
+                    name: messageInput ? "Send now" : "",
                     style: { fontSize: "0.9rem" },
                   },
                   content: {
@@ -638,14 +636,16 @@ function MessageInput() {
                   },
                 }}
               >
-                <IconButton
-                  className={`submit-button send-button ${
-                    messageInput ? "text-white" : ""
-                  }`}
-                  disabled={!messageInput}
-                >
-                  <SendRounded className="message-input-button" />
-                </IconButton>
+                <span>
+                  <IconButton
+                    className={`submit-button send-button ${
+                      messageInput ? "text-white" : ""
+                    }`}
+                    disabled={!messageInput}
+                  >
+                    <SendRounded className="message-input-button" />
+                  </IconButton>
+                </span>
               </TooltipShortcut>
               <Divider
                 orientation="vertical"
@@ -658,19 +658,21 @@ function MessageInput() {
                 style={{ marginBlock: "-5px" }}
                 tooltipContent={{
                   title: {
-                    name: "Schedule for later",
+                    name: messageInput ? "Schedule for later" : "",
                     style: { fontSize: "0.8rem", fontWeight: "bold" },
                   },
                 }}
               >
-                <IconButton
-                  className={`submit-button schedule-button  ${
-                    messageInput ? "text-white" : ""
-                  }`}
-                  disabled={!messageInput}
-                >
-                  <KeyboardArrowDownRounded className="message-input-button" />
-                </IconButton>
+                <span>
+                  <IconButton
+                    className={`submit-button schedule-button  ${
+                      messageInput ? "text-white" : ""
+                    }`}
+                    disabled={!messageInput}
+                  >
+                    <KeyboardArrowDownRounded className="message-input-button" />
+                  </IconButton>
+                </span>
               </TooltipShortcut>
             </Box>
           </Box>

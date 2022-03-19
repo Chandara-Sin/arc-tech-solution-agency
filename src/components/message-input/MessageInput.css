@@ -1,4 +1,4 @@
-.message-card {
+.message-input-card {
   border: 1px solid #d3d3d3;
   border-radius: 8px !important;
   /* min-height: 125px !important; */
@@ -6,32 +6,9 @@
   position: fixed;
   top: auto !important;
   bottom: 20px !important;
-}
-
-@media (min-width: 1905px) {
-  .message-card {
-    width: 84.5vw;
-  }
-}
-@media (max-width: 1904px) and (min-width: 1792px) {
-  .message-card {
-    width: 83vw;
-  }
-}
-@media (max-width: 1791px) and (min-width: 1680px) {
-  .message-card {
-    width: 82vw;
-  }
-}
-@media (max-width: 1679px) and (min-width: 1536px) {
-  .message-card {
-    width: 81vw;
-  }
-}
-@media (max-width: 1535px) and (min-width: 1440px) {
-  .message-card {
-    width: 79.3vw;
-  }
+  left: 276px !important;
+  z-index: 3 !important;
+  width: calc(100% - 298px);
 }
 
 .message-top-section {
