@@ -571,6 +571,7 @@ function MessageInput() {
     }
   );
   const handleMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
     const { value } = event.target;
     setMessageInput(value);
   };
