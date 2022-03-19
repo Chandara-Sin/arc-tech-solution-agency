@@ -20,7 +20,6 @@ code {
 
 .container {
   flex-grow: 1;
-  padding: 20px;
   min-height: 90vh;
 }
 
@@ -80,6 +79,9 @@ code {
 }
 .text-extra-small {
   font-size: 0.5rem !important;
+}
+.text-transform-none {
+  text-transform: none !important;
 }
 
 /* Background */
