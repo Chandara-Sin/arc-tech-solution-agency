@@ -1,7 +1,7 @@
 .header {
   background-color: #3f0f3f !important;
   max-height: 40px !important;
-  z-index: 3 !important;
+  z-index: 5 !important;
 }
 
 .tool-bar {

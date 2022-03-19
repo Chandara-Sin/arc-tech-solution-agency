@@ -24,11 +24,11 @@ import {
   Search,
   Close,
   TipsAndUpdates,
-  Numbers,
   HelpOutlineRounded,
   AccessTimeRounded,
   ArrowForwardRounded,
   ArrowBackRounded,
+  NumbersRounded,
 } from "@mui/icons-material";
 import HeaderNotify from "../header-notify/HeaderNotify";
 import SideBar from "../sidebar/SideBar";
@@ -190,19 +190,19 @@ function UserHistory() {
         </Box>
       </Button>
       <Button className="user-button flex-start user-button-text" fullWidth>
-        <Numbers className="numbers-button" />
+        <NumbersRounded className="numbers-button" />
         <Typography variant="subtitle2" className="pl-1 text-bold">
           general
         </Typography>
       </Button>
       <Button className="user-button flex-start user-button-text" fullWidth>
-        <Numbers className="numbers-button" />
+        <NumbersRounded className="numbers-button" />
         <Typography variant="subtitle2" className="text-bold pl-1">
           slack-clone-project
         </Typography>
       </Button>
       <Button className="user-button flex-start user-button-text" fullWidth>
-        <Numbers className="numbers-button" />
+        <NumbersRounded className="numbers-button" />
         <Typography variant="subtitle2" className=" text-bold pl-1">
           slack-clone-git
         </Typography>
