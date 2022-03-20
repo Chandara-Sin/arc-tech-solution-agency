@@ -1,0 +1,49 @@
+.message-display-card {
+  z-index: 1 !important;
+  overflow-y: scroll !important;
+  display: flex !important;
+  flex-flow: column nowrap !important;
+}
+
+.message-display-card > :first-child {
+  margin-top: auto !important;
+  /* justify-content breaks the scroll function */
+  /* use !important to prevent breakage from child margin settings */
+}
+
+.member-details-button {
+  padding: 2px !important;
+  border-radius: 5px !important;
+  border: 1px solid #d3d3d3 !important;
+  color: #1e7bb4 !important;
+}
+
+.member-details-icon {
+  background-color: rgb(228, 228, 228);
+  font-size: 1.8rem !important;
+  border-radius: 5px !important;
+}
+
+.channel-details {
+  border-bottom: 1px solid #d3d3d3;
+  border-radius: 0px !important;
+  z-index: 4 !important;
+  padding: 9px 15px !important;
+  position: fixed !important;
+  width: calc(100% - 286px) !important;
+}
+
+.channel-details-button {
+  padding: 5px !important;
+  border-radius: 8px !important;
+}
+
+.channel-bookmark {
+  border-bottom: 1px solid #d3d3d3;
+  border-radius: 0px !important;
+  z-index: 4 !important;
+  padding: 5px 15px !important;
+  position: fixed !important;
+  margin-top: 54px;
+  width: calc(100% - 286px) !important;
+}
