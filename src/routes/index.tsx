@@ -2,6 +2,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Box } from "@mui/material";
 import Header from "../components/header/Header";
 import MessageInput from "../components/message-input/MessageInput";
+import MessageSection from "../view/message-section";
 
 function Routes() {
   return (
@@ -9,6 +10,7 @@ function Routes() {
       <Header />
       <main className="drawer-content-margin">
         <Box className="container">
+          <MessageSection />
           <MessageInput />
         </Box>
       </main>
@@ -16,8 +18,6 @@ function Routes() {
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="dashboard" element={<Dashboard />} />
-
-
         <Route path="*" element={<NoMatch />} />
       </Route> */}
     </BrowserRouter>
