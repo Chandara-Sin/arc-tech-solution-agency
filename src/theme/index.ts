@@ -30,6 +30,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiDivider: {
+      styleOverrides: {
+        wrapper: {
+          paddingInline: "0px",
+        },
+      },
+    },
   },
 });
 
