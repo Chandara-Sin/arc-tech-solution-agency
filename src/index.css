@@ -6,6 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 code {
@@ -20,13 +21,7 @@ code {
 
 .container {
   flex-grow: 1;
-  min-height: 90vh;
-}
-
-@media (min-height: 1020px) {
-  .container {
-    min-height: 92vh;
-  }
+  height: calc(100vh - 40px);
 }
 
 /* MD - Large Tablet */
