@@ -1,11 +1,13 @@
 {
-  "name": "arc-tech-solution-agency",
+  "name": "slack-clone-project",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@date-io/date-fns": "^2.13.1",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.3.1",
+    "@mui/lab": "^5.0.0-alpha.73",
     "@mui/material": "^5.3.1",
     "@mui/styles": "^5.3.0",
     "@reduxjs/toolkit": "^1.8.0",
@@ -16,6 +18,7 @@
     "@types/node": "^16.11.20",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
+    "date-fns": "^2.28.0",
     "dayjs": "^1.11.0",
     "emoji-picker-react": "^3.5.1",
     "firebase": "^9.6.7",
