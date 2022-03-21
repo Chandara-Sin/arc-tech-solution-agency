@@ -21,6 +21,7 @@ function TooltipShortcut(props: ITooltipShortcutProps) {
             variant="subtitle1"
             style={title.style}
             className="tooltip-shortcut-title"
+            textAlign="center"
           >
             {title.name}
           </Typography>
