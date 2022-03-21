@@ -87,7 +87,7 @@ function MessageDate() {
           </IconButton>
         </DialogTitle>
 
-        <DialogContent>
+        <DialogContent sx={{ height: "320px" }}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <CalendarPicker
               className="calender-picker"
