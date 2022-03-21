@@ -19,11 +19,12 @@ const theme = createTheme({
       styleOverrides: {
         tooltip: {
           color: "#fff",
-          backgroundColor: "#000814",
+          backgroundColor: "#011627",
           padding: "10px",
           borderRadius: "8px",
           fontSize: "0.8rem",
           fontWeight: "bold",
+          maxWidth: "250px",
         },
         arrow: {
           color: "#000814",
