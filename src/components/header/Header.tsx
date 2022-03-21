@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Header.css";
 import {
   Divider,
-  Tooltip,
   AppBar,
   Box,
   Toolbar,
@@ -32,6 +31,7 @@ import {
 } from "@mui/icons-material";
 import HeaderNotify from "../header-notify/HeaderNotify";
 import SideBar from "../sidebar/SideBar";
+import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
 
 function SearchDialog() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -44,14 +44,37 @@ function SearchDialog() {
   const openDialog = Boolean(anchorEl);
   return (
     <>
-      <Button
-        variant="outlined"
-        startIcon={<Search />}
-        className="search-button"
-        onClick={handleClick}
+      {" "}
+      <TooltipShortcut
+        hasArrow
+        style={{ marginBlock: "-5px" }}
+        tooltipContent={{
+          title: {
+            name: "Search xxx",
+            style: { fontSize: "0.8rem", fontWeight: "bold" },
+          },
+          content: {
+            shortcutKey: [
+              {
+                key: "commentKey",
+              },
+              {
+                key: "G",
+                style: { marginLeft: "5px" },
+              },
+            ],
+          },
+        }}
       >
-        Search xxx
-      </Button>
+        <Button
+          variant="outlined"
+          startIcon={<Search />}
+          className="search-button"
+          onClick={handleClick}
+        >
+          Search xxx
+        </Button>
+      </TooltipShortcut>
       {openDialog && (
         <Popover
           sx={{ mt: "-10px" }}
@@ -337,26 +360,52 @@ function Header() {
               <IconButton className="header-button text-white">
                 <ArrowForwardRounded fontSize="medium" />
               </IconButton>
-              <Tooltip
-                title="History"
-                arrow
-                onClick={(event) => handleClick(event, "history")}
+              <TooltipShortcut
+                hasArrow
+                style={{ marginBlock: "-5px" }}
+                tooltipContent={{
+                  title: {
+                    name: "History",
+                    style: { fontSize: "0.8rem", fontWeight: "bold" },
+                  },
+                }}
               >
-                <IconButton className="header-button text-white">
+                <IconButton
+                  className="header-button text-white"
+                  onClick={(event) => handleClick(event, "history")}
+                >
                   <AccessTimeRounded fontSize="medium" />
                 </IconButton>
-              </Tooltip>
+              </TooltipShortcut>
             </Grid>
             <Grid xs={8} item>
               <SearchDialog />
             </Grid>
             <Grid xs={2} display="flex" justifyContent="flex-end" item>
-              <Tooltip title="Help" arrow>
+              <TooltipShortcut
+                hasArrow
+                style={{ marginBlock: "-5px" }}
+                tooltipContent={{
+                  title: {
+                    name: "Help",
+                    style: { fontSize: "0.8rem", fontWeight: "bold" },
+                  },
+                }}
+              >
                 <IconButton className="header-button text-white mr-3">
                   <HelpOutlineRounded fontSize="medium" />
                 </IconButton>
-              </Tooltip>
-              <Tooltip title="Chandara" arrow>
+              </TooltipShortcut>
+              <TooltipShortcut
+                hasArrow
+                style={{ marginBlock: "-5px" }}
+                tooltipContent={{
+                  title: {
+                    name: "Chandara",
+                    style: { fontSize: "0.8rem", fontWeight: "bold" },
+                  },
+                }}
+              >
                 <IconButton
                   onClick={(event) => handleClick(event, "user")}
                   sx={{ p: "0px" }}
@@ -364,7 +413,7 @@ function Header() {
                 >
                   <AccountCircle fontSize="large" />
                 </IconButton>
-              </Tooltip>
+              </TooltipShortcut>
             </Grid>
             <Popover
               sx={{ mt: "15px" }}
