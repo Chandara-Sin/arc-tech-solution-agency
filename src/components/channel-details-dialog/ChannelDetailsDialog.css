@@ -1,0 +1,33 @@
+.channel-star-button {
+  margin-left: 25px !important;
+  border-radius: 5px !important;
+  border: 1px solid #a09f9f !important;
+  background-color: none !important;
+  padding: 0px 8px !important;
+  height: 30px !important;
+}
+
+.channel-notify-button {
+  padding: 2px 10px !important;
+  border: 1px solid #a09f9f !important;
+  color: #3f3e3e !important;
+}
+
+.channel-notify-button:hover {
+  background-color: #f7f7f7 !important;
+}
+
+.channel-notify-icon {
+  color: rgba(0, 0, 0, 0.54) !important;
+}
+
+.channel-phone-button {
+  padding: 2px 10px !important;
+  color: #3f3e3e !important;
+  background-color: #d3d2d2 !important;
+  border: 1px solid #d3d2d2 !important;
+}
+
+/* .channel-content-card{
+
+} */
