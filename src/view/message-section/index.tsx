@@ -63,6 +63,7 @@ function ChannelDetails() {
           variant="outlined"
           className="member-details-button"
           startIcon={<PersonRounded className="member-details-icon" />}
+          onClick={handleOpenChannelDetailDialog}
         >
           12
         </Button>
