@@ -44,7 +44,6 @@ function SearchDialog() {
   const openDialog = Boolean(anchorEl);
   return (
     <>
-      {" "}
       <TooltipShortcut
         hasArrow
         style={{ marginBlock: "-5px" }}
