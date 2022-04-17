@@ -33,7 +33,7 @@ import HeaderNotify from "../header-notify/HeaderNotify";
 import SideBar from "../sidebar/SideBar";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
 
-function SearchDialog() {
+function SearchPopover() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -378,7 +378,7 @@ function Header() {
               </TooltipShortcut>
             </Grid>
             <Grid xs={8} item>
-              <SearchDialog />
+              <SearchPopover />
             </Grid>
             <Grid xs={2} display="flex" justifyContent="flex-end" item>
               <TooltipShortcut
