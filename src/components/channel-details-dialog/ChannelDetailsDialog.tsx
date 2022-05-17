@@ -113,6 +113,7 @@ function ChannelDetailsDialog(props: IChannelDetailsDialogProps) {
               <TabList onChange={handleTabChange}>
                 {tabs.map((item, index) => (
                   <Tab
+                    key={index}
                     className="text-transform-none"
                     label={item.tabName}
                     value={item.value}
