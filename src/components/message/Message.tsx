@@ -18,9 +18,9 @@ import {
   KeyboardArrowRightRounded,
   Person,
 } from "@mui/icons-material";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import CalendarPicker from "@mui/lab/CalendarPicker";
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { CalendarPicker } from '@mui/x-date-pickers/CalendarPicker';
 
 function MessageDate() {
   const [date, setDate] = useState<null | Date>(new Date());

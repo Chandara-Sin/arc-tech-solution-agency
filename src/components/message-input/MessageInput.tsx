@@ -544,7 +544,6 @@ function MessageAttachments(props: IMessageAttachmentsProps) {
             skinTone={SKIN_TONE_MEDIUM_LIGHT}
             groupNames={{ smileys_people: "PEOPLE" }}
             native
-            searchPlaceholder="Search Emoji"
           />
         )}
       </Popover>
