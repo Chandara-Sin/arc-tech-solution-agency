@@ -18,21 +18,15 @@ import {
   KeyboardArrowRightRounded,
   Person,
 } from "@mui/icons-material";
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { CalendarPicker } from '@mui/x-date-pickers/CalendarPicker';
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { CalendarPicker } from "@mui/x-date-pickers/CalendarPicker";
+
+const suggestMessageDate = ["Most recent", "Last week", "Last month"];
 
 function MessageDate() {
-  const [date, setDate] = useState<null | Date>(new Date());
+  const [date, setDate] = useState<Date | null>(new Date());
   const [openDateDialog, setOpenDateDialog] = useState(false);
-
-  const handleOpenDateDialog = () => {
-    setOpenDateDialog(true);
-  };
-
-  const handleCloseDateDialog = () => {
-    setOpenDateDialog(false);
-  };
 
   return (
     <>
@@ -41,27 +35,19 @@ function MessageDate() {
           <Typography variant="subtitle2" className="text-grey-4" pl={2.5}>
             Jump to...
           </Typography>
-          <Button className="user-button flex-start" fullWidth>
-            <Typography variant="body2" pl={2}>
-              Most recent
-            </Typography>
-          </Button>
-          <Button className="user-button flex-start" fullWidth>
-            <Typography variant="body2" pl={2}>
-              Last week
-            </Typography>
-          </Button>
-          <Button className="user-button flex-start" fullWidth>
-            <Typography variant="body2" pl={2}>
-              Last month
-            </Typography>
-          </Button>
+          {suggestMessageDate.map((messageDate, index) => (
+            <Button key={index} className="user-button flex-start" fullWidth>
+              <Typography variant="body2" pl={2}>
+                {messageDate}
+              </Typography>
+            </Button>
+          ))}
         </Box>
         <Divider />
         <Button
           className="user-button flex-start mt-1"
           fullWidth
-          onClick={handleOpenDateDialog}
+          onClick={() => setOpenDateDialog(true)}
         >
           <Typography variant="body2" pl={2}>
             Jump to specific date
@@ -70,7 +56,7 @@ function MessageDate() {
       </Paper>
       <Dialog
         fullWidth={true}
-        onClose={handleCloseDateDialog}
+        onClose={() => setOpenDateDialog(false)}
         scroll="paper"
         open={openDateDialog}
         PaperProps={{ sx: { borderRadius: "9px", maxWidth: "340px" } }}
@@ -80,13 +66,12 @@ function MessageDate() {
             Jump to a specific date
           </Typography>
           <IconButton
-            onClick={handleCloseDateDialog}
+            onClick={() => setOpenDateDialog(false)}
             className="dialog-close-button"
           >
             <CloseRounded />
           </IconButton>
         </DialogTitle>
-
         <DialogContent sx={{ height: "320px" }}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <CalendarPicker

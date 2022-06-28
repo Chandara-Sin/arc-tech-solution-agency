@@ -248,7 +248,7 @@ function UserHistory() {
 }
 
 function UserCard() {
-  const [userStatus, setUserStatus] = useState<boolean>(true);
+  const [userStatus, setUserStatus] = useState(true);
   const handleUserStatus = () => {
     setUserStatus(!userStatus);
   };

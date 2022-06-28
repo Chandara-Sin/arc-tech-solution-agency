@@ -33,17 +33,15 @@ function ChannelDetailsDialog(props: IChannelDetailsDialogProps) {
   const { open, onClose } = props;
   const [tabSelected, setTabSelected] = useState("about");
 
-  const handleCloseDialog = () => {
-    onClose(false);
-  };
   const handleTabChange = (event: React.SyntheticEvent, value: string) => {
     setTabSelected(value);
   };
+  
   return (
     <Dialog
       fullWidth={true}
       maxWidth="sm"
-      onClose={handleCloseDialog}
+      onClose={() => onClose(false)}
       scroll="paper"
       open={open}
       PaperProps={{ sx: { borderRadius: "8px" } }}
@@ -55,7 +53,10 @@ function ChannelDetailsDialog(props: IChannelDetailsDialogProps) {
             general
           </Typography>
         </Box>
-        <IconButton onClick={handleCloseDialog} className="dialog-close-button">
+        <IconButton
+          onClick={() => onClose(false)}
+          className="dialog-close-button"
+        >
           <CloseRounded />
         </IconButton>
       </DialogTitle>
