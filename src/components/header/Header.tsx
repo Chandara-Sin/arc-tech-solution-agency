@@ -28,6 +28,7 @@ import {
   ArrowForwardRounded,
   ArrowBackRounded,
   NumbersRounded,
+  KeyboardCommandKeyRounded,
 } from "@mui/icons-material";
 import HeaderNotify from "../header-notify/HeaderNotify";
 import SideBar from "../sidebar/SideBar";
@@ -64,7 +65,7 @@ function SearchPopover() {
           content: {
             shortcutKey: [
               {
-                key: "commentKey",
+                icon: KeyboardCommandKeyRounded,
               },
               {
                 key: "G",

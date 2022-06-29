@@ -1,3 +1,4 @@
+import { SvgIconComponent } from "@mui/icons-material";
 import { ReactElement } from "react";
 
 export interface ITooltipShortcutProps {
@@ -32,6 +33,7 @@ export interface IToolTipContent {
 }
 
 export interface IShortcutKey {
-  key: string;
+  icon?: SvgIconComponent;
+  key?: string;
   style?: React.CSSProperties;
 }

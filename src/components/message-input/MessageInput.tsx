@@ -83,7 +83,7 @@ function MessageFormat(props: IMessageFormatProps) {
           content: {
             shortcutKey: [
               {
-                key: "commentKey",
+                icon: KeyboardCommandKeyRounded,
                 style: { marginRight: "5px" },
               },
               {
@@ -112,7 +112,7 @@ function MessageFormat(props: IMessageFormatProps) {
           content: {
             shortcutKey: [
               {
-                key: "commentKey",
+                icon: KeyboardCommandKeyRounded,
                 style: { marginRight: "5px" },
               },
               {
@@ -140,7 +140,7 @@ function MessageFormat(props: IMessageFormatProps) {
           content: {
             shortcutKey: [
               {
-                key: "commentKey",
+                icon: KeyboardCommandKeyRounded,
               },
               {
                 key: "Shift",
@@ -174,7 +174,7 @@ function MessageFormat(props: IMessageFormatProps) {
           content: {
             shortcutKey: [
               {
-                key: "commentKey",
+                icon: KeyboardCommandKeyRounded,
               },
               {
                 key: "Shift",
@@ -206,7 +206,7 @@ function MessageFormat(props: IMessageFormatProps) {
           content: {
             shortcutKey: [
               {
-                key: "commentKey",
+                icon: KeyboardCommandKeyRounded,
               },
               {
                 key: "Shift",
@@ -237,7 +237,7 @@ function MessageFormat(props: IMessageFormatProps) {
           content: {
             shortcutKey: [
               {
-                key: "commentKey",
+                icon: KeyboardCommandKeyRounded,
               },
               {
                 key: "Shift",
@@ -269,7 +269,7 @@ function MessageFormat(props: IMessageFormatProps) {
           content: {
             shortcutKey: [
               {
-                key: "commentKey",
+                icon: KeyboardCommandKeyRounded,
               },
               {
                 key: "Shift",
@@ -620,13 +620,13 @@ function MessageInput() {
                 hasArrow
                 tooltipContent={{
                   title: {
-                    name: messageInput ? "Send now" : "",
+                    name: messageInput ? "send now" : "",
                     style: { fontSize: "0.9rem" },
                   },
                   content: {
                     shortcutKey: [
                       {
-                        key: "press",
+                        key: "Press",
                       },
                       {
                         key: "Return",

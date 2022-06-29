@@ -35,6 +35,7 @@ import {
   KeyboardArrowRightRounded,
   ArrowRightRounded,
   NumbersRounded,
+  KeyboardCommandKeyRounded,
 } from "@mui/icons-material";
 import { channels, directMessage } from "./example-data";
 import { TooltipDetails } from "../header-notify/HeaderNotify";
@@ -333,13 +334,13 @@ function SideBar() {
               hasArrow
               tooltipContent={{
                 title: {
-                  name: "New message",
+                  name: "new message",
                   style: { fontSize: "0.9rem", fontWeight: "bold" },
                 },
                 content: {
                   shortcutKey: [
                     {
-                      key: "commentKey",
+                      icon: KeyboardCommandKeyRounded,
                       style: { marginRight: "5px" },
                     },
                     {

@@ -28,31 +28,30 @@ function TooltipShortcut(props: ITooltipShortcutProps) {
           {content && (
             <Box className="content-center" style={content.style}>
               {content.shortcutKey.map((item, index) =>
-                item.key === "commentKey" ? (
+                item.icon ? (
                   <Paper
                     key={index}
                     className="tooltip-shortcut content-center"
                     style={item.style}
                   >
-                    <KeyboardCommandKeyRounded className="tooltip-shortcut-button" />
+                    {item.icon && (
+                      <item.icon className="tooltip-shortcut-button" />
+                    )}
                   </Paper>
-                ) : item.key === "press" ? (
-                  <Box
-                    key={index}
-                    className="content-center"
-                    style={item.style}
-                  >
-                    <Typography variant="subtitle2" className="text-grey-4">
-                      Press
-                    </Typography>
-                  </Box>
                 ) : (
                   <Paper
                     key={index}
-                    className="tooltip-shortcut content-center"
+                    className={`${
+                      item.key !== "Press" ? "tooltip-shortcut" : "bg-transpar"
+                    } content-center`}
                     style={item.style}
                   >
-                    <Typography variant="subtitle2">{item.key}</Typography>
+                    <Typography
+                      variant="subtitle2"
+                      className={`${item.key === "Press" ? "text-grey-4" : ""}`}
+                    >
+                      {item.key}
+                    </Typography>
                   </Paper>
                 )
               )}

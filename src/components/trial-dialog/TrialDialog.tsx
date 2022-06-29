@@ -35,7 +35,6 @@ function TrialDialog(props: ITrialDialogProps) {
           <CloseRounded />
         </IconButton>
       </DialogTitle>
-
       <DialogContent className="dialog-content">
         <Box className="d-flex flex-column justify-center align-center">
           <Typography variant="h5" textAlign="center" className="text-bold">
