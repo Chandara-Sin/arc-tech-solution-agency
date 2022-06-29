@@ -509,7 +509,7 @@ function MessageAttachments(props: IMessageAttachmentsProps) {
         >
           <IconButton
             size="small"
-            onClick={(event) =>
+            onClick={() =>
               handleAttachmentChange("format", !attachments.format)
             }
           >

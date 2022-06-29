@@ -15,14 +15,6 @@ function ChannelDetails() {
   const [openChannelDetailsDialog, setOpenChannelDetailsDialog] =
     useState(false);
 
-  const handleOpenChannelDetailDialog = () => {
-    setOpenChannelDetailsDialog(true);
-  };
-
-  const handleCloseChannelDetailsDialog = () => {
-    setOpenChannelDetailsDialog(false);
-  };
-
   return (
     <Paper className="channel-details flex-between align-center" elevation={0}>
       <TooltipShortcut
@@ -39,7 +31,7 @@ function ChannelDetails() {
           variant="text"
           className="text-transform-none channel-details-button"
           color="inherit"
-          onClick={handleOpenChannelDetailDialog}
+          onClick={() => setOpenChannelDetailsDialog(true)}
         >
           <Box className="content-center">
             <NumbersRounded className="tooltip-shortcut-button" />
@@ -63,14 +55,14 @@ function ChannelDetails() {
           variant="outlined"
           className="member-details-button"
           startIcon={<PersonRounded className="member-details-icon" />}
-          onClick={handleOpenChannelDetailDialog}
+          onClick={() => setOpenChannelDetailsDialog(true)}
         >
           12
         </Button>
       </TooltipShortcut>
       <ChannelDetailsDialog
         open={openChannelDetailsDialog}
-        onClose={handleCloseChannelDetailsDialog}
+        onClose={() => setOpenChannelDetailsDialog(false)}
       />
     </Paper>
   );

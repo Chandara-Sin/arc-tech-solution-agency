@@ -16,3 +16,7 @@
 .tooltip-shortcut-title {
   font-weight: bold !important;
 }
+
+.tooltip-shortcut-title::first-letter{
+  text-transform: capitalize;
+}

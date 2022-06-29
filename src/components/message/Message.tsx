@@ -87,12 +87,9 @@ function MessageDate() {
 }
 
 function Message() {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const handleMessageDate = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
-  };
-  const handleClosePopover = () => {
-    setAnchorEl(null);
   };
   const open = Boolean(anchorEl);
   return (
@@ -142,7 +139,7 @@ function Message() {
           mt: "5px",
         }}
         open={open}
-        onClose={handleClosePopover}
+        onClose={() => setAnchorEl(null)}
         anchorEl={anchorEl}
         anchorOrigin={{
           vertical: "bottom",
