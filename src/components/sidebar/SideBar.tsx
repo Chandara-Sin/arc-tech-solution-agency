@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import "./SideBar.css";
 import {
   Drawer,
@@ -39,79 +39,47 @@ import {
 import { channels, directMessage } from "./example-data";
 import { TooltipDetails } from "../header-notify/HeaderNotify";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
+import { ICardItem } from "../header/HeaderType";
+
+const groupBrowseDetails: ICardItem[][] = [
+  [
+    { icon: Notes, item: "All unreads" },
+    { icon: ForumRounded, item: "All DMs" },
+    { icon: AlternateEmail, item: "Mentions and reactions" },
+    { icon: BookmarkBorderRounded, item: "Save items" },
+  ],
+  [
+    { icon: ManageSearchRounded, item: "Channel browser" },
+    { icon: LayersRounded, item: "File browser" },
+    { icon: ContactsRounded, item: "People & user groups" },
+    { icon: AppRegistrationRounded, item: "Apps" },
+  ],
+];
 
 function GroupBrowse() {
   return (
     <Paper className="group-section-card">
-      <Box className="group-setting">
-        <Button className="user-button flex-start" fullWidth>
-          <Box className="flex-start full-width" alignContent="center" pl={2}>
-            <Notes fontSize="small" />
-            <Typography variant="subtitle2" className="pl-2">
-              All unreads
-            </Typography>
+      {groupBrowseDetails.map((value, index) => (
+        <Fragment key={index}>
+          <Box className="group-setting">
+            {value.map((browseDetails, index) => (
+              <Button key={index} className="user-button flex-start" fullWidth>
+                <Box
+                  className="flex-start full-width"
+                  alignContent="center"
+                  pl={2}
+                >
+                  <browseDetails.icon fontSize="small" />
+                  <Typography variant="subtitle2" className="pl-2">
+                    {browseDetails.item}
+                  </Typography>
+                </Box>
+              </Button>
+            ))}
           </Box>
-        </Button>
-        <Button className="user-button flex-start" fullWidth>
-          <Box className="flex-start full-width" alignContent="center" pl={2}>
-            <ForumRounded fontSize="small" />
-            <Typography variant="subtitle2" className="pl-2">
-              All DMs
-            </Typography>
-          </Box>
-        </Button>
-        <Button className="user-button flex-start" fullWidth>
-          <Box className="flex-start full-width" alignContent="center" pl={2}>
-            <AlternateEmail fontSize="small" />
-            <Typography variant="subtitle2" className="pl-2">
-              Mentions and reactions
-            </Typography>
-          </Box>
-        </Button>
-        <Button className="user-button flex-start" fullWidth>
-          <Box className="flex-start full-width" alignContent="center" pl={2}>
-            <BookmarkBorderRounded fontSize="small" />
-            <Typography variant="subtitle2" className="pl-2">
-              Save items
-            </Typography>
-          </Box>
-        </Button>
-      </Box>
-      <Divider />
-      <Box className="group-setting">
-        <Button className="user-button flex-start" fullWidth>
-          <Box className="flex-start full-width" alignContent="center" pl={2}>
-            <ManageSearchRounded fontSize="small" />
-            <Typography variant="subtitle2" className="pl-2">
-              Channel browser
-            </Typography>
-          </Box>
-        </Button>
-        <Button className="user-button flex-start" fullWidth>
-          <Box className="flex-start full-width" alignContent="center" pl={2}>
-            <LayersRounded fontSize="small" />
-            <Typography variant="subtitle2" className="pl-2">
-              File browser
-            </Typography>
-          </Box>
-        </Button>
-        <Button className="user-button flex-start" fullWidth>
-          <Box className="flex-start full-width" alignContent="center" pl={2}>
-            <ContactsRounded fontSize="small" />
-            <Typography variant="subtitle2" className="pl-2">
-              People & user groups
-            </Typography>
-          </Box>
-        </Button>
-        <Button className="user-button flex-start" fullWidth>
-          <Box className="flex-start full-width" alignContent="center" pl={2}>
-            <AppRegistrationRounded fontSize="small" />
-            <Typography variant="subtitle2" className="pl-2">
-              Apps
-            </Typography>
-          </Box>
-        </Button>
-      </Box>
+          <Divider />
+        </Fragment>
+      ))}
       <Divider />
       <Box className="user-details">
         <Button className="user-button flex-start" fullWidth>

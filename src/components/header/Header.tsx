@@ -32,6 +32,15 @@ import {
 import HeaderNotify from "../header-notify/HeaderNotify";
 import SideBar from "../sidebar/SideBar";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
+import { ICardItem } from "./HeaderType";
+
+const recentHistories: ICardItem[] = [
+  { icon: HelpOutline, item: "Help" },
+  { icon: Person, item: "Chandara (you)" },
+  { icon: NumbersRounded, item: "general" },
+  { icon: NumbersRounded, item: "slack-clone-project" },
+  { icon: NumbersRounded, item: "slack-clone-git" },
+];
 
 function SearchPopover() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -195,45 +204,22 @@ function UserHistory() {
       <Typography variant="caption" className="pl-4 text-grey-4" py="5px">
         Recent
       </Typography>
-      <Button className="user-button flex-start" fullWidth>
-        <Box className="flex-start full-width" alignContent="center" pl={2}>
-          <HelpOutline fontSize="small" />
+      {recentHistories.map((value, index) => (
+        <Button
+          key={index}
+          className="user-button flex-start user-button-text"
+          fullWidth
+        >
+          <value.icon fontSize="small" />
           <Typography variant="subtitle2" className="text-bold pl-1">
-            Help
+            {value.item}
           </Typography>
-        </Box>
-      </Button>
-      <Button className="user-button flex-start" fullWidth>
-        <Box className="flex-start full-width" alignContent="center" pl={2}>
-          <Person fontSize="small" />
-          <Typography variant="subtitle2" className="text-bold pl-1">
-            Chandara (you)
-          </Typography>
-        </Box>
-      </Button>
-      <Button className="user-button flex-start user-button-text" fullWidth>
-        <NumbersRounded className="numbers-button" />
-        <Typography variant="subtitle2" className="pl-1 text-bold">
-          general
-        </Typography>
-      </Button>
-      <Button className="user-button flex-start user-button-text" fullWidth>
-        <NumbersRounded className="numbers-button" />
-        <Typography variant="subtitle2" className="text-bold pl-1">
-          slack-clone-project
-        </Typography>
-      </Button>
-      <Button className="user-button flex-start user-button-text" fullWidth>
-        <NumbersRounded className="numbers-button" />
-        <Typography variant="subtitle2" className=" text-bold pl-1">
-          slack-clone-git
-        </Typography>
-      </Button>
-      <Box sx={{ p: "0px 80px 10px 20px " }}>
-        <Skeleton variant="text" className="mr-1 mb-1 mt-1" />
-        <Skeleton variant="text" className="mr-1 mb-1" />
-        <Skeleton variant="text" className="mr-1 mb-1" />
-        <Skeleton variant="text" className="mr-1 mb-1" />
+        </Button>
+      ))}
+      <Box sx={{ p: "5px 80px 10px 20px " }}>
+        {[...Array(4)].map((_, index) => (
+          <Skeleton key={index} variant="text" className="mr-1 mb-1" />
+        ))}
       </Box>
       <Divider />
       <Box className="user-details">
@@ -249,9 +235,6 @@ function UserHistory() {
 
 function UserCard() {
   const [userStatus, setUserStatus] = useState(true);
-  const handleUserStatus = () => {
-    setUserStatus(!userStatus);
-  };
   return (
     <Paper className="user-card">
       <Grid container>
@@ -283,7 +266,7 @@ function UserCard() {
         <Button
           className="user-button flex-start"
           fullWidth
-          onClick={handleUserStatus}
+          onClick={() => setUserStatus(!userStatus)}
         >
           <Typography variant="subtitle2" className="pl-4">
             Set yourself as
