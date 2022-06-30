@@ -1,6 +1,5 @@
 import React from "react";
 import "./TooltipShortcut.css";
-import { KeyboardCommandKeyRounded } from "@mui/icons-material";
 import { Box, Paper, Tooltip, Typography } from "@mui/material";
 import { ITooltipShortcutProps } from "./TooltipShortcutType";
 

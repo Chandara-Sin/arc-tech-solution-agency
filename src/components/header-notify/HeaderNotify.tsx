@@ -5,29 +5,11 @@ import {
   Button,
   Divider,
   Paper,
-  styled,
-  Tooltip,
-  tooltipClasses,
-  TooltipProps,
   Typography,
 } from "@mui/material";
 import { AccessTime, ArrowForwardIos } from "@mui/icons-material";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
-
-export const TooltipDetails = styled(
-  ({ className, ...props }: TooltipProps) => (
-    <Tooltip {...props} classes={{ popper: className }} />
-  )
-)({
-  [`& .${tooltipClasses.tooltip}`]: {
-    color: "#293241",
-    backgroundColor: "#f8f8f8",
-    padding: "0px",
-    borderRadius: "8px",
-    fontSize: "0.8rem",
-    fontWeight: "bold",
-  },
-});
+import TooltipDetails from "../tooltip-details/TooltipDetails";
 
 const suggestNotifyTime = [
   "For 30 minutes",

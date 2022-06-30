@@ -27,7 +27,6 @@ const suggestMessageDate = ["Most recent", "Last week", "Last month"];
 function MessageDate() {
   const [date, setDate] = useState<Date | null>(new Date());
   const [openDateDialog, setOpenDateDialog] = useState(false);
-
   return (
     <>
       <Paper className="message-date-card bg-grey">

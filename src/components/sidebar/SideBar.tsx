@@ -38,9 +38,9 @@ import {
   KeyboardCommandKeyRounded,
 } from "@mui/icons-material";
 import { channels, directMessage } from "./example-data";
-import { TooltipDetails } from "../header-notify/HeaderNotify";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
-import { ICardItem } from "../header/HeaderType";
+import TooltipDetails from "../tooltip-details/TooltipDetails";
+import { ICardItem, ITooltipDetails } from "../../app/globalType";
 
 const groupBrowseDetails: ICardItem[][] = [
   [
@@ -56,6 +56,23 @@ const groupBrowseDetails: ICardItem[][] = [
     { icon: AppRegistrationRounded, item: "Apps" },
   ],
 ];
+
+const settings: ITooltipDetails[] = [
+  { caption: "Settings", details: ["Workspace settings", "Customize Slack"] },
+  { caption: " Administration", details: ["Manage members", "Manage apps"] },
+];
+
+const tools: ITooltipDetails = {
+  details: ["Workflow Builder", "Analytics"],
+};
+
+const workspaces: ITooltipDetails = {
+  details: [
+    "Sign in to another workspace",
+    "Create a new workspace",
+    "Find workspaces",
+  ],
+};
 
 function GroupBrowse() {
   return (
@@ -151,37 +168,27 @@ function GroupSetting() {
           placement="right-start"
           title={
             <Paper className="user-card">
-              <Box className="pl-4 pt-1">
-                <Typography variant="caption" className="text-grey-4">
-                  Settings
-                </Typography>
-              </Box>
-              <Button className="user-button flex-start" fullWidth>
-                <Typography variant="subtitle2" className="pl-4">
-                  Workspace settings
-                </Typography>
-              </Button>
-              <Button className="user-button flex-start" fullWidth>
-                <Typography variant="subtitle2" className="pl-4">
-                  Customize Slack
-                </Typography>
-              </Button>
-              <Divider />
-              <Box className="pl-4 pt-1">
-                <Typography variant="caption" className="text-grey-4">
-                  Administration
-                </Typography>
-              </Box>
-              <Button className="user-button flex-start" fullWidth>
-                <Typography variant="subtitle2" className="pl-4">
-                  Manage members
-                </Typography>
-              </Button>
-              <Button className="user-button flex-start" fullWidth>
-                <Typography variant="subtitle2" className="pl-4">
-                  Manage apps
-                </Typography>
-              </Button>
+              {settings.map((item, index) => (
+                <Fragment key={index}>
+                  <Box className="pl-4 pt-1">
+                    <Typography variant="caption" className="text-grey-4">
+                      {item.caption}
+                    </Typography>
+                  </Box>
+                  {item.details.map((value, index) => (
+                    <Button
+                      key={index}
+                      className="user-button flex-start"
+                      fullWidth
+                    >
+                      <Typography variant="subtitle2" className="pl-4">
+                        {value}
+                      </Typography>
+                    </Button>
+                  ))}
+                  {index !== settings.length - 1 && <Divider />}
+                </Fragment>
+              ))}
             </Paper>
           }
         >
@@ -200,16 +207,13 @@ function GroupSetting() {
         placement="right-start"
         title={
           <Paper className="user-card">
-            <Button className="user-button flex-start" fullWidth>
-              <Typography variant="subtitle2" className="pl-4">
-                Workflow Builder
-              </Typography>
-            </Button>
-            <Button className="user-button flex-start" fullWidth>
-              <Typography variant="subtitle2" className="pl-4">
-                Analytics
-              </Typography>
-            </Button>
+            {tools.details.map((value, index) => (
+              <Button key={index} className="user-button flex-start" fullWidth>
+                <Typography variant="subtitle2" className="pl-4">
+                  {value}
+                </Typography>
+              </Button>
+            ))}
           </Paper>
         }
       >
@@ -229,21 +233,13 @@ function GroupSetting() {
         placement="right-start"
         title={
           <Paper className="user-card">
-            <Button className="user-button flex-start" fullWidth>
-              <Typography variant="subtitle2" className="pl-4">
-                Sign in to another workspace
-              </Typography>
-            </Button>
-            <Button className="user-button flex-start" fullWidth>
-              <Typography variant="subtitle2" className="pl-4">
-                Create a new workspace
-              </Typography>
-            </Button>
-            <Button className="user-button flex-start" fullWidth>
-              <Typography variant="subtitle2" className="pl-4">
-                Find workspaces
-              </Typography>
-            </Button>
+            {workspaces.details.map((value, index) => (
+              <Button key={index} className="user-button flex-start" fullWidth>
+                <Typography variant="subtitle2" className="pl-4">
+                  {value}
+                </Typography>
+              </Button>
+            ))}
           </Paper>
         }
       >

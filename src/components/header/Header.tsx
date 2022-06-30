@@ -33,7 +33,7 @@ import {
 import HeaderNotify from "../header-notify/HeaderNotify";
 import SideBar from "../sidebar/SideBar";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
-import { ICardItem } from "./HeaderType";
+import { ICardItem } from "../../app/globalType";
 
 const recentHistories: ICardItem[] = [
   { icon: HelpOutline, item: "Help" },
@@ -312,8 +312,8 @@ function UserCard() {
 }
 
 function Header() {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [menuSelected, setMenuSelected] = useState<null | "history" | "user">(
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const [menuSelected, setMenuSelected] = useState<"history" | "user" | null>(
     null
   );
 
