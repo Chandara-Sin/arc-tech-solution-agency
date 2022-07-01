@@ -71,7 +71,7 @@ function MessageFormat(props: IMessageFormatProps) {
   };
 
   return (
-    <Box className="message-top-section bg-grey d-flex align-center">
+    <Box className="message-top-section bg-grey d-flex align-center px-1">
       <TooltipShortcut
         placement="top"
         hasArrow
@@ -94,7 +94,6 @@ function MessageFormat(props: IMessageFormatProps) {
         }}
       >
         <IconButton
-          className="ml-1"
           size="small"
           onClick={() => handleOnChange("bold", !formats.bold)}
         >
@@ -162,7 +161,7 @@ function MessageFormat(props: IMessageFormatProps) {
           <StrikethroughSRounded className="message-input-button" />
         </IconButton>
       </TooltipShortcut>
-      <Divider orientation="vertical" className="message-icon-divider mx-1" />
+      <Divider orientation="vertical" className="message-icon-divider mx-2" />
       <TooltipShortcut
         placement="top"
         hasArrow
@@ -194,7 +193,7 @@ function MessageFormat(props: IMessageFormatProps) {
           <LinkSharp className="message-input-button" />
         </IconButton>
       </TooltipShortcut>
-      <Divider orientation="vertical" className="message-icon-divider mx-1" />
+      <Divider orientation="vertical" className="message-icon-divider mx-2" />
       <TooltipShortcut
         placement="top"
         hasArrow
@@ -257,7 +256,7 @@ function MessageFormat(props: IMessageFormatProps) {
           <FormatListBulletedRounded className="message-input-button" />
         </IconButton>
       </TooltipShortcut>
-      <Divider orientation="vertical" className="message-icon-divider mx-1" />
+      <Divider orientation="vertical" className="message-icon-divider mx-2" />
       <TooltipShortcut
         placement="top"
         hasArrow
@@ -450,14 +449,14 @@ function MessageAttachments(props: IMessageAttachmentsProps) {
         >
           <AddRounded className="message-input-button" />
         </IconButton>
-        <Divider orientation="vertical" className="message-icon-divider mx-1" />
+        <Divider orientation="vertical" className="message-icon-divider mx-2" />
         <IconButton size="small" onClick={handleTrialDialog}>
           <VideocamOutlined className="message-input-button" />
         </IconButton>
         <IconButton size="small" onClick={handleTrialDialog}>
           <KeyboardVoiceOutlined className="message-input-button" />
         </IconButton>
-        <Divider orientation="vertical" className="message-icon-divider mx-1" />
+        <Divider orientation="vertical" className="message-icon-divider mx-2" />
         <TooltipShortcut
           placement="top"
           hasArrow

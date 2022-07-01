@@ -409,7 +409,7 @@ function SideBar() {
           </ListItemButton>
           {openChannels &&
             channels.map(({ title, isActive }, index) => (
-              <ListItemButton className="p-0 sidebar-button my-0" key={index}>
+              <ListItemButton className="p-0 sidebar-button my-1" key={index}>
                 <Box className="d-flex align-center" pl={4.5}>
                   <NumbersRounded className="text-grey-2 numbers-button" />
                   <ListItemText
@@ -462,7 +462,7 @@ function SideBar() {
           </ListItemButton>
           {openDirectMessage &&
             directMessage.map(({ title, isActive }, index) => (
-              <ListItemButton className="p-0 sidebar-button my-0" key={index}>
+              <ListItemButton className="p-0 sidebar-button my-1" key={index}>
                 <Box className="d-flex align-center" pl={4.5}>
                   <AccountCircleRounded className="text-grey-2 numbers-button" />
                   <ListItemText

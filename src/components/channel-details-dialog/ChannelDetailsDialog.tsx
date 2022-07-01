@@ -94,7 +94,7 @@ function ChannelDetailsDialog(props: IChannelDetailsDialogProps) {
               endIcon={
                 <KeyboardArrowRightRounded className="channel-notify-icon" />
               }
-              className="channel-notify-button text-transform-none mx-1 text-bold"
+              className="channel-notify-button text-transform-none mx-2 text-bold"
             >
               Get Notifications for All Messages
             </Button>
