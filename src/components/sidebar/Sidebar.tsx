@@ -29,9 +29,9 @@ import {
   NumbersRounded,
   KeyboardCommandKeyRounded,
 } from "@mui/icons-material";
-import { channels, directMessage } from "./example-data";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
 import TooltipDetails from "../tooltip-details/TooltipDetails";
+import { channels, directMessage } from "./example-data";
 import { groupBrowseDetails, settings, tools, workspaces } from "./sidebar-data";
 
 function GroupBrowse() {
