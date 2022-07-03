@@ -27,21 +27,12 @@ import {
   AccessTimeRounded,
   ArrowForwardRounded,
   ArrowBackRounded,
-  NumbersRounded,
   KeyboardCommandKeyRounded,
 } from "@mui/icons-material";
+import Sidebar from "../sidebar/Sidebar";
 import HeaderNotify from "../header-notify/HeaderNotify";
-import SideBar from "../sidebar/SideBar";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
-import { ICardItem } from "../../app/globalType";
-
-const recentHistories: ICardItem[] = [
-  { icon: HelpOutline, item: "Help" },
-  { icon: Person, item: "Chandara (you)" },
-  { icon: NumbersRounded, item: "general" },
-  { icon: NumbersRounded, item: "slack-clone-project" },
-  { icon: NumbersRounded, item: "slack-clone-git" },
-];
+import { recentHistories } from "./example-data";
 
 function SearchPopover() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -419,7 +410,7 @@ function Header() {
           </Grid>
         </Toolbar>
       </AppBar>
-      <SideBar />
+      <Sidebar />
     </Box>
   );
 }

@@ -18,7 +18,7 @@ import {
   KeyboardArrowRightRounded,
   Person,
 } from "@mui/icons-material";
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { CalendarPicker, LocalizationProvider } from "@mui/x-date-pickers";
 
 const suggestMessageDate = ["Most recent", "Last week", "Last month"];
@@ -59,10 +59,8 @@ function MessageDate() {
         open={openDateDialog}
         PaperProps={{ sx: { borderRadius: "9px", maxWidth: "340px" } }}
       >
-        <DialogTitle className="flex-between">
-          <Typography variant="h6" className="text-bold">
-            Jump to a specific date
-          </Typography>
+        <DialogTitle variant="h6" className="flex-between text-bold">
+          Jump to a specific date
           <IconButton
             onClick={() => setOpenDateDialog(false)}
             className="dialog-close-button"

@@ -16,7 +16,6 @@ import {
 import {
   AddRounded,
   AlternateEmailRounded,
-  AppRegistrationRounded,
   BoltRounded,
   CodeRounded,
   FormatBoldRounded,
@@ -27,14 +26,10 @@ import {
   KeyboardArrowDownRounded,
   KeyboardCommandKeyRounded,
   KeyboardVoiceOutlined,
-  LaptopMacRounded,
   LinkSharp,
-  MoreHorizRounded,
-  NotificationsNoneOutlined,
   SendRounded,
   SentimentVerySatisfiedRounded,
   StrikethroughSRounded,
-  TextSnippetOutlined,
   VideocamOutlined,
 } from "@mui/icons-material";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
@@ -43,45 +38,10 @@ import {
   IMessageFormatProps,
   IMessageAttachmentsProps,
   IMessageAttachments,
-  IAttachmentDetails,
 } from "./MessageInputType";
 import Picker, { IEmojiData, SKIN_TONE_MEDIUM_LIGHT } from "emoji-picker-react";
 import TrialDialog from "../trial-dialog/TrialDialog";
-
-const attachmentDetails: IAttachmentDetails[] = [
-  {
-    caption: "Shortcuts",
-    details: [
-      {
-        icon: TextSnippetOutlined,
-        item: "Create a post",
-      },
-      {
-        icon: NotificationsNoneOutlined,
-        item: "Create a reminder",
-      },
-      {
-        icon: AppRegistrationRounded,
-        item: "Browse apps",
-      },
-      {
-        icon: MoreHorizRounded,
-        item: "Browse all shortcuts",
-      },
-    ],
-  },
-  {
-    caption: "Attach",
-    details: [
-      {
-        icon: LaptopMacRounded,
-        item: "Upload from your computer",
-        shortCutIcon: KeyboardCommandKeyRounded,
-        key: "U",
-      },
-    ],
-  },
-];
+import { attachmentDetails } from "./message-input-data";
 
 function MessageFormat(props: IMessageFormatProps) {
   const { onChange } = props;
@@ -402,7 +362,7 @@ function MessageAttachments(props: IMessageAttachmentsProps) {
   const [openTrialDialog, setOpenTrialDialog] = useState(false);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [menuSelected, setMenuSelected] = useState<
-    null | "emoji" | "attachment"
+    "emoji" | "attachment" | null
   >(null);
   const [chosenEmoji, setChosenEmoji] = useState<IEmojiData | null>(null);
   const [attachments, setAttachments] = useState<IMessageAttachments>({

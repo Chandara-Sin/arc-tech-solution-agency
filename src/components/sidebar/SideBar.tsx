@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import "./SideBar.css";
+import "./Sidebar.css";
 import {
   Drawer,
   List,
@@ -22,14 +22,6 @@ import {
   MobileFriendly,
   MoreVert,
   PeopleAlt,
-  Notes,
-  ForumRounded,
-  AlternateEmail,
-  BookmarkBorderRounded,
-  ManageSearchRounded,
-  LayersRounded,
-  ContactsRounded,
-  AppRegistrationRounded,
   AddRounded,
   AccountCircleRounded,
   KeyboardArrowRightRounded,
@@ -40,39 +32,7 @@ import {
 import { channels, directMessage } from "./example-data";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
 import TooltipDetails from "../tooltip-details/TooltipDetails";
-import { ICardItem, ITooltipDetails } from "../../app/globalType";
-
-const groupBrowseDetails: ICardItem[][] = [
-  [
-    { icon: Notes, item: "All unreads" },
-    { icon: ForumRounded, item: "All DMs" },
-    { icon: AlternateEmail, item: "Mentions and reactions" },
-    { icon: BookmarkBorderRounded, item: "Save items" },
-  ],
-  [
-    { icon: ManageSearchRounded, item: "Channel browser" },
-    { icon: LayersRounded, item: "File browser" },
-    { icon: ContactsRounded, item: "People & user groups" },
-    { icon: AppRegistrationRounded, item: "Apps" },
-  ],
-];
-
-const settings: ITooltipDetails[] = [
-  { caption: "Settings", details: ["Workspace settings", "Customize Slack"] },
-  { caption: " Administration", details: ["Manage members", "Manage apps"] },
-];
-
-const tools: ITooltipDetails = {
-  details: ["Workflow Builder", "Analytics"],
-};
-
-const workspaces: ITooltipDetails = {
-  details: [
-    "Sign in to another workspace",
-    "Create a new workspace",
-    "Find workspaces",
-  ],
-};
+import { groupBrowseDetails, settings, tools, workspaces } from "./sidebar-data";
 
 function GroupBrowse() {
   return (
@@ -277,11 +237,11 @@ function GroupSetting() {
   );
 }
 
-function SideBar() {
+function Sidebar() {
   const [openChannels, setOpenChannels] = useState(true);
   const [openDirectMessage, setOpenDirectMessage] = useState(true);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [menuSelected, setMenuSelected] = useState<null | "setting" | "browse">(
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const [menuSelected, setMenuSelected] = useState<"setting" | "browse" | null>(
     null
   );
 
@@ -498,4 +458,4 @@ function SideBar() {
   );
 }
 
-export default SideBar;
+export default Sidebar;
