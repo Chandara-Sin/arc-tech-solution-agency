@@ -18,8 +18,8 @@ import {
   PhoneRounded,
   StarBorderRounded,
 } from "@mui/icons-material";
-import { IChannelDetailsDialogProps } from "./ChannelDetailsDialogType";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
+import { IChannelDetailsDialogProps } from "./ChannelDetailsDialogType";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
 
 const tabs = [

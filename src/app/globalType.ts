@@ -5,6 +5,11 @@ export interface ICardItem {
     item: string;
 }
 
+export interface ICardItemShortCut extends ICardItem {
+    shortCutIcon?: SvgIconComponent;
+    key?: string;
+}
+
 export interface ITooltipDetails {
     caption?: string;
     details: string[];

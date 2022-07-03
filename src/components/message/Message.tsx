@@ -18,9 +18,8 @@ import {
   KeyboardArrowRightRounded,
   Person,
 } from "@mui/icons-material";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { CalendarPicker } from "@mui/x-date-pickers/CalendarPicker";
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { CalendarPicker, LocalizationProvider } from "@mui/x-date-pickers";
 
 const suggestMessageDate = ["Most recent", "Last week", "Last month"];
 

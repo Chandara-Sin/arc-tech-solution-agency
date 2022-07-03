@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import "./MessageInput.css";
 import {
   Box,
@@ -43,9 +43,45 @@ import {
   IMessageFormatProps,
   IMessageAttachmentsProps,
   IMessageAttachments,
+  IAttachmentDetails,
 } from "./MessageInputType";
-import TrialDialog from "../trial-dialog/TrialDialog";
 import Picker, { IEmojiData, SKIN_TONE_MEDIUM_LIGHT } from "emoji-picker-react";
+import TrialDialog from "../trial-dialog/TrialDialog";
+
+const attachmentDetails: IAttachmentDetails[] = [
+  {
+    caption: "Shortcuts",
+    details: [
+      {
+        icon: TextSnippetOutlined,
+        item: "Create a post",
+      },
+      {
+        icon: NotificationsNoneOutlined,
+        item: "Create a reminder",
+      },
+      {
+        icon: AppRegistrationRounded,
+        item: "Browse apps",
+      },
+      {
+        icon: MoreHorizRounded,
+        item: "Browse all shortcuts",
+      },
+    ],
+  },
+  {
+    caption: "Attach",
+    details: [
+      {
+        icon: LaptopMacRounded,
+        item: "Upload from your computer",
+        shortCutIcon: KeyboardCommandKeyRounded,
+        key: "U",
+      },
+    ],
+  },
+];
 
 function MessageFormat(props: IMessageFormatProps) {
   const { onChange } = props;
@@ -295,7 +331,7 @@ function MessageFormat(props: IMessageFormatProps) {
 function Attachments() {
   return (
     <Paper className="message-attachment-card bg-grey">
-      <Box p="10px 15px 15px">
+      <Box p="5px 15px 15px">
         <TextField
           fullWidth
           InputProps={{
@@ -312,65 +348,51 @@ function Attachments() {
         />
       </Box>
       <Divider />
-      <Box className="d-flex flex-column justify-center" p="10px 0px 7px">
-        <Typography variant="subtitle2" className="text-grey-4" pl={2.5}>
-          Shortcuts
-        </Typography>
-        <Button className="user-button flex-start" fullWidth>
-          <Box className="d-flex align-center full-width" pl={2}>
-            <TextSnippetOutlined />
-            <Typography variant="body2" className="pl-2">
-              Create a post
-            </Typography>
-          </Box>
-        </Button>
-        <Button className="user-button flex-start" fullWidth>
-          <Box className="d-flex align-center full-width" pl={2}>
-            <NotificationsNoneOutlined />
-            <Typography variant="body2" className="pl-2">
-              Create a reminder
-            </Typography>
-          </Box>
-        </Button>
-        <Button className="user-button flex-start" fullWidth>
-          <Box className="d-flex align-center full-width" pl={2}>
-            <AppRegistrationRounded />
-            <Typography variant="body2" className="pl-2">
-              Browse apps
-            </Typography>
-          </Box>
-        </Button>
-        <Button className="user-button flex-start" fullWidth>
-          <Box className="d-flex align-center full-width" pl={2}>
-            <MoreHorizRounded />
-            <Typography variant="body2" className="pl-2">
-              Browse all shortcuts
-            </Typography>
-          </Box>
-        </Button>
-      </Box>
-      <Divider />
-      <Box className="d-flex flex-column justify-center" p="10px 0px 7px">
-        <Typography variant="subtitle2" className="text-grey-4" pl={2.5}>
-          Attach
-        </Typography>
-        <Button className="user-button flex-start" fullWidth>
-          <Box className="flex-between full-width" alignItems="center" pr={2}>
-            <Box className="d-flex align-center full-width" pl={2}>
-              <LaptopMacRounded />
-              <Typography variant="subtitle2" className="pl-2">
-                Upload from your computer
-              </Typography>
-            </Box>
-            <Box className="d-flex align-center">
-              <KeyboardCommandKeyRounded sx={{ fontSize: "1rem" }} />
-              <Typography variant="subtitle2" pt={0.1}>
-                U
-              </Typography>
-            </Box>
-          </Box>
-        </Button>
-      </Box>
+      {attachmentDetails.map((value, index) => (
+        <Box
+          key={index}
+          className="d-flex flex-column justify-center"
+          p="10px 0px 0px"
+        >
+          <Typography variant="subtitle2" className="text-grey-4" pl={2.5}>
+            {value.caption}
+          </Typography>
+          {value.details.map((details, index) =>
+            details.shortCutIcon ? (
+              <Button key={index} className="user-button flex-start" fullWidth>
+                <Box
+                  className="flex-between full-width"
+                  alignItems="center"
+                  pr={2}
+                >
+                  <Box className="d-flex align-center full-width" pl={2}>
+                    <details.icon />
+                    <Typography variant="subtitle2" className="pl-2">
+                      {details.item}
+                    </Typography>
+                  </Box>
+                  <Box className="d-flex align-center">
+                    <details.shortCutIcon sx={{ fontSize: "1rem" }} />
+                    <Typography variant="subtitle2" pt={0.1}>
+                      {details.key}
+                    </Typography>
+                  </Box>
+                </Box>
+              </Button>
+            ) : (
+              <Button key={index} className="user-button flex-start" fullWidth>
+                <Box className="d-flex align-center full-width" pl={2}>
+                  <details.icon />
+                  <Typography variant="body2" className="pl-2">
+                    {details.item}
+                  </Typography>
+                </Box>
+              </Button>
+            )
+          )}
+          {index !== attachmentDetails.length - 1 && <Divider />}
+        </Box>
+      ))}
     </Paper>
   );
 }
@@ -378,7 +400,7 @@ function Attachments() {
 function MessageAttachments(props: IMessageAttachmentsProps) {
   const { onChange } = props;
   const [openTrialDialog, setOpenTrialDialog] = useState(false);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [menuSelected, setMenuSelected] = useState<
     null | "emoji" | "attachment"
   >(null);
@@ -399,7 +421,7 @@ function MessageAttachments(props: IMessageAttachmentsProps) {
 
   const handleClickPopover = (
     event: React.MouseEvent<HTMLElement>,
-    menu: null | "emoji" | "attachment"
+    menu: "emoji" | "attachment" | null
   ) => {
     setAnchorEl(event.currentTarget);
     setMenuSelected(menu);

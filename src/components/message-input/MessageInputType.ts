@@ -1,4 +1,6 @@
 import { IEmojiData } from "emoji-picker-react";
+import { ICardItem, ICardItemShortCut } from "../../app/globalType";
+import {ITooltipShortcutProps} from "../tooltip-shortcut/TooltipShortcutType"
 
 export interface IMessageInputProps {
   onChange: (data: IOnSubmitMessage) => void;
@@ -46,3 +48,13 @@ export interface IMessageAttachments {
   mention: boolean;
   emojiObject: IEmojiData | null;
 }
+
+export interface IMessageFormatsDeails extends Omit<ITooltipShortcutProps, 'children'> {
+  format: string;
+}
+
+export interface IAttachmentDetails {
+  caption: string;
+  details: ICardItemShortCut[];
+}
+
