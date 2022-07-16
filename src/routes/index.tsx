@@ -1,26 +1,73 @@
-import { BrowserRouter } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Routes as RouteList,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { AuthProvider, useAuth } from "../contexts/Auth";
+
+// Member
 import { Box } from "@mui/material";
 import Header from "../components/header/Header";
 import MessageInput from "../components/message-input/MessageInput";
-import MessageSection from "../view/message-section";
+import MessageSection from "../views/message-section";
 
-function Routes() {
-  return (
-    <BrowserRouter>
+// Admin
+import { Dashboard } from "@mui/icons-material";
+
+// Authen
+import Login from "../views/authen/Login";
+
+const AuthRoute = ({ children }: { children: JSX.Element }) => {
+  const { isAuthenticated } = useAuth();
+  const location = useLocation();
+  return isAuthenticated ? (
+    <>
       <Header />
       <main className="drawer-content-margin">
         <Box className="container">
-          <MessageSection />
+          {children}
           <MessageInput />
         </Box>
       </main>
-      {/* <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="*" element={<NoMatch />} />
-      </Route> */}
-    </BrowserRouter>
+    </>
+  ) : (
+    <Navigate to="/" state={{ from: location }} replace />
+  );
+};
+
+const List = () => {
+  return (
+    <RouteList>
+      <Route path="/" element={<Login />} />
+      <Route
+        path="/user"
+        element={
+          <AuthRoute>
+            <MessageSection />
+          </AuthRoute>
+        }
+      />
+      <Route
+        path="/dashboard"
+        element={
+          <AuthRoute>
+            <Dashboard />
+          </AuthRoute>
+        }
+      />
+    </RouteList>
+  );
+};
+
+function Routes() {
+  return (
+    <AuthProvider>
+      <Router>
+        <List />
+      </Router>
+    </AuthProvider>
   );
 }
 

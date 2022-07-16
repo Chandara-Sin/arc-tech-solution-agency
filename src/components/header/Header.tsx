@@ -33,6 +33,8 @@ import Sidebar from "../sidebar/Sidebar";
 import HeaderNotify from "../header-notify/HeaderNotify";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
 import { recentHistories } from "./example-data";
+import { useAuth } from "../../contexts/Auth";
+import { useNavigate } from "react-router-dom";
 
 function SearchPopover() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -226,7 +228,13 @@ function UserHistory() {
 }
 
 function UserCard() {
+  const { signOut } = useAuth();
+  const navigate = useNavigate();
   const [userStatus, setUserStatus] = useState(true);
+  const confirmLogout = () => {
+    const next = () => navigate("/");
+    signOut(next);
+  };
   return (
     <Paper className="user-card">
       <Grid container>
@@ -292,7 +300,11 @@ function UserCard() {
       </Box>
       <Divider />
       <Box className="user-details">
-        <Button className="user-button flex-start" fullWidth>
+        <Button
+          className="user-button flex-start"
+          onClick={confirmLogout}
+          fullWidth
+        >
           <Typography variant="subtitle2" className="pl-4">
             Sign out of xxx
           </Typography>
