@@ -4,6 +4,7 @@ import {
   Routes as RouteList,
   Route,
   useLocation,
+  Outlet,
 } from "react-router-dom";
 import { AuthProvider, useAuth } from "../contexts/Auth";
 
@@ -14,49 +15,74 @@ import MessageInput from "../components/message-input/MessageInput";
 import MessageSection from "../views/message-section";
 
 // Admin
-import { Dashboard } from "@mui/icons-material";
+import Dashboard from "../views-admin/dashboard";
 
 // Authen
-import Login from "../views/authen/Login";
+import SignIn from "../views/authen/SignIn";
+import MainHeader from "../components/main-header/MainHeader";
+import MainFooter from "../components/main-footer/MainFooter";
 
-const AuthRoute = ({ children }: { children: JSX.Element }) => {
-  const { isAuthenticated } = useAuth();
-  const location = useLocation();
-  return isAuthenticated ? (
+const AdminRoute = () => {
+  const { isAuthenticated, role } = useAuth();
+  return isAuthenticated && role === "admin" ? (
+    <Outlet />
+  ) : role === "member" ? (
+    <Navigate to="/users" replace />
+  ) : (
+    <Navigate to="/" replace />
+  );
+};
+
+const MemberRoute = () => {
+  const { isAuthenticated, role } = useAuth();
+  return isAuthenticated && role === "member" ? (
     <>
       <Header />
       <main className="drawer-content-margin">
         <Box className="container">
-          {children}
+          <Outlet />
           <MessageInput />
         </Box>
       </main>
     </>
+  ) : role === "admin" ? (
+    <Navigate to="/dashboard" replace />
+  ) : (
+    <Navigate to="/" replace />
+  );
+};
+
+const PublicRoute = () => {
+  const { isAuthenticated, role } = useAuth();
+  const location = useLocation();
+  return !isAuthenticated ? (
+    <>
+      <MainHeader />
+      <Outlet />
+      <MainFooter />
+    </>
+  ) : role === "member" ? (
+    <Navigate to="/users" state={{ from: location }} replace />
+  ) : role === "admin" ? (
+    <Navigate to="/dashboard" state={{ from: location }} replace />
   ) : (
     <Navigate to="/" state={{ from: location }} replace />
   );
 };
 
-const List = () => {
+const Layout = () => {
   return (
     <RouteList>
-      <Route path="/" element={<Login />} />
-      <Route
-        path="/user"
-        element={
-          <AuthRoute>
-            <MessageSection />
-          </AuthRoute>
-        }
-      />
-      <Route
-        path="/dashboard"
-        element={
-          <AuthRoute>
-            <Dashboard />
-          </AuthRoute>
-        }
-      />
+      <Route element={<PublicRoute />}>
+        <Route path="/" element={<Navigate to="/signin" />} />
+        <Route path="/signin" element={<SignIn />} />
+      </Route>
+      <Route path="/users" element={<MemberRoute />}>
+        <Route path="/users" element={<MessageSection />} />
+      </Route>
+      <Route path="/dashboard" element={<AdminRoute />}>
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Route>
     </RouteList>
   );
 };
@@ -65,7 +91,7 @@ function Routes() {
   return (
     <AuthProvider>
       <Router>
-        <List />
+        <Layout />
       </Router>
     </AuthProvider>
   );

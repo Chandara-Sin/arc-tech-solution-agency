@@ -232,7 +232,7 @@ function UserCard() {
   const navigate = useNavigate();
   const [userStatus, setUserStatus] = useState(true);
   const confirmLogout = () => {
-    const next = () => navigate("/");
+    const next = () => navigate("/", { replace: true });
     signOut(next);
   };
   return (
