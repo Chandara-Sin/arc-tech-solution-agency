@@ -1,0 +1,33 @@
+.main-footer-container {
+  padding: 32px 0;
+}
+
+.main-footer {
+  align-content: center;
+  border: none;
+  padding: 0;
+}
+
+.footer-link {
+  color: #696969 !important;
+  font-size: 15px !important;
+  letter-spacing: -0.2px;
+  line-height: 1.46668;
+}
+.footer-link:hover {
+  color: #1264a3 !important;
+}
+
+.footer-language-button {
+  margin-top: -3px !important;
+}
+
+.footer-language-button:hover {
+  text-decoration: underline !important;
+}
+
+.region-details-card {
+  width: 520px !important;
+  padding: 15px !important;
+  border-radius: 8px !important;
+}

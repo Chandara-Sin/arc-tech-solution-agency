@@ -1,0 +1,20 @@
+.main-header {
+  align-items: center !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  /* padding: 48px 0 40px !important; */
+}
+
+.main-header .center-column {
+  text-align: center !important;
+}
+
+.main-header .right-column {
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
+.header-sidelink {
+  padding-right: 40px !important;
+  text-align: right !important;
+}
