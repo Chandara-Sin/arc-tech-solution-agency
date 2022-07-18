@@ -1,0 +1,75 @@
+.signin-container {
+  max-width: 800px !important;
+}
+
+.signin-started {
+  width: 400px;
+}
+
+.sub-heading {
+  color: #454245 !important;
+  font-size: 18px !important;
+  line-height: 27px !important;
+  margin-bottom: 24px !important;
+  max-width: 700px !important;
+  font-family: "Arimo";
+}
+
+.auth-button-text {
+  font-size: 18px !important;
+  font-weight: 900 !important;
+}
+
+.auth-icon {
+  height: 18px;
+  width: 18px;
+  margin-right: 12px;
+}
+
+.auth-button {
+  padding: 6px 0px !important;
+}
+
+.auth-button-primary {
+  border: 2px solid #4285f4 !important;
+  color: #4285f4 !important;
+}
+
+.auth-button-secondary {
+  border: 2px solid rgba(var(--sk_primary_foreground, 29, 28, 29), 1) !important;
+  color: rgba(var(--sk_primary_foreground, 29, 28, 29), 1) !important;
+}
+
+.signin-button {
+  background-color: #4a154b !important;
+  box-shadow: none !important;
+}
+
+.auth-button:hover {
+  background-color: transparent !important;
+  box-shadow: 0 0 0.2rem rgba(0, 38, 79, 0.5) !important;
+}
+
+.auth-button:focus,
+.signin-button:focus {
+  border-color: #0a58ca !important;
+  box-shadow: 0 0 0 0.25rem rgba(49, 132, 253, 0.5) !important;
+}
+
+.signin-button:hover {
+  background-color: #4a154be6 !important;
+}
+
+.signin-manual {
+  padding: 12px !important;
+  background-color: rgba(29, 28, 29, 0.05) !important;
+  border-radius: 8px !important;
+}
+
+.signin-manual-text {
+  font-size: 0.95rem !important;
+}
+
+.signin-manual-icon {
+  margin: 0px 5px -5px 0px !important;
+}
