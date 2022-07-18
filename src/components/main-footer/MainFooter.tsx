@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import "./MainFooter.css";
-import { Box, Button, Link, Popover, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Link,
+  Popover,
+  Typography,
+} from "@mui/material";
 import {
   KeyboardArrowDownRounded,
   LanguageOutlined,
@@ -48,8 +55,8 @@ function MainFooter() {
   };
   return (
     <>
-      <Box className="main-footer-container d-flex flex-column align-center">
-        <footer className="main-footer flex-center text-center full-width">
+      <footer className="main-footer d-flex flex-column align-center">
+        <Container className="main-footer-container flex-center text-center full-width">
           <Link
             href="#"
             underline="hover"
@@ -78,8 +85,8 @@ function MainFooter() {
               }}
             />
           </Button>
-        </footer>
-      </Box>
+        </Container>
+      </footer>
       <Popover
         sx={{
           mt: "-5px",

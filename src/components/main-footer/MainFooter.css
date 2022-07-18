@@ -1,11 +1,14 @@
-.main-footer-container {
-  padding: 32px 0;
-}
-
 .main-footer {
-  align-content: center;
+  width: 100vw;
   border: none;
   padding: 0;
+  margin: 0 auto;
+  bottom: 0;
+  position: absolute;
+}
+
+.main-footer-container {
+  padding: 32px 0;
 }
 
 .footer-link {
