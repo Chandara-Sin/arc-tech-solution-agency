@@ -1,6 +1,6 @@
 import React from "react";
 import "./Authen.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/Auth";
 import { IFormSignInProps } from "./AuthenType";
 import { useForm } from "react-hook-form";

@@ -18,3 +18,12 @@
   padding-right: 40px !important;
   text-align: right !important;
 }
+
+.sidelink{
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.sidelink:hover{
+  text-decoration: underline;
+}

@@ -18,9 +18,10 @@ import MessageSection from "../views/message-section";
 import Dashboard from "../views-admin/dashboard";
 
 // Authen
-import SignIn from "../views/authen/SignIn";
 import MainHeader from "../components/main-header/MainHeader";
 import MainFooter from "../components/main-footer/MainFooter";
+import SignIn from "../views/authen/SignIn";
+import GetStarted from "../views/authen/GetStarted";
 
 const AdminRoute = () => {
   const { isAuthenticated, role } = useAuth();
@@ -76,6 +77,7 @@ const Layout = () => {
       <Route element={<PublicRoute />}>
         <Route path="/" element={<Navigate to="/signin" />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/get-started" element={<GetStarted />} />
       </Route>
       <Route path="/users" element={<MemberRoute />}>
         <Route path="/users" element={<MessageSection />} />

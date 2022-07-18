@@ -1,6 +1,7 @@
 import React from "react";
 import "./MainHeader.css";
-import { Box, Link, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import { Box, Typography } from "@mui/material";
 
 function MainHeader() {
   return (
@@ -17,9 +18,7 @@ function MainHeader() {
         <Box className="header-sidelink">
           <Typography variant="caption">New to Slack?</Typography>
           <br />
-          <Link href="#" variant="caption">
-            Creat an account
-          </Link>
+          <Link to="/get-started" className="sidelink">Create an account</Link>
         </Box>
       </Box>
     </header>
