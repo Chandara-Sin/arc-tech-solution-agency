@@ -1,0 +1,10 @@
+# Docker file
+Dockerfile
+.dockerignore
+
+# Generated file when install and build
+node_modules
+npm-debug.log
+build
+.gitignore
+README.md
