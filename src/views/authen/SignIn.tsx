@@ -1,6 +1,6 @@
 import React from "react";
 import "./Authen.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/Auth";
 import { IFormSignInProps } from "./AuthenType";
 import { useForm } from "react-hook-form";
@@ -11,7 +11,6 @@ import {
   Button,
   Container,
   Divider,
-  Link,
   Paper,
   TextField,
   Typography,
@@ -127,7 +126,7 @@ function SignIn() {
           <Typography className="signin-manual-text">
             <AutoAwesomeRounded className="signin-manual-icon" />
             We’ll email you a magic code for a password-free sign in. Or you can{" "}
-            <Link href="#" underline="hover">
+            <Link to="/workspace-signin" className="signin-manual-link">
               sign in manually instead.
             </Link>
           </Typography>

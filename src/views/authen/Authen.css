@@ -73,3 +73,15 @@
 .signin-manual-icon {
   margin: 0px 5px -5px 0px !important;
 }
+
+.signin-manual-link {
+  text-decoration: none;
+}
+
+.signin-manual-link:hover {
+  text-decoration: underline;
+}
+
+.signin-workspace-link{
+  font-size: 0.85rem !important;
+}

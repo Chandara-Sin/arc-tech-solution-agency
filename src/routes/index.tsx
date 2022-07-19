@@ -22,6 +22,7 @@ import MainHeader from "../components/main-header/MainHeader";
 import MainFooter from "../components/main-footer/MainFooter";
 import SignIn from "../views/authen/SignIn";
 import GetStarted from "../views/authen/GetStarted";
+import SignInWorkSpace from "../views/authen/SignInWorkSpace";
 
 const AdminRoute = () => {
   const { isAuthenticated, role } = useAuth();
@@ -71,13 +72,14 @@ const PublicRoute = () => {
   );
 };
 
-const Layout = () => {
+const List = () => {
   return (
     <RouteList>
       <Route element={<PublicRoute />}>
         <Route path="/" element={<Navigate to="/signin" />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/get-started" element={<GetStarted />} />
+        <Route path="/workspace-signin" element={<SignInWorkSpace />} />
       </Route>
       <Route path="/users" element={<MemberRoute />}>
         <Route path="/users" element={<MessageSection />} />
@@ -93,7 +95,7 @@ function Routes() {
   return (
     <AuthProvider>
       <Router>
-        <Layout />
+        <List />
       </Router>
     </AuthProvider>
   );

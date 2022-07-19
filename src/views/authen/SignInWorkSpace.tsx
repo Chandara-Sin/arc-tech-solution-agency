@@ -1,21 +1,13 @@
 import React from "react";
-import "./Authen.css";
 import { useAuth } from "../../contexts/Auth";
-import { useNavigate } from "react-router-dom";
-import { IFormSignInProps } from "./AuthenType";
-import { signInSchema } from "./AuthenSchema";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { signInSchema } from "./AuthenSchema";
+import { IFormSignInProps } from "./AuthenType";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  Box,
-  Button,
-  Container,
-  Link,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
 
-function GetStarted() {
+function SignInWorkSpace() {
   const { signIn } = useAuth();
   const navigate = useNavigate();
   const {
@@ -34,10 +26,10 @@ function GetStarted() {
   return (
     <Container className="signin-container d-flex flex-column align-center">
       <Typography className="text-bold mb-2" variant="h3">
-        First, enter your email
+        Sign in to your workspace
       </Typography>
       <Typography className="sub-heading text-center" variant="subtitle1">
-        We suggest using the <strong>email address you use at work.</strong>
+        Enter your workspace’s Slack URL
       </Typography>
       <Box className="signin-started align-center text-center justify-center full-width">
         <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
@@ -45,7 +37,7 @@ function GetStarted() {
             variant="outlined"
             size="small"
             fullWidth
-            placeholder="name@work-email.com"
+            placeholder="your-workspace.slack.com"
             error={!!errors.email}
             helperText={errors?.email?.message}
             {...register("email")}
@@ -61,28 +53,36 @@ function GetStarted() {
             </Typography>
           </Button>
         </form>
-        <Typography align="left" className="signin-manual-text text-grey-8">
-          By continuing, you’re agreeing to our{" "}
-          <Link href="#" className="text-grey-8" underline="hover">
-            Customer Terms of Service
+        <Typography
+          align="left"
+          className="signin-workspace-link text-small text-grey-8"
+        >
+          Don’t know your workspace URL?{" "}
+          <Link to="/signin" className="signin-manual-link">
+            Find your workspaces
           </Link>
-          ,{" "}
-          <Link href="#" className="text-grey-8" underline="hover">
-            User Terms of Service
+        </Typography>
+        <Typography
+          align="left"
+          className="signin-workspace-link text-small text-grey-8 mt-1"
+        >
+          Trying to sign in to a{" "}
+          <Link to="/workspace-signin" className="signin-manual-link">
+            GovSlack Workspace?
           </Link>
-          ,{" "}
-          <Link href="#" className="text-grey-8" underline="hover">
-            Privacy Policy
+        </Typography>
+        <Typography
+          align="left"
+          className="signin-workspace-link text-small text-grey-8 mt-1"
+        >
+          Looking to create a workspace instead?{" "}
+          <Link to="/get-started" className="signin-manual-link">
+            Create a new workspace
           </Link>
-          , and{" "}
-          <Link href="#" className="text-grey-8" underline="hover">
-            Cookie Policy
-          </Link>
-          .
         </Typography>
       </Box>
     </Container>
   );
 }
 
-export default GetStarted;
+export default SignInWorkSpace;
