@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Header.css";
+import { useAuth } from "../../contexts/Auth";
+import { useNavigate } from "react-router-dom";
 import {
   Divider,
   AppBar,
@@ -20,7 +22,6 @@ import {
   HelpOutline,
   SentimentVerySatisfiedSharp,
   AccountCircle,
-  Search,
   Close,
   TipsAndUpdates,
   HelpOutlineRounded,
@@ -28,13 +29,13 @@ import {
   ArrowForwardRounded,
   ArrowBackRounded,
   KeyboardCommandKeyRounded,
+  TuneRounded,
+  SearchRounded,
 } from "@mui/icons-material";
 import Sidebar from "../sidebar/Sidebar";
 import HeaderNotify from "../header-notify/HeaderNotify";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
 import { recentHistories } from "./example-data";
-import { useAuth } from "../../contexts/Auth";
-import { useNavigate } from "react-router-dom";
 
 function SearchPopover() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -47,36 +48,55 @@ function SearchPopover() {
   const openDialog = Boolean(anchorEl);
   return (
     <>
-      <TooltipShortcut
-        hasArrow
-        style={{ marginBlock: "-5px" }}
-        tooltipContent={{
-          title: {
-            name: "Search xxx",
-            style: { fontSize: "0.8rem", fontWeight: "bold" },
-          },
-          content: {
-            shortcutKey: [
-              {
-                icon: KeyboardCommandKeyRounded,
-              },
-              {
-                key: "G",
-                style: { marginLeft: "5px" },
-              },
-            ],
-          },
-        }}
-      >
-        <Button
-          variant="outlined"
-          startIcon={<Search />}
-          className="search-button"
-          onClick={handleClick}
+      <Box className="search-container">
+        <TooltipShortcut
+          hasArrow
+          style={{ marginBlock: "-5px" }}
+          tooltipContent={{
+            title: {
+              name: "Search xxx",
+              style: { fontSize: "0.8rem", fontWeight: "bold" },
+            },
+            content: {
+              shortcutKey: [
+                {
+                  icon: KeyboardCommandKeyRounded,
+                },
+                {
+                  key: "G",
+                  style: { marginLeft: "5px" },
+                },
+              ],
+            },
+          }}
         >
-          Search xxx
-        </Button>
-      </TooltipShortcut>
+          <Button
+            variant="outlined"
+            startIcon={<SearchRounded />}
+            className="search-button"
+            onClick={handleClick}
+            fullWidth
+          >
+            Search xxx
+          </Button>
+        </TooltipShortcut>
+        <TooltipShortcut
+          hasArrow
+          style={{ marginBlock: "-5px" }}
+          tooltipContent={{
+            title: {
+              name: "filter",
+              style: { fontSize: "0.8rem", fontWeight: "bold" },
+            },
+          }}
+        >
+          <IconButton
+            className="search-filter-icon text-grey-1"
+          >
+            <TuneRounded />
+          </IconButton>
+        </TooltipShortcut>
+      </Box>
       {openDialog && (
         <Popover
           sx={{ mt: "-10px" }}
@@ -99,7 +119,7 @@ function SearchPopover() {
           <Paper className="search-dialog">
             <Grid container sx={{ p: "10px 20px 5px" }}>
               <Grid xs={1} item className="flex-center pt-1">
-                <Search />
+                <SearchRounded />
               </Grid>
               <Grid xs={10} item>
                 <TextField
@@ -119,10 +139,10 @@ function SearchPopover() {
                 />
               </Grid>
             </Grid>
-            <Divider className="mb-2" />
+            <Divider />
             <Box
               className="text-center"
-              sx={{ bgcolor: "#e9ecef", py: "20px" }}
+              sx={{ bgcolor: "rgb(242, 241, 241)", py: "20px" }}
             >
               <Box className="content-center" py="5px">
                 <TipsAndUpdates sx={{ color: "#e9c46a" }} />
@@ -173,7 +193,7 @@ function SearchPopover() {
               </Box>
             </Box>
             <Divider />
-            <Box sx={{ bgcolor: "#e9ecef", p: "10px" }} className="text-end">
+            <Box sx={{ bgcolor: "rgb(242, 241, 241)", p: "10px" }} className="text-end">
               <Typography variant="caption">
                 Not the results you expected?{" "}
                 <Link href="#" underline="hover">

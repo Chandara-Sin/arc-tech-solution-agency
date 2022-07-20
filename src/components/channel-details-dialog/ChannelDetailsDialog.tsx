@@ -49,7 +49,7 @@ function ChannelDetailsDialog(props: IChannelDetailsDialogProps) {
       <DialogTitle className="channel-dialog-title">
         <Box className="flex-start align-center">
           <NumbersRounded />
-          <Typography variant="h6" className="text-bold">
+          <Typography variant="h6" className="text-extra-bold">
             general
           </Typography>
         </Box>
