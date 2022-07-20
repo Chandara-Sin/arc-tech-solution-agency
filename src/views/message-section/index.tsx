@@ -35,7 +35,7 @@ function ChannelDetails() {
         >
           <Box className="content-center">
             <NumbersRounded className="tooltip-shortcut-button" />
-            <Typography className="text-bold">general</Typography>
+            <Typography variant="body1" className="text-extra-bold">general</Typography>
             <KeyboardArrowRightRounded className="tooltip-shortcut-button " />
           </Box>
         </Button>

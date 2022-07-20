@@ -32,7 +32,12 @@ import {
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
 import TooltipDetails from "../tooltip-details/TooltipDetails";
 import { channels, directMessage } from "./example-data";
-import { groupBrowseDetails, settings, tools, workspaces } from "./sidebar-data";
+import {
+  groupBrowseDetails,
+  settings,
+  tools,
+  workspaces,
+} from "./sidebar-data";
 
 function GroupBrowse() {
   return (
@@ -264,15 +269,13 @@ function Sidebar() {
         <List>
           <ListItem component="div" className="group-section" disablePadding>
             <ListItemButton
-              className="sidebar-button"
+              className="sidebar-group"
               onClick={(event) => handleClick(event, "setting")}
-              sx={{ p: "10px 18px" }}
             >
               <ListItemText
                 primary="Slack"
                 primaryTypographyProps={{
-                  variant: "body1",
-                  fontWeight: "bold",
+                  className: "sidebar-group-text text-extra-bold",
                 }}
                 className="text-grey-2"
               />
@@ -282,6 +285,10 @@ function Sidebar() {
                   transform:
                     menuSelected === "setting" ? "rotate(90deg)" : "rotate(0)",
                   transition: "0.2s",
+                  p:
+                    menuSelected === "setting"
+                      ? "0px 0px 12px 5px"
+                      : "4px 0px 0px 10px",
                 }}
               />
             </ListItemButton>
@@ -313,21 +320,54 @@ function Sidebar() {
               </Box>
             </TooltipShortcut>
           </ListItem>
-          <ListItemButton className="p-0 mt-2 sidebar-button">
+          <ListItemButton className="sidebar-browse p-0 mt-2">
             <Box className="content-center" pl={2.5}>
-              <PeopleAlt className="text-grey-2 pr-2" />
-              <ListItemText primary="Slack Connect" className="text-grey-2" />
+              <PeopleAlt
+                sx={{
+                  fontSize: "1.5rem",
+                }}
+                className="text-grey-2 pr-2"
+              />
+              <ListItemText
+                primary="Slack Connect"
+                primaryTypographyProps={{
+                  className: "sidebar-menu",
+                }}
+                className="text-grey-2"
+              />
             </Box>
           </ListItemButton>
-          <ListItemButton
-            className="sidebar-browse p-0 mt-2"
-            onClick={(event) => handleClick(event, "browse")}
+          <ListItem
+            component="div"
+            sx={{
+              "&.MuiListItem-root": {
+                paddingBottom: "10px",
+                borderBottom: "0.8px solid rgba(255, 255, 255, 0.2)",
+              },
+            }}
+            disablePadding
           >
-            <Box className="content-center" pl={2.5}>
-              <MoreVert className="pr-2" />
-              <ListItemText primary="Browse Slack" />
-            </Box>
-          </ListItemButton>
+            <ListItemButton
+              className="sidebar-browse p-0 mt-2"
+              onClick={(event) => handleClick(event, "browse")}
+            >
+              <Box className="content-center" pl={2.5}>
+                <MoreVert
+                  sx={{
+                    fontSize: "1.5rem",
+                  }}
+                  className="text-grey-2 pr-1"
+                />
+                <ListItemText
+                  primary="Browse Slack"
+                  primaryTypographyProps={{
+                    className: "sidebar-menu",
+                  }}
+                  className="text-grey-2"
+                />
+              </Box>
+            </ListItemButton>
+          </ListItem>
           <Popover
             open={open}
             onClose={handleClose}
@@ -346,36 +386,36 @@ function Sidebar() {
             {menuSelected === "browse" && <GroupBrowse />}
           </Popover>
           <ListItemButton
-            className="p-0 sidebar-button mt-2"
+            className="p-0 mt-2"
             onClick={() => setOpenChannels(!openChannels)}
           >
-            <Box className="content-center" pl={2.3}>
+            <Box className="content-center" pl={2}>
               <ArrowRightRounded
                 sx={{
                   transform: openChannels ? "rotate(90deg)" : "rotate(0)",
                   transition: "0.2s",
-                  fontSize: "1.8rem",
+                  fontSize: "1.7rem",
                 }}
                 className="text-grey-2"
               />
               <ListItemText
                 primary="Channels"
                 primaryTypographyProps={{
-                  variant: "subtitle1",
+                  className: "sidebar-menu",
                 }}
-                className="text-grey-2 pl-2"
+                className="text-grey-2 pl-1"
               />
             </Box>
           </ListItemButton>
           {openChannels &&
             channels.map(({ title, isActive }, index) => (
-              <ListItemButton className="p-0 sidebar-button my-1" key={index}>
+              <ListItemButton className="sidebar-button my-1" key={index}>
                 <Box className="d-flex align-center" pl={4.5}>
                   <NumbersRounded className="text-grey-2 numbers-button" />
                   <ListItemText
                     primary={title}
                     primaryTypographyProps={{
-                      variant: "subtitle1",
+                      className: "sidebar-menu",
                     }}
                     className="text-grey-2 pl-2 m-0"
                   />
@@ -383,7 +423,7 @@ function Sidebar() {
               </ListItemButton>
             ))}
           {openChannels && (
-            <ListItemButton className="p-0 sidebar-button">
+            <ListItemButton className="sidebar-button my-1">
               <Box className="d-flex align-center" pl={4.2}>
                 <IconButton className="add-button">
                   <AddRounded className="text-grey-2 numbers-button" />
@@ -391,32 +431,32 @@ function Sidebar() {
                 <ListItemText
                   primary="Add channels"
                   primaryTypographyProps={{
-                    variant: "subtitle1",
+                    className: "sidebar-menu",
                   }}
-                  className="text-grey-2 pl-2"
+                  className="text-grey-2 pl-2 m-0"
                 />
               </Box>
             </ListItemButton>
           )}
           <ListItemButton
-            className="p-0 sidebar-button mt-2"
+            className="p-0 mt-2"
             onClick={() => setOpenDirectMessage(!openDirectMessage)}
           >
-            <Box className="content-center" pl={2.3}>
+            <Box className="content-center" pl={2}>
               <ArrowRightRounded
                 sx={{
                   transform: openDirectMessage ? "rotate(90deg)" : "rotate(0)",
                   transition: "0.2s",
-                  fontSize: "1.8rem",
+                  fontSize: "1.7rem",
                 }}
                 className="text-grey-2"
               />
               <ListItemText
-                primary="Direct Message"
+                primary="Direct messages"
                 primaryTypographyProps={{
-                  variant: "subtitle1",
+                  className: "sidebar-menu",
                 }}
-                className="text-grey-2 pl-2"
+                className="text-grey-2 pl-1"
               />
             </Box>
           </ListItemButton>
@@ -428,7 +468,7 @@ function Sidebar() {
                   <ListItemText
                     primary={title}
                     primaryTypographyProps={{
-                      variant: "subtitle1",
+                      className: "sidebar-menu",
                     }}
                     className="text-grey-2 pl-2 m-0"
                   />
@@ -436,7 +476,7 @@ function Sidebar() {
               </ListItemButton>
             ))}
           {openDirectMessage && (
-            <ListItemButton className="p-0 sidebar-button">
+            <ListItemButton className="p-0 sidebar-button my-1">
               <Box className="d-flex align-center" pl={4.2}>
                 <IconButton className="add-button">
                   <AddRounded className="text-grey-2 numbers-button" />
@@ -444,9 +484,9 @@ function Sidebar() {
                 <ListItemText
                   primary="Add teammates"
                   primaryTypographyProps={{
-                    variant: "subtitle1",
+                    className: "sidebar-menu",
                   }}
-                  className="text-grey-2 pl-2"
+                  className="text-grey-2 pl-2 m-0"
                 />
               </Box>
             </ListItemButton>

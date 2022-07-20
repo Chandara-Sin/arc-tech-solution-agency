@@ -10,6 +10,14 @@
   border-radius: 0px !important;
 }
 
+.sidebar-group {
+  padding: 10px 0px 10px 25px !important;
+}
+
+.sidebar-group-text {
+  font-size: 1.1rem !important;
+}
+
 .group-section {
   border-top: 0.8px solid rgba(255, 255, 255, 0.2);
   border-bottom: 0.8px solid rgba(255, 255, 255, 0.2);
@@ -35,7 +43,12 @@
   height: 40px;
 }
 
-.sidebar-button:hover {
+.sidebar-button {
+  padding: 3px 0 !important;
+}
+
+.sidebar-button:hover,
+.sidebar-browse:hover {
   background-color: #4e1c4e !important;
 }
 
@@ -46,12 +59,8 @@
   border-radius: 30px;
 }
 
-.sidebar-browse {
-  color: #d8d8d8 !important;
-}
-
-.sidebar-browse:hover {
-  color: #fff !important;
+.sidebar-menu {
+  font-size: 0.95rem !important;
 }
 
 .group-setting {
@@ -66,6 +75,7 @@
   border-radius: 5px !important;
   padding: 2px !important;
 }
+
 /* LG - Desktop */
 @media (min-width: 1905px) {
 }
