@@ -11,7 +11,7 @@
 }
 
 .sidebar-group {
-  padding: 10px 0px 10px 25px !important;
+  padding: 8px 0px 8px 25px !important;
 }
 
 .sidebar-group-text {
@@ -50,6 +50,10 @@
 .sidebar-button:hover,
 .sidebar-browse:hover {
   background-color: #4e1c4e !important;
+}
+
+.sidebar-button:focus {
+  background-color: #0b4c8c !important;
 }
 
 .group-setting-button {

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import "./Sidebar.css";
 import {
   Drawer,
@@ -32,13 +32,15 @@ import {
 } from "@mui/icons-material";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
 import TooltipDetails from "../tooltip-details/TooltipDetails";
-import { channels, directMessage } from "./example-data";
+import { channelMenuMock, directMessageMenuMock } from "./example-data";
 import {
   groupBrowseDetails,
   settings,
   tools,
   workspaces,
 } from "./sidebar-data";
+import { IChannelMenu, IDirectMessageMenu } from "./SidebarType";
+import { useNavigate } from "react-router-dom";
 
 function GroupBrowse() {
   return (
@@ -242,12 +244,55 @@ function GroupSetting() {
 }
 
 function Sidebar() {
-  const [openChannels, setOpenChannels] = useState(true);
-  const [openDirectMessage, setOpenDirectMessage] = useState(true);
+  const navigate = useNavigate();
+  const [channelMenu, setchannelMenu] = useState<IChannelMenu>(channelMenuMock);
+  const [directMessageMenu, setDirectMessageMenu] =
+    useState<IDirectMessageMenu>(directMessageMenuMock);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [menuSelected, setMenuSelected] = useState<"setting" | "browse" | null>(
     null
   );
+
+  useEffect(() => {
+    const activeChannelMenu = channelMenu.channels.find(
+      (value) => value.isActive
+    );
+    activeChannelMenu && navigate(`/groups/${activeChannelMenu.id}`);
+  }, [channelMenu]);
+
+  const handleChannelMenuExpand = () => {
+    setchannelMenu((prevState: IChannelMenu) => ({
+      ...prevState,
+      isExpanded: !channelMenu.isExpanded,
+    }));
+  };
+
+  const handleDirectMessageExpand = () => {
+    setDirectMessageMenu((prevState: IDirectMessageMenu) => ({
+      ...prevState,
+      isExpanded: !directMessageMenu.isExpanded,
+    }));
+  };
+
+  const handleChannelMenu = (menuIndex: number) => {
+    setchannelMenu((prevState: IChannelMenu) => ({
+      ...prevState,
+      channels: prevState.channels.map((value, index) => ({
+        ...value,
+        isActive: index === menuIndex,
+      })),
+    }));
+  };
+
+  const handleDirectMessageMenu = (menuIndex: number) => {
+    setDirectMessageMenu((prevState: IDirectMessageMenu) => ({
+      ...prevState,
+      directMessages: prevState.directMessages.map((value, index) => ({
+        ...value,
+        isActive: index === menuIndex,
+      })),
+    }));
+  };
 
   const handleClick = (
     event: React.MouseEvent<HTMLElement>,
@@ -408,12 +453,14 @@ function Sidebar() {
           <Box className="d-flex align-center justify-space-between mt-2">
             <ListItemButton
               className="section-options p-0"
-              onClick={() => setOpenChannels(!openChannels)}
+              onClick={handleChannelMenuExpand}
             >
               <Box className="content-center" pl={2}>
                 <ArrowRightRounded
                   sx={{
-                    transform: openChannels ? "rotate(90deg)" : "rotate(0)",
+                    transform: channelMenu.isExpanded
+                      ? "rotate(90deg)"
+                      : "rotate(0)",
                     transition: "0.2s",
                     fontSize: "1.7rem",
                   }}
@@ -467,14 +514,18 @@ function Sidebar() {
               </TooltipShortcut>
             </Box>
           </Box>
-          {openChannels && (
+          {channelMenu.isExpanded && (
             <>
-              {channels.map(({ title, isActive }, index) => (
-                <ListItemButton className="sidebar-button my-1" key={index}>
+              {channelMenu.channels.map(({ channel }, index) => (
+                <ListItemButton
+                  className="sidebar-button my-1"
+                  key={index}
+                  onClick={() => handleChannelMenu(index)}
+                >
                   <Box className="d-flex align-center" pl={4.5}>
                     <NumbersRounded className="text-grey-2 numbers-button" />
                     <ListItemText
-                      primary={title}
+                      primary={channel}
                       primaryTypographyProps={{
                         className: "sidebar-menu",
                       }}
@@ -502,12 +553,12 @@ function Sidebar() {
           <Box className="d-flex align-center justify-space-between mt-2">
             <ListItemButton
               className="section-options p-0"
-              onClick={() => setOpenDirectMessage(!openDirectMessage)}
+              onClick={handleDirectMessageExpand}
             >
               <Box className="content-center" pl={2}>
                 <ArrowRightRounded
                   sx={{
-                    transform: openDirectMessage
+                    transform: directMessageMenu.isExpanded
                       ? "rotate(90deg)"
                       : "rotate(0)",
                     transition: "0.2s",
@@ -573,22 +624,28 @@ function Sidebar() {
               </TooltipShortcut>
             </Box>
           </Box>
-          {openDirectMessage && (
+          {directMessageMenu.isExpanded && (
             <>
-              {directMessage.map(({ title, isActive }, index) => (
-                <ListItemButton className="sidebar-button p-0 my-1" key={index}>
-                  <Box className="d-flex align-center" pl={4.5}>
-                    <AccountCircleRounded className="text-grey-2 numbers-button" />
-                    <ListItemText
-                      primary={title}
-                      primaryTypographyProps={{
-                        className: "sidebar-menu",
-                      }}
-                      className="text-grey-2 pl-2 m-0"
-                    />
-                  </Box>
-                </ListItemButton>
-              ))}
+              {directMessageMenu.directMessages.map(
+                ({ receiverName }, index) => (
+                  <ListItemButton
+                    className="sidebar-button p-0 my-1"
+                    key={index}
+                    onClick={() => handleDirectMessageMenu(index)}
+                  >
+                    <Box className="d-flex align-center" pl={4.5}>
+                      <AccountCircleRounded className="text-grey-2 numbers-button" />
+                      <ListItemText
+                        primary={receiverName}
+                        primaryTypographyProps={{
+                          className: "sidebar-menu",
+                        }}
+                        className="text-grey-2 pl-2 m-0"
+                      />
+                    </Box>
+                  </ListItemButton>
+                )
+              )}
               <ListItemButton className="sidebar-button p-0 my-1">
                 <Box className="d-flex align-center" pl={4.2}>
                   <IconButton className="add-button">

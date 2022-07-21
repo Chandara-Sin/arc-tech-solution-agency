@@ -8,14 +8,6 @@ import {
 } from "react-router-dom";
 import { AuthProvider, useAuth } from "../contexts/Auth";
 
-// Member
-import { Box } from "@mui/material";
-import Header from "../components/header/Header";
-import MessageSection from "../views/message-section";
-
-// Admin
-import Dashboard from "../views-admin/dashboard";
-
 // Authen
 import MainHeader from "../components/main-header/MainHeader";
 import MainFooter from "../components/main-footer/MainFooter";
@@ -23,14 +15,30 @@ import SignIn from "../views/authen/SignIn";
 import GetStarted from "../views/authen/GetStarted";
 import SignInWorkSpace from "../views/authen/SignInWorkSpace";
 
-const AdminRoute = () => {
+// Member
+import { Box } from "@mui/material";
+import Header from "../components/header/Header";
+import MessageSection from "../views/message-section";
+import Connection from "../views/connection";
+
+// Admin
+import Dashboard from "../views-admin/dashboard";
+
+const PublicRoute = () => {
   const { isAuthenticated, role } = useAuth();
-  return isAuthenticated && role === "admin" ? (
-    <Outlet />
+  const location = useLocation();
+  return !isAuthenticated ? (
+    <>
+      <MainHeader />
+      <Outlet />
+      <MainFooter />
+    </>
   ) : role === "member" ? (
-    <Navigate to="/users" replace />
+    <Navigate to="/connection" state={{ from: location }} replace />
+  ) : role === "admin" ? (
+    <Navigate to="/dashboard" state={{ from: location }} replace />
   ) : (
-    <Navigate to="/" replace />
+    <Navigate to="/" state={{ from: location }} replace />
   );
 };
 
@@ -52,21 +60,14 @@ const MemberRoute = () => {
   );
 };
 
-const PublicRoute = () => {
+const AdminRoute = () => {
   const { isAuthenticated, role } = useAuth();
-  const location = useLocation();
-  return !isAuthenticated ? (
-    <>
-      <MainHeader />
-      <Outlet />
-      <MainFooter />
-    </>
+  return isAuthenticated && role === "admin" ? (
+    <Outlet />
   ) : role === "member" ? (
-    <Navigate to="/users" state={{ from: location }} replace />
-  ) : role === "admin" ? (
-    <Navigate to="/dashboard" state={{ from: location }} replace />
+    <Navigate to="/connection" replace />
   ) : (
-    <Navigate to="/" state={{ from: location }} replace />
+    <Navigate to="/" replace />
   );
 };
 
@@ -79,8 +80,9 @@ const List = () => {
         <Route path="/get-started" element={<GetStarted />} />
         <Route path="/workspace-signin" element={<SignInWorkSpace />} />
       </Route>
-      <Route path="/users" element={<MemberRoute />}>
-        <Route path="/users" element={<MessageSection />} />
+      <Route element={<MemberRoute />}>
+        <Route path="/connection" element={<Connection />} />
+        <Route path="/groups/:id" element={<MessageSection />} />
       </Route>
       <Route path="/dashboard" element={<AdminRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />

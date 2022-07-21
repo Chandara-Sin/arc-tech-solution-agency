@@ -28,7 +28,7 @@
   border-bottom: 1px solid #d3d3d3;
   border-radius: 0px !important;
   z-index: 4 !important;
-  padding: 9px 15px !important;
+  padding: 8px 14px !important;
   position: fixed !important;
   width: calc(100% - 286px) !important;
 }

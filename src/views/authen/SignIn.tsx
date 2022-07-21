@@ -30,7 +30,7 @@ function SignIn() {
 
   const onSubmit = (data: IFormSignInProps) => {
     const next = () => {
-      navigate("/users", { replace: true });
+      navigate("/connection", { replace: true });
     };
     signIn("member", next);
   };
