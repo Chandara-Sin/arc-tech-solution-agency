@@ -76,6 +76,15 @@
   padding: 2px !important;
 }
 
+.options {
+  display: none;
+}
+
+.section-options:hover + .options,
+.options:hover {
+  display: block;
+}
+
 /* LG - Desktop */
 @media (min-width: 1905px) {
 }

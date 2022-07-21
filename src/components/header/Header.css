@@ -64,6 +64,10 @@
   color: #fff !important;
 }
 
+.user-button:hover .text-primary {
+  color: #fff !important;
+}
+
 .user-button-text {
   padding-left: 20px !important;
 }

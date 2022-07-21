@@ -11,7 +11,6 @@ import { AuthProvider, useAuth } from "../contexts/Auth";
 // Member
 import { Box } from "@mui/material";
 import Header from "../components/header/Header";
-import MessageInput from "../components/message-input/MessageInput";
 import MessageSection from "../views/message-section";
 
 // Admin
@@ -43,7 +42,6 @@ const MemberRoute = () => {
       <main className="drawer-content-margin">
         <Box className="container">
           <Outlet />
-          <MessageInput />
         </Box>
       </main>
     </>

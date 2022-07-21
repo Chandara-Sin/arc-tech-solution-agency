@@ -10,6 +10,7 @@ import {
 import TooltipShortcut from "../../components/tooltip-shortcut/TooltipShortcut";
 import ChannelDetailsDialog from "../../components/channel-details-dialog/ChannelDetailsDialog";
 import Message from "../../components/message/Message";
+import MessageInput from "../../components/message-input/MessageInput";
 
 function ChannelDetails() {
   const [openChannelDetailsDialog, setOpenChannelDetailsDialog] =
@@ -35,7 +36,9 @@ function ChannelDetails() {
         >
           <Box className="content-center">
             <NumbersRounded className="tooltip-shortcut-button" />
-            <Typography variant="body1" className="text-extra-bold">general</Typography>
+            <Typography variant="body1" className="text-extra-bold">
+              general
+            </Typography>
             <KeyboardArrowRightRounded className="tooltip-shortcut-button " />
           </Box>
         </Button>
@@ -96,6 +99,7 @@ function MessageSection() {
         <Message />
         <Box sx={{ mt: "150px" }}></Box>
       </Box>
+      <MessageInput />
     </>
   );
 }

@@ -20,14 +20,15 @@ import {
   ArrowForwardIos,
   BorderColorRounded,
   MobileFriendly,
-  MoreVert,
-  PeopleAlt,
   AddRounded,
   AccountCircleRounded,
   KeyboardArrowRightRounded,
   ArrowRightRounded,
   NumbersRounded,
   KeyboardCommandKeyRounded,
+  PeopleRounded,
+  CreateRounded,
+  MoreVertRounded,
 } from "@mui/icons-material";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
 import TooltipDetails from "../tooltip-details/TooltipDetails";
@@ -68,9 +69,7 @@ function GroupBrowse() {
         <Button className="user-button flex-start" fullWidth>
           <Typography variant="subtitle2" className="pl-4">
             Customize this list in your{" "}
-            <Link href="#" underline="hover" color="inherit">
-              preferences
-            </Link>
+            <span className="text-primary">preferences</span>
           </Typography>
         </Button>
       </Box>
@@ -267,7 +266,11 @@ function Sidebar() {
     <Drawer variant="permanent" className="sidebar">
       <Paper className="sidebar-card full-height">
         <List>
-          <ListItem component="div" className="group-section" disablePadding>
+          <ListItem
+            component="div"
+            className="group-section mb-2"
+            disablePadding
+          >
             <ListItemButton
               className="sidebar-group"
               onClick={(event) => handleClick(event, "setting")}
@@ -320,9 +323,26 @@ function Sidebar() {
               </Box>
             </TooltipShortcut>
           </ListItem>
-          <ListItemButton className="sidebar-browse p-0 mt-2">
-            <Box className="content-center" pl={2.5}>
-              <PeopleAlt
+          <ListItemButton className="sidebar-browse p-0">
+            <Box className="content-center" pl={2}>
+              <CreateRounded
+                sx={{
+                  fontSize: "1.5rem",
+                }}
+                className="text-grey-2 pr-2"
+              />
+              <ListItemText
+                primary="Drafts"
+                primaryTypographyProps={{
+                  className: "sidebar-menu",
+                }}
+                className="text-grey-2"
+              />
+            </Box>
+          </ListItemButton>
+          <ListItemButton className="sidebar-browse p-0">
+            <Box className="content-center" pl={2}>
+              <PeopleRounded
                 sx={{
                   fontSize: "1.5rem",
                 }}
@@ -348,15 +368,15 @@ function Sidebar() {
             disablePadding
           >
             <ListItemButton
-              className="sidebar-browse p-0 mt-2"
+              className="sidebar-browse p-0"
               onClick={(event) => handleClick(event, "browse")}
             >
-              <Box className="content-center" pl={2.5}>
-                <MoreVert
+              <Box className="content-center" pl={2}>
+                <MoreVertRounded
                   sx={{
                     fontSize: "1.5rem",
                   }}
-                  className="text-grey-2 pr-1"
+                  className="text-grey-2 pr-2"
                 />
                 <ListItemText
                   primary="Browse Slack"
@@ -385,88 +405,91 @@ function Sidebar() {
             {menuSelected === "setting" && <GroupSetting />}
             {menuSelected === "browse" && <GroupBrowse />}
           </Popover>
-          <ListItemButton
-            className="p-0 mt-2"
-            onClick={() => setOpenChannels(!openChannels)}
-          >
-            <Box className="content-center" pl={2}>
-              <ArrowRightRounded
-                sx={{
-                  transform: openChannels ? "rotate(90deg)" : "rotate(0)",
-                  transition: "0.2s",
-                  fontSize: "1.7rem",
+          <Box className="d-flex align-center justify-space-between mt-2">
+            <ListItemButton
+              className="section-options p-0"
+              onClick={() => setOpenChannels(!openChannels)}
+            >
+              <Box className="content-center" pl={2}>
+                <ArrowRightRounded
+                  sx={{
+                    transform: openChannels ? "rotate(90deg)" : "rotate(0)",
+                    transition: "0.2s",
+                    fontSize: "1.7rem",
+                  }}
+                  className="text-grey-2"
+                />
+                <ListItemText
+                  primary="Channels"
+                  primaryTypographyProps={{
+                    className: "sidebar-menu",
+                  }}
+                  className="text-grey-2 pl-1"
+                />
+              </Box>
+            </ListItemButton>
+            <Box className="options context-center" pr={2}>
+              <TooltipShortcut
+                placement="top"
+                hasArrow
+                style={{ marginBlock: "-5px" }}
+                tooltipContent={{
+                  title: {
+                    name: "sections options",
+                    style: {
+                      fontSize: "0.8rem",
+                      fontWeight: "bold",
+                    },
+                  },
                 }}
-                className="text-grey-2"
-              />
-              <ListItemText
-                primary="Channels"
-                primaryTypographyProps={{
-                  className: "sidebar-menu",
+              >
+                <IconButton className="text-grey-2" sx={{ p: "2.5px" }}>
+                  <MoreVertRounded fontSize="small" />
+                </IconButton>
+              </TooltipShortcut>
+              <TooltipShortcut
+                placement="top"
+                hasArrow
+                style={{ marginBlock: "-5px" }}
+                tooltipContent={{
+                  title: {
+                    name: "add channels",
+                    style: {
+                      fontSize: "0.8rem",
+                      fontWeight: "bold",
+                    },
+                  },
                 }}
-                className="text-grey-2 pl-1"
-              />
+              >
+                <IconButton className="text-grey-2" sx={{ p: "2.5px" }}>
+                  <AddRounded fontSize="small" />
+                </IconButton>
+              </TooltipShortcut>
             </Box>
-          </ListItemButton>
-          {openChannels &&
-            channels.map(({ title, isActive }, index) => (
-              <ListItemButton className="sidebar-button my-1" key={index}>
-                <Box className="d-flex align-center" pl={4.5}>
-                  <NumbersRounded className="text-grey-2 numbers-button" />
-                  <ListItemText
-                    primary={title}
-                    primaryTypographyProps={{
-                      className: "sidebar-menu",
-                    }}
-                    className="text-grey-2 pl-2 m-0"
-                  />
-                </Box>
-              </ListItemButton>
-            ))}
+          </Box>
           {openChannels && (
-            <ListItemButton className="sidebar-button my-1">
-              <Box className="d-flex align-center" pl={4.2}>
-                <IconButton className="add-button">
-                  <AddRounded className="text-grey-2 numbers-button" />
-                </IconButton>
-                <ListItemText
-                  primary="Add channels"
-                  primaryTypographyProps={{
-                    className: "sidebar-menu",
-                  }}
-                  className="text-grey-2 pl-2 m-0"
-                />
-              </Box>
-            </ListItemButton>
-          )}
-          <ListItemButton
-            className="p-0 mt-2"
-            onClick={() => setOpenDirectMessage(!openDirectMessage)}
-          >
-            <Box className="content-center" pl={2}>
-              <ArrowRightRounded
-                sx={{
-                  transform: openDirectMessage ? "rotate(90deg)" : "rotate(0)",
-                  transition: "0.2s",
-                  fontSize: "1.7rem",
-                }}
-                className="text-grey-2"
-              />
-              <ListItemText
-                primary="Direct messages"
-                primaryTypographyProps={{
-                  className: "sidebar-menu",
-                }}
-                className="text-grey-2 pl-1"
-              />
-            </Box>
-          </ListItemButton>
-          {openDirectMessage &&
-            directMessage.map(({ title, isActive }, index) => (
-              <ListItemButton className="p-0 sidebar-button my-1" key={index}>
-                <Box className="d-flex align-center" pl={4.5}>
-                  <AccountCircleRounded className="text-grey-2 numbers-button" />
+            <>
+              {channels.map(({ title, isActive }, index) => (
+                <ListItemButton className="sidebar-button my-1" key={index}>
+                  <Box className="d-flex align-center" pl={4.5}>
+                    <NumbersRounded className="text-grey-2 numbers-button" />
+                    <ListItemText
+                      primary={title}
+                      primaryTypographyProps={{
+                        className: "sidebar-menu",
+                      }}
+                      className="text-grey-2 pl-2 m-0"
+                    />
+                  </Box>
+                </ListItemButton>
+              ))}
+              <ListItemButton className="sidebar-button my-1">
+                <Box className="d-flex align-center" pl={4.2}>
+                  <IconButton className="add-button">
+                    <AddRounded className="text-grey-2 numbers-button" />
+                  </IconButton>
                   <ListItemText
-                    primary={title}
+                    primary="Add channels"
                     primaryTypographyProps={{
                       className: "sidebar-menu",
                     }}
@@ -474,25 +497,115 @@ function Sidebar() {
                   />
                 </Box>
               </ListItemButton>
-            ))}
-          {openDirectMessage && (
-            <ListItemButton className="p-0 sidebar-button my-1">
-              <Box className="d-flex align-center" pl={4.2}>
-                <IconButton className="add-button">
-                  <AddRounded className="text-grey-2 numbers-button" />
-                </IconButton>
+            </>
+          )}
+          <Box className="d-flex align-center justify-space-between mt-2">
+            <ListItemButton
+              className="section-options p-0"
+              onClick={() => setOpenDirectMessage(!openDirectMessage)}
+            >
+              <Box className="content-center" pl={2}>
+                <ArrowRightRounded
+                  sx={{
+                    transform: openDirectMessage
+                      ? "rotate(90deg)"
+                      : "rotate(0)",
+                    transition: "0.2s",
+                    fontSize: "1.7rem",
+                  }}
+                  className="text-grey-2"
+                />
                 <ListItemText
-                  primary="Add teammates"
+                  primary="Direct messages"
                   primaryTypographyProps={{
                     className: "sidebar-menu",
                   }}
-                  className="text-grey-2 pl-2 m-0"
+                  className="text-grey-2 pl-1"
                 />
               </Box>
             </ListItemButton>
+            <Box className="options context-center" pr={2}>
+              <TooltipShortcut
+                placement="top"
+                hasArrow
+                style={{ marginBlock: "-5px" }}
+                tooltipContent={{
+                  title: {
+                    name: "sections options",
+                    style: {
+                      fontSize: "0.8rem",
+                      fontWeight: "bold",
+                    },
+                  },
+                }}
+              >
+                <IconButton className="text-grey-2" sx={{ p: "2.5px" }}>
+                  <MoreVertRounded fontSize="small" />
+                </IconButton>
+              </TooltipShortcut>
+              <TooltipShortcut
+                placement="top"
+                hasArrow
+                tooltipContent={{
+                  title: {
+                    name: "open a direct message",
+                    style: { fontSize: "0.9rem" },
+                  },
+                  content: {
+                    shortcutKey: [
+                      {
+                        icon: KeyboardCommandKeyRounded,
+                      },
+                      {
+                        key: "Shift",
+                        style: { marginInline: "5px", paddingInline: "5px" },
+                      },
+                      {
+                        key: "K",
+                      },
+                    ],
+                  },
+                }}
+              >
+                <IconButton className="text-grey-2" sx={{ p: "2.5px" }}>
+                  <AddRounded fontSize="small" />
+                </IconButton>
+              </TooltipShortcut>
+            </Box>
+          </Box>
+          {openDirectMessage && (
+            <>
+              {directMessage.map(({ title, isActive }, index) => (
+                <ListItemButton className="sidebar-button p-0 my-1" key={index}>
+                  <Box className="d-flex align-center" pl={4.5}>
+                    <AccountCircleRounded className="text-grey-2 numbers-button" />
+                    <ListItemText
+                      primary={title}
+                      primaryTypographyProps={{
+                        className: "sidebar-menu",
+                      }}
+                      className="text-grey-2 pl-2 m-0"
+                    />
+                  </Box>
+                </ListItemButton>
+              ))}
+              <ListItemButton className="sidebar-button p-0 my-1">
+                <Box className="d-flex align-center" pl={4.2}>
+                  <IconButton className="add-button">
+                    <AddRounded className="text-grey-2 numbers-button" />
+                  </IconButton>
+                  <ListItemText
+                    primary="Add teammates"
+                    primaryTypographyProps={{
+                      className: "sidebar-menu",
+                    }}
+                    className="text-grey-2 pl-2 m-0"
+                  />
+                </Box>
+              </ListItemButton>
+            </>
           )}
         </List>
-        <Divider />
       </Paper>
     </Drawer>
   );
