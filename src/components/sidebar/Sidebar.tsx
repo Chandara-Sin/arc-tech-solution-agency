@@ -260,38 +260,38 @@ function Sidebar() {
     activeChannelMenu && navigate(`/groups/${activeChannelMenu.id}`);
   }, [channelMenu]);
 
-  const handleChannelMenuExpand = () => {
-    setchannelMenu((prevState: IChannelMenu) => ({
-      ...prevState,
-      isExpanded: !channelMenu.isExpanded,
-    }));
+  const handleBrowseMenu = (browseMenu: string) => {
+    navigate(`browse-${browseMenu}`);
   };
 
-  const handleDirectMessageExpand = () => {
-    setDirectMessageMenu((prevState: IDirectMessageMenu) => ({
-      ...prevState,
-      isExpanded: !directMessageMenu.isExpanded,
-    }));
+  const handleMenuExpand = (menu: string) => {
+    menu === "channel"
+      ? setchannelMenu((prevState: IChannelMenu) => ({
+          ...prevState,
+          isExpanded: !channelMenu.isExpanded,
+        }))
+      : setDirectMessageMenu((prevState: IDirectMessageMenu) => ({
+          ...prevState,
+          isExpanded: !directMessageMenu.isExpanded,
+        }));
   };
 
-  const handleChannelMenu = (menuIndex: number) => {
-    setchannelMenu((prevState: IChannelMenu) => ({
-      ...prevState,
-      channels: prevState.channels.map((value, index) => ({
-        ...value,
-        isActive: index === menuIndex,
-      })),
-    }));
-  };
-
-  const handleDirectMessageMenu = (menuIndex: number) => {
-    setDirectMessageMenu((prevState: IDirectMessageMenu) => ({
-      ...prevState,
-      directMessages: prevState.directMessages.map((value, index) => ({
-        ...value,
-        isActive: index === menuIndex,
-      })),
-    }));
+  const handleSetDefaultMenu = (menuIndex: number, menu: string) => {
+    menu === "channel"
+      ? setchannelMenu((prevState: IChannelMenu) => ({
+          ...prevState,
+          channels: prevState.channels.map((value, index) => ({
+            ...value,
+            isActive: index === menuIndex,
+          })),
+        }))
+      : setDirectMessageMenu((prevState: IDirectMessageMenu) => ({
+          ...prevState,
+          directMessages: prevState.directMessages.map((value, index) => ({
+            ...value,
+            isActive: index === menuIndex,
+          })),
+        }));
   };
 
   const handleClick = (
@@ -385,7 +385,10 @@ function Sidebar() {
               />
             </Box>
           </ListItemButton>
-          <ListItemButton className="sidebar-browse p-0">
+          <ListItemButton
+            className="sidebar-browse p-0"
+            onClick={() => handleBrowseMenu("connect")}
+          >
             <Box className="content-center" pl={2}>
               <PeopleRounded
                 sx={{
@@ -453,7 +456,7 @@ function Sidebar() {
           <Box className="d-flex align-center justify-space-between mt-2">
             <ListItemButton
               className="section-options p-0"
-              onClick={handleChannelMenuExpand}
+              onClick={() => handleMenuExpand("channel")}
             >
               <Box className="content-center" pl={2}>
                 <ArrowRightRounded
@@ -520,7 +523,7 @@ function Sidebar() {
                 <ListItemButton
                   className="sidebar-button my-1"
                   key={index}
-                  onClick={() => handleChannelMenu(index)}
+                  onClick={() => handleSetDefaultMenu(index, "channel")}
                 >
                   <Box className="d-flex align-center" pl={4.5}>
                     <NumbersRounded className="text-grey-2 numbers-button" />
@@ -553,7 +556,7 @@ function Sidebar() {
           <Box className="d-flex align-center justify-space-between mt-2">
             <ListItemButton
               className="section-options p-0"
-              onClick={handleDirectMessageExpand}
+              onClick={() => handleMenuExpand("directMessage")}
             >
               <Box className="content-center" pl={2}>
                 <ArrowRightRounded
@@ -631,7 +634,7 @@ function Sidebar() {
                   <ListItemButton
                     className="sidebar-button p-0 my-1"
                     key={index}
-                    onClick={() => handleDirectMessageMenu(index)}
+                    onClick={() => handleSetDefaultMenu(index, "directMessage")}
                   >
                     <Box className="d-flex align-center" pl={4.5}>
                       <AccountCircleRounded className="text-grey-2 numbers-button" />

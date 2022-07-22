@@ -27,7 +27,7 @@ function GetStarted() {
   });
   const onSubmit = (data: IFormSignInProps) => {
     const next = () => {
-      navigate("/connection", { replace: true });
+      navigate("/browse-connect", { replace: true });
     };
     signIn("member", next);
   };

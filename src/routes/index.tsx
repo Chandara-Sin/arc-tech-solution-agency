@@ -34,7 +34,7 @@ const PublicRoute = () => {
       <MainFooter />
     </>
   ) : role === "member" ? (
-    <Navigate to="/connection" state={{ from: location }} replace />
+    <Navigate to="/browse-connect" state={{ from: location }} replace />
   ) : role === "admin" ? (
     <Navigate to="/dashboard" state={{ from: location }} replace />
   ) : (
@@ -65,7 +65,7 @@ const AdminRoute = () => {
   return isAuthenticated && role === "admin" ? (
     <Outlet />
   ) : role === "member" ? (
-    <Navigate to="/connection" replace />
+    <Navigate to="/browse-connect" replace />
   ) : (
     <Navigate to="/" replace />
   );
@@ -81,7 +81,7 @@ const List = () => {
         <Route path="/workspace-signin" element={<SignInWorkSpace />} />
       </Route>
       <Route element={<MemberRoute />}>
-        <Route path="/connection" element={<Connection />} />
+        <Route path="/browse-connect" element={<Connection />} />
         <Route path="/groups/:id" element={<MessageSection />} />
       </Route>
       <Route path="/dashboard" element={<AdminRoute />}>
