@@ -12,88 +12,76 @@ import ChannelDetailsDialog from "../../components/channel-details-dialog/Channe
 import Message from "../../components/message/Message";
 import MessageInput from "../../components/message-input/MessageInput";
 
-function ChannelDetails() {
+function ChannelHeader() {
   const [openChannelDetailsDialog, setOpenChannelDetailsDialog] =
     useState(false);
 
   return (
-    <Paper
-      className="header-details flex-between align-center"
-      elevation={0}
-      sx={{ p: "8px 14px" }}
-    >
-      <TooltipShortcut
-        style={{ marginBottom: "-5px" }}
-        hasArrow
-        tooltipContent={{
-          title: {
-            name: "Get channel details",
-            style: { fontSize: "0.8rem" },
-          },
-        }}
-      >
+    <Paper className="header-details" elevation={0}>
+      <Box className="flex-between align-center" sx={{ p: "8px 14px" }}>
+        <TooltipShortcut
+          style={{ marginBottom: "-5px" }}
+          hasArrow
+          tooltipContent={{
+            title: {
+              name: "Get channel details",
+              style: { fontSize: "0.8rem" },
+            },
+          }}
+        >
+          <Button
+            className="text-transform-none header-details-button"
+            color="inherit"
+            onClick={() => setOpenChannelDetailsDialog(true)}
+          >
+            <Box className="content-center">
+              <NumbersRounded className="tooltip-shortcut-button" />
+              <Typography variant="body1" className="text-extra-bold">
+                general
+              </Typography>
+              <KeyboardArrowRightRounded className="tooltip-shortcut-button" />
+            </Box>
+          </Button>
+        </TooltipShortcut>
+        <TooltipShortcut
+          placement="bottom-end"
+          style={{ marginBottom: "-5px" }}
+          hasArrow
+          tooltipContent={{
+            title: {
+              name: "View all members of this channel",
+              style: { fontSize: "0.8rem" },
+            },
+          }}
+        >
+          <Button
+            variant="outlined"
+            className="header-details-member-button"
+            startIcon={<PersonRounded className="header-details-member-icon" />}
+            onClick={() => setOpenChannelDetailsDialog(true)}
+          >
+            12
+          </Button>
+        </TooltipShortcut>
+        <ChannelDetailsDialog
+          open={openChannelDetailsDialog}
+          onClose={() => setOpenChannelDetailsDialog(false)}
+        />
+      </Box>
+      <Box className="header-bookmark">
         <Button
           variant="text"
           className="text-transform-none header-details-button"
           color="inherit"
-          onClick={() => setOpenChannelDetailsDialog(true)}
         >
           <Box className="content-center">
-            <NumbersRounded className="tooltip-shortcut-button" />
-            <Typography variant="body1" className="text-extra-bold">
-              general
+            <AddRounded className="tooltip-shortcut-button text-grey-4" />
+            <Typography variant="subtitle2" className="text-grey-4">
+              Add a bookmark
             </Typography>
-            <KeyboardArrowRightRounded className="tooltip-shortcut-button " />
           </Box>
         </Button>
-      </TooltipShortcut>
-      <TooltipShortcut
-        placement="bottom-end"
-        style={{ marginBottom: "-5px" }}
-        hasArrow
-        tooltipContent={{
-          title: {
-            name: "View all members of this channel",
-            style: { fontSize: "0.8rem" },
-          },
-        }}
-      >
-        <Button
-          variant="outlined"
-          className="member-details-button"
-          startIcon={<PersonRounded className="member-details-icon" />}
-          onClick={() => setOpenChannelDetailsDialog(true)}
-        >
-          12
-        </Button>
-      </TooltipShortcut>
-      <ChannelDetailsDialog
-        open={openChannelDetailsDialog}
-        onClose={() => setOpenChannelDetailsDialog(false)}
-      />
-    </Paper>
-  );
-}
-
-function ChannelBookmark() {
-  return (
-    <Paper
-      className="channel-bookmark fill-width"
-      elevation={0}
-      sx={{ mt: "52px" }}
-    >
-      <Button
-        variant="text"
-        className="text-transform-none header-details-button"
-        color="inherit"
-      >
-        <Box className="content-center">
-          <AddRounded className="tooltip-shortcut-button text-grey-4" />
-          <Typography variant="subtitle2" className="text-grey-4">
-            Add a bookmark
-          </Typography>
-        </Box>
-      </Button>
+      </Box>
     </Paper>
   );
 }
@@ -101,9 +89,8 @@ function ChannelBookmark() {
 function MessageSection() {
   return (
     <>
-      <ChannelDetails />
-      <ChannelBookmark />
-      <Box className="message-display-card fill-height">
+      <ChannelHeader />
+      <Box className="message-display-container fill-height">
         <Message />
         <Box sx={{ mt: "150px" }}></Box>
       </Box>

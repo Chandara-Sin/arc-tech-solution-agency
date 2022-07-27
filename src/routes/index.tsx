@@ -87,6 +87,7 @@ const List = () => {
       <Route path="/dashboard" element={<AdminRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />
       </Route>
+      <Route path="*" element={<Navigate to="/" />} />
     </RouteList>
   );
 };

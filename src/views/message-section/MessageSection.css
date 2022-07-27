@@ -1,35 +1,7 @@
-.message-display-card {
-  z-index: 1 !important;
-  overflow-y: scroll !important;
-  display: flex !important;
-  flex-flow: column nowrap !important;
-}
-
-.message-display-card > :first-child {
-  margin-top: auto !important;
-  /* justify-content breaks the scroll function */
-  /* use !important to prevent breakage from child margin settings */
-}
-
-.member-details-button {
-  padding: 2px !important;
-  border-radius: 5px !important;
-  border: 1px solid #d3d3d3 !important;
-  color: #1e7bb4 !important;
-}
-
-.member-details-icon {
-  background-color: rgb(228, 228, 228);
-  font-size: 1.8rem !important;
-  border-radius: 5px !important;
-}
-
 .header-details {
-  border-bottom: 1px solid #d3d3d3;
-  border-radius: 0px !important;
   z-index: 4 !important;
   position: fixed !important;
-  width: calc(100% - 284px) !important;
+  width: calc(100% - 256px) !important;
 }
 
 .header-details-button {
@@ -37,11 +9,34 @@
   border-radius: 8px !important;
 }
 
-.channel-bookmark {
-  border-bottom: 1px solid #d3d3d3;
+.header-details-member-button {
+  padding: 2px !important;
+  border-radius: 5px !important;
+  border: 1px solid #d3d3d3 !important;
+  color: #1e7bb4 !important;
+}
+
+.header-details-member-icon {
+  background-color: rgb(228, 228, 228);
+  font-size: 1.8rem !important;
+  border-radius: 5px;
+}
+
+.header-bookmark {
+  border-block: 1px solid #d3d3d3;
   border-radius: 0px !important;
-  z-index: 4 !important;
   padding: 4px 14px !important;
-  position: fixed !important;
-  width: calc(100% - 256px) !important;
+}
+
+.message-display-container {
+  z-index: 1;
+  overflow-y: scroll;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.message-display-container > :first-child {
+  margin-top: auto;
+  /* justify-content breaks the scroll function */
+  /* use !important to prevent breakage from child margin settings */
 }
