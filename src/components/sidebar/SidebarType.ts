@@ -1,17 +1,20 @@
-export interface IChannelMenu {
-  isExpanded: boolean;
+import { SvgIconComponent } from "@mui/icons-material";
+
+export interface IMenuList {
+  browse: IMenu[];
   channels: {
-    id: string;
-    channel: string;
-    isActive: boolean;
-  }[];
+    isExpanded: boolean;
+    subMenu: IMenu[];
+  };
+  directMessage: {
+    isExpanded: boolean;
+    subMenu: IMenu[];
+  };
 }
 
-export interface IDirectMessageMenu {
-  isExpanded: boolean;
-  directMessages: {
-    receiverId: string;
-    receiverName: string;
-    isActive: boolean;
-  }[];
+export interface IMenu {
+  title: string;
+  icon: SvgIconComponent;
+  path: string;
+  isActive: boolean;
 }

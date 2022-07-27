@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import "./Sidebar.css";
 import {
   Drawer,
@@ -15,31 +15,28 @@ import {
   Button,
   Link,
   Grid,
+  Collapse,
 } from "@mui/material";
 import {
   ArrowForwardIos,
   BorderColorRounded,
   MobileFriendly,
   AddRounded,
-  AccountCircleRounded,
   KeyboardArrowRightRounded,
   ArrowRightRounded,
-  NumbersRounded,
   KeyboardCommandKeyRounded,
-  PeopleRounded,
-  CreateRounded,
   MoreVertRounded,
 } from "@mui/icons-material";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
 import TooltipDetails from "../tooltip-details/TooltipDetails";
-import { channelMenuMock, directMessageMenuMock } from "./example-data";
+import { allMenu } from "./menu-list";
 import {
   groupBrowseDetails,
   settings,
   tools,
   workspaces,
 } from "./sidebar-data";
-import { IChannelMenu, IDirectMessageMenu } from "./SidebarType";
+import { IMenuList } from "./SidebarType";
 import { useNavigate } from "react-router-dom";
 
 function GroupBrowse() {
@@ -245,52 +242,60 @@ function GroupSetting() {
 
 function Sidebar() {
   const navigate = useNavigate();
-  const [channelMenu, setchannelMenu] = useState<IChannelMenu>(channelMenuMock);
-  const [directMessageMenu, setDirectMessageMenu] =
-    useState<IDirectMessageMenu>(directMessageMenuMock);
+  const [menus, setMenus] = useState<IMenuList>(allMenu);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [menuSelected, setMenuSelected] = useState<"setting" | "browse" | null>(
     null
   );
 
-  useEffect(() => {
-    const activeChannelMenu = channelMenu.channels.find(
-      (value) => value.isActive
-    );
-    activeChannelMenu && navigate(`/groups/${activeChannelMenu.id}`);
-  }, [channelMenu]);
-
-  const handleBrowseMenu = (browseMenu: string) => {
-    navigate(`browse-${browseMenu}`);
+  const handleMenuClick = (menu: string, menuIndex: number, path: string) => {
+    menu === "browse"
+      ? setMenus((prevState: IMenuList) => ({
+          ...prevState,
+          browse: prevState.browse.map((value, index) => ({
+            ...value,
+            isActive: index === menuIndex,
+          })),
+        }))
+      : menu === "channels"
+      ? setMenus((prevState: IMenuList) => ({
+          ...prevState,
+          channels: {
+            ...menus.channels,
+            subMenu: prevState.channels.subMenu.map((value, index) => ({
+              ...value,
+              isActive: index === menuIndex,
+            })),
+          },
+        }))
+      : setMenus((prevState: IMenuList) => ({
+          ...prevState,
+          directMessage: {
+            ...menus.directMessage,
+            subMenu: prevState.directMessage.subMenu.map((value, index) => ({
+              ...value,
+              isActive: index === menuIndex,
+            })),
+          },
+        }));
+    navigate(path);
   };
 
   const handleMenuExpand = (menu: string) => {
     menu === "channel"
-      ? setchannelMenu((prevState: IChannelMenu) => ({
+      ? setMenus((prevState: IMenuList) => ({
           ...prevState,
-          isExpanded: !channelMenu.isExpanded,
+          channels: {
+            ...menus.channels,
+            isExpanded: !prevState.channels.isExpanded,
+          },
         }))
-      : setDirectMessageMenu((prevState: IDirectMessageMenu) => ({
+      : setMenus((prevState: IMenuList) => ({
           ...prevState,
-          isExpanded: !directMessageMenu.isExpanded,
-        }));
-  };
-
-  const handleSetDefaultMenu = (menuIndex: number, menu: string) => {
-    menu === "channel"
-      ? setchannelMenu((prevState: IChannelMenu) => ({
-          ...prevState,
-          channels: prevState.channels.map((value, index) => ({
-            ...value,
-            isActive: index === menuIndex,
-          })),
-        }))
-      : setDirectMessageMenu((prevState: IDirectMessageMenu) => ({
-          ...prevState,
-          directMessages: prevState.directMessages.map((value, index) => ({
-            ...value,
-            isActive: index === menuIndex,
-          })),
+          directMessage: {
+            ...menus.directMessage,
+            isExpanded: !prevState.directMessage.isExpanded,
+          },
         }));
   };
 
@@ -308,338 +313,205 @@ function Sidebar() {
   const open = Boolean(anchorEl);
 
   return (
-    <Drawer variant="permanent" className="sidebar">
-      <Paper className="sidebar-card full-height">
-        <List>
-          <ListItem
-            component="div"
-            className="group-section mb-2"
-            disablePadding
-          >
-            <ListItemButton
-              className="sidebar-group"
-              onClick={(event) => handleClick(event, "setting")}
+    <>
+      <Drawer variant="permanent" className="sidebar">
+        <Paper className="sidebar-card full-height">
+          <List>
+            <ListItem
+              component="div"
+              className="group-section mb-2"
+              disablePadding
             >
-              <ListItemText
-                primary="Slack"
-                primaryTypographyProps={{
-                  className: "sidebar-group-text text-extra-bold",
-                }}
-                className="text-grey-2"
-              />
-              <KeyboardArrowRightRounded
-                className="group-section-icon"
-                sx={{
-                  transform:
-                    menuSelected === "setting" ? "rotate(90deg)" : "rotate(0)",
-                  transition: "0.2s",
-                  p:
-                    menuSelected === "setting"
-                      ? "0px 0px 12px 5px"
-                      : "4px 0px 0px 10px",
-                }}
-              />
-            </ListItemButton>
-            <TooltipShortcut
-              style={{ marginTop: "-5px" }}
-              hasArrow
-              tooltipContent={{
-                title: {
-                  name: "new message",
-                  style: { fontSize: "0.9rem", fontWeight: "bold" },
-                },
-                content: {
-                  shortcutKey: [
-                    {
-                      icon: KeyboardCommandKeyRounded,
-                      style: { marginRight: "5px" },
-                    },
-                    {
-                      key: "N",
-                    },
-                  ],
-                },
-              }}
-            >
-              <Box className="group-setting-button">
-                <IconButton sx={{ color: "#4e1c4e", p: "6px 8px 8px" }}>
-                  <BorderColorRounded fontSize="small" />
-                </IconButton>
-              </Box>
-            </TooltipShortcut>
-          </ListItem>
-          <ListItemButton className="sidebar-browse p-0">
-            <Box className="content-center" pl={2}>
-              <CreateRounded
-                sx={{
-                  fontSize: "1.5rem",
-                }}
-                className="text-grey-2 pr-2"
-              />
-              <ListItemText
-                primary="Drafts"
-                primaryTypographyProps={{
-                  className: "sidebar-menu",
-                }}
-                className="text-grey-2"
-              />
-            </Box>
-          </ListItemButton>
-          <ListItemButton
-            className="sidebar-browse p-0"
-            onClick={() => handleBrowseMenu("connect")}
-          >
-            <Box className="content-center" pl={2}>
-              <PeopleRounded
-                sx={{
-                  fontSize: "1.5rem",
-                }}
-                className="text-grey-2 pr-2"
-              />
-              <ListItemText
-                primary="Slack Connect"
-                primaryTypographyProps={{
-                  className: "sidebar-menu",
-                }}
-                className="text-grey-2"
-              />
-            </Box>
-          </ListItemButton>
-          <ListItem
-            component="div"
-            sx={{
-              "&.MuiListItem-root": {
-                paddingBottom: "10px",
-                borderBottom: "0.8px solid rgba(255, 255, 255, 0.2)",
-              },
-            }}
-            disablePadding
-          >
-            <ListItemButton
-              className="sidebar-browse p-0"
-              onClick={(event) => handleClick(event, "browse")}
-            >
-              <Box className="content-center" pl={2}>
-                <MoreVertRounded
-                  sx={{
-                    fontSize: "1.5rem",
-                  }}
-                  className="text-grey-2 pr-2"
-                />
+              <ListItemButton
+                className="sidebar-group"
+                onClick={(event) => handleClick(event, "setting")}
+              >
                 <ListItemText
-                  primary="Browse Slack"
+                  primary="Slack"
                   primaryTypographyProps={{
-                    className: "sidebar-menu",
+                    className: "sidebar-group-text text-extra-bold",
                   }}
                   className="text-grey-2"
                 />
-              </Box>
-            </ListItemButton>
-          </ListItem>
-          <Popover
-            open={open}
-            onClose={handleClose}
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "right",
-            }}
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            elevation={3}
-          >
-            {menuSelected === "setting" && <GroupSetting />}
-            {menuSelected === "browse" && <GroupBrowse />}
-          </Popover>
-          <Box className="d-flex align-center justify-space-between mt-2">
-            <ListItemButton
-              className="section-options p-0"
-              onClick={() => handleMenuExpand("channel")}
-            >
-              <Box className="content-center" pl={2}>
-                <ArrowRightRounded
+                <KeyboardArrowRightRounded
+                  className="group-section-icon"
                   sx={{
-                    transform: channelMenu.isExpanded
-                      ? "rotate(90deg)"
-                      : "rotate(0)",
+                    transform:
+                      menuSelected === "setting"
+                        ? "rotate(90deg)"
+                        : "rotate(0)",
                     transition: "0.2s",
-                    fontSize: "1.7rem",
+                    p:
+                      menuSelected === "setting"
+                        ? "0px 0px 12px 5px"
+                        : "4px 0px 0px 10px",
                   }}
-                  className="text-grey-2"
                 />
-                <ListItemText
-                  primary="Channels"
-                  primaryTypographyProps={{
-                    className: "sidebar-menu",
-                  }}
-                  className="text-grey-2 pl-1"
-                />
-              </Box>
-            </ListItemButton>
-            <Box className="options context-center" pr={2}>
-              <TooltipShortcut
-                placement="top"
-                hasArrow
-                style={{ marginBlock: "-5px" }}
-                tooltipContent={{
-                  title: {
-                    name: "sections options",
-                    style: {
-                      fontSize: "0.8rem",
-                      fontWeight: "bold",
-                    },
-                  },
-                }}
-              >
-                <IconButton className="text-grey-2" sx={{ p: "2.5px" }}>
-                  <MoreVertRounded fontSize="small" />
-                </IconButton>
-              </TooltipShortcut>
-              <TooltipShortcut
-                placement="top"
-                hasArrow
-                style={{ marginBlock: "-5px" }}
-                tooltipContent={{
-                  title: {
-                    name: "add channels",
-                    style: {
-                      fontSize: "0.8rem",
-                      fontWeight: "bold",
-                    },
-                  },
-                }}
-              >
-                <IconButton className="text-grey-2" sx={{ p: "2.5px" }}>
-                  <AddRounded fontSize="small" />
-                </IconButton>
-              </TooltipShortcut>
-            </Box>
-          </Box>
-          {channelMenu.isExpanded && (
-            <>
-              {channelMenu.channels.map(({ channel }, index) => (
-                <ListItemButton
-                  className="sidebar-button my-1"
-                  key={index}
-                  onClick={() => handleSetDefaultMenu(index, "channel")}
-                >
-                  <Box className="d-flex align-center" pl={4.5}>
-                    <NumbersRounded className="text-grey-2 numbers-button" />
-                    <ListItemText
-                      primary={channel}
-                      primaryTypographyProps={{
-                        className: "sidebar-menu",
-                      }}
-                      className="text-grey-2 pl-2 m-0"
-                    />
-                  </Box>
-                </ListItemButton>
-              ))}
-              <ListItemButton className="sidebar-button my-1">
-                <Box className="d-flex align-center" pl={4.2}>
-                  <IconButton className="add-button">
-                    <AddRounded className="text-grey-2 numbers-button" />
-                  </IconButton>
-                  <ListItemText
-                    primary="Add channels"
-                    primaryTypographyProps={{
-                      className: "sidebar-menu",
-                    }}
-                    className="text-grey-2 pl-2 m-0"
-                  />
-                </Box>
               </ListItemButton>
-            </>
-          )}
-          <Box className="d-flex align-center justify-space-between mt-2">
-            <ListItemButton
-              className="section-options p-0"
-              onClick={() => handleMenuExpand("directMessage")}
-            >
-              <Box className="content-center" pl={2}>
-                <ArrowRightRounded
-                  sx={{
-                    transform: directMessageMenu.isExpanded
-                      ? "rotate(90deg)"
-                      : "rotate(0)",
-                    transition: "0.2s",
-                    fontSize: "1.7rem",
-                  }}
-                  className="text-grey-2"
-                />
-                <ListItemText
-                  primary="Direct messages"
-                  primaryTypographyProps={{
-                    className: "sidebar-menu",
-                  }}
-                  className="text-grey-2 pl-1"
-                />
-              </Box>
-            </ListItemButton>
-            <Box className="options context-center" pr={2}>
               <TooltipShortcut
-                placement="top"
-                hasArrow
-                style={{ marginBlock: "-5px" }}
-                tooltipContent={{
-                  title: {
-                    name: "sections options",
-                    style: {
-                      fontSize: "0.8rem",
-                      fontWeight: "bold",
-                    },
-                  },
-                }}
-              >
-                <IconButton className="text-grey-2" sx={{ p: "2.5px" }}>
-                  <MoreVertRounded fontSize="small" />
-                </IconButton>
-              </TooltipShortcut>
-              <TooltipShortcut
-                placement="top"
+                style={{ marginTop: "-5px" }}
                 hasArrow
                 tooltipContent={{
                   title: {
-                    name: "open a direct message",
-                    style: { fontSize: "0.9rem" },
+                    name: "new message",
+                    style: { fontSize: "0.9rem", fontWeight: "bold" },
                   },
                   content: {
                     shortcutKey: [
                       {
                         icon: KeyboardCommandKeyRounded,
+                        style: { marginRight: "5px" },
                       },
                       {
-                        key: "Shift",
-                        style: { marginInline: "5px", paddingInline: "5px" },
-                      },
-                      {
-                        key: "K",
+                        key: "N",
                       },
                     ],
                   },
                 }}
               >
-                <IconButton className="text-grey-2" sx={{ p: "2.5px" }}>
-                  <AddRounded fontSize="small" />
-                </IconButton>
+                <Box className="group-setting-button">
+                  <IconButton sx={{ color: "#4e1c4e", p: "6px 8px 8px" }}>
+                    <BorderColorRounded fontSize="small" />
+                  </IconButton>
+                </Box>
               </TooltipShortcut>
+            </ListItem>
+            {menus.browse.map((browse, index) => (
+              <ListItemButton
+                key={index}
+                className="sidebar-browse p-0"
+                onClick={() => handleMenuClick("browse", index, browse.path)}
+              >
+                <Box className="content-center" pl={2}>
+                  <browse.icon
+                    sx={{
+                      fontSize: "1.5rem",
+                    }}
+                    className="text-grey-2 pr-2"
+                  />
+                  <ListItemText
+                    primary={browse.title}
+                    primaryTypographyProps={{
+                      className: "sidebar-menu",
+                    }}
+                    className="text-grey-2"
+                  />
+                </Box>
+              </ListItemButton>
+            ))}
+            <ListItem
+              component="div"
+              sx={{
+                "&.MuiListItem-root": {
+                  paddingBottom: "10px",
+                  borderBottom: "0.8px solid rgba(255, 255, 255, 0.2)",
+                },
+              }}
+              disablePadding
+            >
+              <ListItemButton
+                className="sidebar-browse p-0"
+                onClick={(event) => handleClick(event, "browse")}
+              >
+                <Box className="content-center" pl={2}>
+                  <MoreVertRounded
+                    sx={{
+                      fontSize: "1.5rem",
+                    }}
+                    className="text-grey-2 pr-2"
+                  />
+                  <ListItemText
+                    primary="Browse Slack"
+                    primaryTypographyProps={{
+                      className: "sidebar-menu",
+                    }}
+                    className="text-grey-2"
+                  />
+                </Box>
+              </ListItemButton>
+            </ListItem>
+            <Box className="d-flex align-center justify-space-between mt-2">
+              <ListItemButton
+                className="section-options p-0"
+                onClick={() => handleMenuExpand("channel")}
+              >
+                <Box className="content-center" pl={2}>
+                  <ArrowRightRounded
+                    sx={{
+                      transform: menus.channels.isExpanded
+                        ? "rotate(90deg)"
+                        : "rotate(0)",
+                      transition: "0.2s",
+                      fontSize: "1.7rem",
+                    }}
+                    className="text-grey-2"
+                  />
+                  <ListItemText
+                    primary="Channels"
+                    primaryTypographyProps={{
+                      className: "sidebar-menu",
+                    }}
+                    className="text-grey-2 pl-1"
+                  />
+                </Box>
+              </ListItemButton>
+              <Box className="options context-center" pr={2}>
+                <TooltipShortcut
+                  placement="top"
+                  hasArrow
+                  style={{ marginBlock: "-5px" }}
+                  tooltipContent={{
+                    title: {
+                      name: "sections options",
+                      style: {
+                        fontSize: "0.8rem",
+                        fontWeight: "bold",
+                      },
+                    },
+                  }}
+                >
+                  <IconButton className="text-grey-2" sx={{ p: "2.5px" }}>
+                    <MoreVertRounded fontSize="small" />
+                  </IconButton>
+                </TooltipShortcut>
+                <TooltipShortcut
+                  placement="top"
+                  hasArrow
+                  style={{ marginBlock: "-5px" }}
+                  tooltipContent={{
+                    title: {
+                      name: "add channels",
+                      style: {
+                        fontSize: "0.8rem",
+                        fontWeight: "bold",
+                      },
+                    },
+                  }}
+                >
+                  <IconButton className="text-grey-2" sx={{ p: "2.5px" }}>
+                    <AddRounded fontSize="small" />
+                  </IconButton>
+                </TooltipShortcut>
+              </Box>
             </Box>
-          </Box>
-          {directMessageMenu.isExpanded && (
-            <>
-              {directMessageMenu.directMessages.map(
-                ({ receiverName }, index) => (
+            {menus.channels.isExpanded && (
+              <Collapse
+                in={menus.channels.isExpanded}
+                timeout="auto"
+                unmountOnExit
+              >
+                {menus.channels.subMenu.map((subMenu, index) => (
                   <ListItemButton
-                    className="sidebar-button p-0 my-1"
+                    className="sidebar-button my-1"
                     key={index}
-                    onClick={() => handleSetDefaultMenu(index, "directMessage")}
+                    onClick={() =>
+                      handleMenuClick("channel", index, subMenu.path)
+                    }
                   >
                     <Box className="d-flex align-center" pl={4.5}>
-                      <AccountCircleRounded className="text-grey-2 numbers-button" />
+                      <subMenu.icon className="text-grey-2 numbers-button" />
                       <ListItemText
-                        primary={receiverName}
+                        primary={subMenu.title}
                         primaryTypographyProps={{
                           className: "sidebar-menu",
                         }}
@@ -647,27 +519,160 @@ function Sidebar() {
                       />
                     </Box>
                   </ListItemButton>
-                )
-              )}
-              <ListItemButton className="sidebar-button p-0 my-1">
-                <Box className="d-flex align-center" pl={4.2}>
-                  <IconButton className="add-button">
-                    <AddRounded className="text-grey-2 numbers-button" />
-                  </IconButton>
+                ))}
+                <ListItemButton className="sidebar-button my-1">
+                  <Box className="d-flex align-center" pl={4.2}>
+                    <IconButton className="add-button">
+                      <AddRounded className="text-grey-2 numbers-button" />
+                    </IconButton>
+                    <ListItemText
+                      primary="Add channels"
+                      primaryTypographyProps={{
+                        className: "sidebar-menu",
+                      }}
+                      className="text-grey-2 pl-2 m-0"
+                    />
+                  </Box>
+                </ListItemButton>
+              </Collapse>
+            )}
+            <Box className="d-flex align-center justify-space-between mt-2">
+              <ListItemButton
+                className="section-options p-0"
+                onClick={() => handleMenuExpand("directMessage")}
+              >
+                <Box className="content-center" pl={2}>
+                  <ArrowRightRounded
+                    sx={{
+                      transform: menus.directMessage.isExpanded
+                        ? "rotate(90deg)"
+                        : "rotate(0)",
+                      transition: "0.2s",
+                      fontSize: "1.7rem",
+                    }}
+                    className="text-grey-2"
+                  />
                   <ListItemText
-                    primary="Add teammates"
+                    primary="Direct messages"
                     primaryTypographyProps={{
                       className: "sidebar-menu",
                     }}
-                    className="text-grey-2 pl-2 m-0"
+                    className="text-grey-2 pl-1"
                   />
                 </Box>
               </ListItemButton>
-            </>
-          )}
-        </List>
-      </Paper>
-    </Drawer>
+              <Box className="options context-center" pr={2}>
+                <TooltipShortcut
+                  placement="top"
+                  hasArrow
+                  style={{ marginBlock: "-5px" }}
+                  tooltipContent={{
+                    title: {
+                      name: "sections options",
+                      style: {
+                        fontSize: "0.8rem",
+                        fontWeight: "bold",
+                      },
+                    },
+                  }}
+                >
+                  <IconButton className="text-grey-2" sx={{ p: "2.5px" }}>
+                    <MoreVertRounded fontSize="small" />
+                  </IconButton>
+                </TooltipShortcut>
+                <TooltipShortcut
+                  placement="top"
+                  hasArrow
+                  tooltipContent={{
+                    title: {
+                      name: "open a direct message",
+                      style: { fontSize: "0.9rem" },
+                    },
+                    content: {
+                      shortcutKey: [
+                        {
+                          icon: KeyboardCommandKeyRounded,
+                        },
+                        {
+                          key: "Shift",
+                          style: { marginInline: "5px", paddingInline: "5px" },
+                        },
+                        {
+                          key: "K",
+                        },
+                      ],
+                    },
+                  }}
+                >
+                  <IconButton className="text-grey-2" sx={{ p: "2.5px" }}>
+                    <AddRounded fontSize="small" />
+                  </IconButton>
+                </TooltipShortcut>
+              </Box>
+            </Box>
+            {menus.directMessage.isExpanded && (
+              <Collapse
+                in={menus.directMessage.isExpanded}
+                timeout="auto"
+                unmountOnExit
+              >
+                {menus.directMessage.subMenu.map((subMenu, index) => (
+                  <ListItemButton
+                    className="sidebar-button p-0 my-1"
+                    key={index}
+                    onClick={() =>
+                      handleMenuClick("directMessage", index, subMenu.path)
+                    }
+                  >
+                    <Box className="d-flex align-center" pl={4.5}>
+                      <subMenu.icon className="text-grey-2 numbers-button" />
+                      <ListItemText
+                        primary={subMenu.title}
+                        primaryTypographyProps={{
+                          className: "sidebar-menu",
+                        }}
+                        className="text-grey-2 pl-2 m-0"
+                      />
+                    </Box>
+                  </ListItemButton>
+                ))}
+                <ListItemButton className="sidebar-button p-0 my-1">
+                  <Box className="d-flex align-center" pl={4.2}>
+                    <IconButton className="add-button">
+                      <AddRounded className="text-grey-2 numbers-button" />
+                    </IconButton>
+                    <ListItemText
+                      primary="Add teammates"
+                      primaryTypographyProps={{
+                        className: "sidebar-menu",
+                      }}
+                      className="text-grey-2 pl-2 m-0"
+                    />
+                  </Box>
+                </ListItemButton>
+              </Collapse>
+            )}
+          </List>
+        </Paper>
+      </Drawer>
+      <Popover
+        open={open}
+        onClose={handleClose}
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        elevation={3}
+      >
+        {menuSelected === "setting" && <GroupSetting />}
+        {menuSelected === "browse" && <GroupBrowse />}
+      </Popover>
+    </>
   );
 }
 

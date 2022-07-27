@@ -19,7 +19,7 @@ import SignInWorkSpace from "../views/authen/SignInWorkSpace";
 import { Box } from "@mui/material";
 import Header from "../components/header/Header";
 import MessageSection from "../views/message-section";
-import Connection from "../views/connection";
+import BrowseConnect from "../views/browse-connect";
 
 // Admin
 import Dashboard from "../views-admin/dashboard";
@@ -81,7 +81,7 @@ const List = () => {
         <Route path="/workspace-signin" element={<SignInWorkSpace />} />
       </Route>
       <Route element={<MemberRoute />}>
-        <Route path="/browse-connect" element={<Connection />} />
+        <Route path="/browse-connect" element={<BrowseConnect />} />
         <Route path="/groups/:id" element={<MessageSection />} />
       </Route>
       <Route path="/dashboard" element={<AdminRoute />}>
