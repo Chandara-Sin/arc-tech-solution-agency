@@ -17,7 +17,11 @@ function ChannelDetails() {
     useState(false);
 
   return (
-    <Paper className="channel-details flex-between align-center" elevation={0}>
+    <Paper
+      className="header-details flex-between align-center"
+      elevation={0}
+      sx={{ p: "8px 14px" }}
+    >
       <TooltipShortcut
         style={{ marginBottom: "-5px" }}
         hasArrow
@@ -30,7 +34,7 @@ function ChannelDetails() {
       >
         <Button
           variant="text"
-          className="text-transform-none channel-details-button"
+          className="text-transform-none header-details-button"
           color="inherit"
           onClick={() => setOpenChannelDetailsDialog(true)}
         >
@@ -73,10 +77,14 @@ function ChannelDetails() {
 
 function ChannelBookmark() {
   return (
-    <Paper className="channel-bookmark" elevation={0}>
+    <Paper
+      className="channel-bookmark fill-width"
+      elevation={0}
+      sx={{ mt: "52px" }}
+    >
       <Button
         variant="text"
-        className="text-transform-none channel-details-button"
+        className="text-transform-none header-details-button"
         color="inherit"
       >
         <Box className="content-center">

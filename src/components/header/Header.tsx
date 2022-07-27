@@ -90,9 +90,7 @@ function SearchPopover() {
             },
           }}
         >
-          <IconButton
-            className="search-filter-icon text-grey-1"
-          >
+          <IconButton className="search-filter-icon text-grey-1">
             <TuneRounded />
           </IconButton>
         </TooltipShortcut>
@@ -164,7 +162,6 @@ function SearchPopover() {
                   From our Help Center
                 </Typography>
               </Box>
-
               <Box className="flex-start full-width pb-2" alignContent="center">
                 <HelpOutline fontSize="small" />
                 <Link
@@ -193,7 +190,10 @@ function SearchPopover() {
               </Box>
             </Box>
             <Divider />
-            <Box sx={{ bgcolor: "rgb(242, 241, 241)", p: "10px" }} className="text-end">
+            <Box
+              sx={{ bgcolor: "rgb(242, 241, 241)", p: "10px" }}
+              className="text-end"
+            >
               <Typography variant="caption">
                 Not the results you expected?{" "}
                 <Link href="#" underline="hover">

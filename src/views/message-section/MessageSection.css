@@ -24,17 +24,16 @@
   border-radius: 5px !important;
 }
 
-.channel-details {
+.header-details {
   border-bottom: 1px solid #d3d3d3;
   border-radius: 0px !important;
   z-index: 4 !important;
-  padding: 8px 14px !important;
   position: fixed !important;
-  width: calc(100% - 286px) !important;
+  width: calc(100% - 284px) !important;
 }
 
-.channel-details-button {
-  padding: 5px !important;
+.header-details-button {
+  padding: 2px 8px !important;
   border-radius: 8px !important;
 }
 
@@ -42,8 +41,7 @@
   border-bottom: 1px solid #d3d3d3;
   border-radius: 0px !important;
   z-index: 4 !important;
-  padding: 5px 15px !important;
+  padding: 4px 14px !important;
   position: fixed !important;
-  margin-top: 54px;
-  width: calc(100% - 286px) !important;
+  width: calc(100% - 256px) !important;
 }
