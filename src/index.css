@@ -32,6 +32,9 @@ code {
 .text-center {
   text-align: center !important;
 }
+.text-start {
+  text-align: start !important;
+}
 .text-end {
   text-align: end !important;
 }
@@ -41,8 +44,8 @@ code {
 .text-primary {
   color: #556cd6;
 }
-.text-back {
-  color: #000;
+.text-black {
+  color: #000 !important;
 }
 .text-grey-1 {
   color: rgb(240, 235, 235) !important;
@@ -351,4 +354,10 @@ code {
 }
 .ml-2 {
   margin-left: 10px !important;
+}
+.ml-3 {
+  margin-left: 15px !important;
+}
+.ml-4 {
+  margin-left: 20px !important;
 }
