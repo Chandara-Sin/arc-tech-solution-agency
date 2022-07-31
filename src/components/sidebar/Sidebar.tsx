@@ -261,7 +261,7 @@ function Sidebar() {
       ? setMenus((prevState: IMenuList) => ({
           ...prevState,
           channels: {
-            ...menus.channels,
+            ...prevState.channels,
             subMenu: prevState.channels.subMenu.map((value, index) => ({
               ...value,
               isActive: index === menuIndex,
@@ -271,7 +271,7 @@ function Sidebar() {
       : setMenus((prevState: IMenuList) => ({
           ...prevState,
           directMessage: {
-            ...menus.directMessage,
+            ...prevState.directMessage,
             subMenu: prevState.directMessage.subMenu.map((value, index) => ({
               ...value,
               isActive: index === menuIndex,
@@ -282,21 +282,23 @@ function Sidebar() {
   };
 
   const handleMenuExpand = (menu: string) => {
-    menu === "channel"
-      ? setMenus((prevState: IMenuList) => ({
-          ...prevState,
-          channels: {
-            ...menus.channels,
-            isExpanded: !prevState.channels.isExpanded,
-          },
-        }))
-      : setMenus((prevState: IMenuList) => ({
-          ...prevState,
-          directMessage: {
-            ...menus.directMessage,
-            isExpanded: !prevState.directMessage.isExpanded,
-          },
-        }));
+    setMenus((prevState: IMenuList) =>
+      menu === "channel"
+        ? {
+            ...prevState,
+            channels: {
+              ...prevState.channels,
+              isExpanded: !prevState.channels.isExpanded,
+            },
+          }
+        : {
+            ...prevState,
+            directMessage: {
+              ...prevState.directMessage,
+              isExpanded: !prevState.directMessage.isExpanded,
+            },
+          }
+    );
   };
 
   const handleClick = (

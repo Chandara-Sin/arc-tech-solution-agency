@@ -33,10 +33,10 @@ function MessageDate() {
           <Typography variant="subtitle2" className="text-grey-4" pl={2.5}>
             Jump to...
           </Typography>
-          {suggestMessageDate.map((messageDate, index) => (
+          {suggestMessageDate.map((value, index) => (
             <Button key={index} className="user-button flex-start" fullWidth>
               <Typography variant="body2" pl={2}>
-                {messageDate}
+                {value}
               </Typography>
             </Button>
           ))}

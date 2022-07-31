@@ -95,119 +95,118 @@ function SearchPopover() {
           </IconButton>
         </TooltipShortcut>
       </Box>
-      {openDialog && (
-        <Popover
-          sx={{ mt: "-10px" }}
-          open={openDialog}
-          onClose={handleClose}
-          anchorEl={anchorEl}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
-          elevation={3}
-          PaperProps={{
-            sx: { borderRadius: "7px" },
-          }}
-        >
-          <Paper className="search-dialog">
-            <Grid container sx={{ p: "10px 20px 5px" }}>
-              <Grid xs={1} item className="flex-center pt-1">
-                <SearchRounded />
-              </Grid>
-              <Grid xs={10} item>
-                <TextField
-                  className="search-input"
-                  fullWidth
-                  variant="standard"
-                  InputProps={{
-                    disableUnderline: true,
-                  }}
-                  placeholder="Search for files, facts, figures, and stats"
-                />
-              </Grid>
-              <Grid xs={1} item className="flex-end">
-                <Close
-                  onClick={handleClose}
-                  sx={{ color: "#5a495c", "&:hover": { cursor: "pointer" } }}
-                />
-              </Grid>
+
+      <Popover
+        sx={{ mt: "-10px" }}
+        open={openDialog}
+        onClose={handleClose}
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+        elevation={3}
+        PaperProps={{
+          sx: { borderRadius: "7px" },
+        }}
+      >
+        <Paper className="search-dialog">
+          <Grid container sx={{ p: "10px 20px 5px" }}>
+            <Grid xs={1} item className="flex-center pt-1">
+              <SearchRounded />
             </Grid>
-            <Divider />
-            <Box
-              className="text-center"
-              sx={{ bgcolor: "rgb(242, 241, 241)", py: "20px" }}
-            >
-              <Box className="content-center" py="5px">
-                <TipsAndUpdates sx={{ color: "#e9c46a" }} />
-                <Typography className="text-bold pl-2">
-                  Search messages, files, and more
-                </Typography>
-              </Box>
-              <Typography>
-                Looking for a particular message, doc, or decision?
-              </Typography>
-              <Typography>
-                If it happened in Slack, you can find it in search.
-              </Typography>
-            </Box>
-            <Divider />
-            <Box p="10px 40px">
-              <Box pb="10px">
-                <Typography variant="caption" className="text-grey-4">
-                  From our Help Center
-                </Typography>
-              </Box>
-              <Box className="flex-start full-width pb-2" alignContent="center">
-                <HelpOutline fontSize="small" />
-                <Link
-                  href="#"
-                  variant="subtitle2"
-                  className="pl-1"
-                  color="inherit"
-                  underline="hover"
-                >
-                  <strong>How to Search in Slack </strong>Access the right
-                  information instantly
-                </Link>
-              </Box>
-              <Box className="flex-start full-width pb-2" alignContent="center">
-                <HelpOutline fontSize="small" />
-                <Link
-                  href="#"
-                  variant="subtitle2"
-                  className="pl-1"
-                  color="inherit"
-                  underline="hover"
-                >
-                  <strong>Using Slack </strong>Learn how Slack works from top to
-                  bottom
-                </Link>
-              </Box>
-            </Box>
-            <Divider />
-            <Box
-              sx={{ bgcolor: "rgb(242, 241, 241)", p: "10px" }}
-              className="text-end"
-            >
-              <Typography variant="caption">
-                Not the results you expected?{" "}
-                <Link href="#" underline="hover">
-                  Give feedback
-                </Link>{" "}
-                or{" "}
-                <Link href="#" underline="hover">
-                  Learn more
-                </Link>
+            <Grid xs={10} item>
+              <TextField
+                className="search-input"
+                fullWidth
+                variant="standard"
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                placeholder="Search for files, facts, figures, and stats"
+              />
+            </Grid>
+            <Grid xs={1} item className="flex-end">
+              <Close
+                onClick={handleClose}
+                sx={{ color: "#5a495c", "&:hover": { cursor: "pointer" } }}
+              />
+            </Grid>
+          </Grid>
+          <Divider />
+          <Box
+            className="text-center"
+            sx={{ bgcolor: "rgb(242, 241, 241)", py: "20px" }}
+          >
+            <Box className="content-center" py="5px">
+              <TipsAndUpdates sx={{ color: "#e9c46a" }} />
+              <Typography className="text-bold pl-2">
+                Search messages, files, and more
               </Typography>
             </Box>
-          </Paper>
-        </Popover>
-      )}
+            <Typography>
+              Looking for a particular message, doc, or decision?
+            </Typography>
+            <Typography>
+              If it happened in Slack, you can find it in search.
+            </Typography>
+          </Box>
+          <Divider />
+          <Box p="10px 40px">
+            <Box pb="10px">
+              <Typography variant="caption" className="text-grey-4">
+                From our Help Center
+              </Typography>
+            </Box>
+            <Box className="flex-start full-width pb-2" alignContent="center">
+              <HelpOutline fontSize="small" />
+              <Link
+                href="#"
+                variant="subtitle2"
+                className="pl-1"
+                color="inherit"
+                underline="hover"
+              >
+                <strong>How to Search in Slack </strong>Access the right
+                information instantly
+              </Link>
+            </Box>
+            <Box className="flex-start full-width pb-2" alignContent="center">
+              <HelpOutline fontSize="small" />
+              <Link
+                href="#"
+                variant="subtitle2"
+                className="pl-1"
+                color="inherit"
+                underline="hover"
+              >
+                <strong>Using Slack </strong>Learn how Slack works from top to
+                bottom
+              </Link>
+            </Box>
+          </Box>
+          <Divider />
+          <Box
+            sx={{ bgcolor: "rgb(242, 241, 241)", p: "10px" }}
+            className="text-end"
+          >
+            <Typography variant="caption">
+              Not the results you expected?{" "}
+              <Link href="#" underline="hover">
+                Give feedback
+              </Link>{" "}
+              or{" "}
+              <Link href="#" underline="hover">
+                Learn more
+              </Link>
+            </Typography>
+          </Box>
+        </Paper>
+      </Popover>
     </>
   );
 }

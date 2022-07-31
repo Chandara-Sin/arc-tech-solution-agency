@@ -25,19 +25,19 @@ function RegionDetails() {
         Slack.com.
       </Typography>
       <Box className="d-flex">
-        {regionDetails.map((value, index) => (
+        {regionDetails.map(({ region, languages }, index) => (
           <Box key={index} className="d-flex flex-column mr-4">
             <Typography className="text-bold mb-1" variant="subtitle2">
-              {value.region}
+              {region}
             </Typography>
-            {value.languages.map((item, index) => (
+            {languages.map((value, index) => (
               <Link
                 href="#"
                 key={index}
                 className="footer-link text-medium mb-1"
                 underline="hover"
               >
-                {item}
+                {value}
               </Link>
             ))}
           </Box>
@@ -49,10 +49,10 @@ function RegionDetails() {
 
 function MainFooter() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-  const open = Boolean(anchorEl);
   const handleClickPopover = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+  const open = Boolean(anchorEl);
   return (
     <>
       <footer className="main-footer d-flex flex-column align-center">

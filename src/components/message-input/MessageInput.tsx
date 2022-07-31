@@ -411,7 +411,6 @@ function MessageAttachments(props: IMessageAttachmentsProps) {
       [attachment]: value,
     }));
   };
-
   const open = Boolean(anchorEl);
 
   return (
