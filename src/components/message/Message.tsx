@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import "./Message.css";
 import {
   Box,
@@ -23,7 +23,7 @@ import { CalendarPicker, LocalizationProvider } from "@mui/x-date-pickers";
 
 const suggestMessageDate = ["Most recent", "Last week", "Last month"];
 
-function MessageDate() {
+const MessageDate: FC = () => {
   const [date, setDate] = useState<Date | null>(new Date());
   const [openDateDialog, setOpenDateDialog] = useState(false);
   return (
@@ -80,7 +80,7 @@ function MessageDate() {
       </Dialog>
     </>
   );
-}
+};
 
 function Message() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);

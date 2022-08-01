@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import "./Header.css";
 import { useAuth } from "../../contexts/Auth";
 import { useNavigate } from "react-router-dom";
@@ -37,7 +37,7 @@ import HeaderNotify from "../header-notify/HeaderNotify";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
 import { recentHistories } from "./example-data";
 
-function SearchPopover() {
+const SearchPopover: FC = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -95,7 +95,6 @@ function SearchPopover() {
           </IconButton>
         </TooltipShortcut>
       </Box>
-
       <Popover
         sx={{ mt: "-10px" }}
         open={openDialog}
@@ -209,44 +208,42 @@ function SearchPopover() {
       </Popover>
     </>
   );
-}
+};
 
-function UserHistory() {
-  return (
-    <Paper className="user-card">
-      <Typography variant="caption" className="pl-4 text-grey-4" py="5px">
-        Recent
-      </Typography>
-      {recentHistories.map((value, index) => (
-        <Button
-          key={index}
-          className="user-button flex-start user-button-text"
-          fullWidth
-        >
-          <value.icon fontSize="small" />
-          <Typography variant="subtitle2" className="text-bold pl-1">
-            {value.item}
-          </Typography>
-        </Button>
+const UserHistory: FC = () => (
+  <Paper className="user-card">
+    <Typography variant="caption" className="pl-4 text-grey-4" py="5px">
+      Recent
+    </Typography>
+    {recentHistories.map((value, index) => (
+      <Button
+        key={index}
+        className="user-button flex-start user-button-text"
+        fullWidth
+      >
+        <value.icon fontSize="small" />
+        <Typography variant="subtitle2" className="text-bold pl-1">
+          {value.item}
+        </Typography>
+      </Button>
+    ))}
+    <Box sx={{ p: "5px 80px 10px 20px " }}>
+      {[...Array(4)].map((_, index) => (
+        <Skeleton key={index} variant="text" className="mr-1 mb-1" />
       ))}
-      <Box sx={{ p: "5px 80px 10px 20px " }}>
-        {[...Array(4)].map((_, index) => (
-          <Skeleton key={index} variant="text" className="mr-1 mb-1" />
-        ))}
-      </Box>
-      <Divider />
-      <Box className="user-details">
-        <Button className="user-button flex-start" fullWidth>
-          <Typography variant="subtitle2" className="pl-4">
-            Show more
-          </Typography>
-        </Button>
-      </Box>
-    </Paper>
-  );
-}
+    </Box>
+    <Divider />
+    <Box className="user-details">
+      <Button className="user-button flex-start" fullWidth>
+        <Typography variant="subtitle2" className="pl-4">
+          Show more
+        </Typography>
+      </Button>
+    </Box>
+  </Paper>
+);
 
-function UserCard() {
+const UserCard: FC = () => {
   const { signOut } = useAuth();
   const navigate = useNavigate();
   const [userStatus, setUserStatus] = useState(true);
@@ -331,7 +328,7 @@ function UserCard() {
       </Box>
     </Paper>
   );
-}
+};
 
 function Header() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -350,7 +347,6 @@ function Header() {
     setAnchorEl(null);
     setMenuSelected(null);
   };
-
   const open = Boolean(anchorEl);
 
   return (

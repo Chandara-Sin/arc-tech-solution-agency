@@ -1,5 +1,12 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { FC, Fragment, useEffect, useState } from "react";
 import "./MessageInput.css";
+import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
+import {
+  IMessageFormats,
+  IMessageFormatProps,
+  IMessageAttachmentsProps,
+  IMessageAttachments,
+} from "./MessageInputType";
 import {
   Box,
   Button,
@@ -32,18 +39,11 @@ import {
   StrikethroughSRounded,
   VideocamOutlined,
 } from "@mui/icons-material";
-import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
-import {
-  IMessageFormats,
-  IMessageFormatProps,
-  IMessageAttachmentsProps,
-  IMessageAttachments,
-} from "./MessageInputType";
 import Picker, { IEmojiData, SKIN_TONE_MEDIUM_LIGHT } from "emoji-picker-react";
 import TrialDialog from "../trial-dialog/TrialDialog";
 import { attachmentDetails } from "./message-input-data";
 
-function MessageFormat(props: IMessageFormatProps) {
+const MessageFormat: FC<IMessageFormatProps> = (props) => {
   const { onChange } = props;
   const [formats, setFormats] = useState<IMessageFormats>({
     bold: false,
@@ -286,78 +286,76 @@ function MessageFormat(props: IMessageFormatProps) {
       </TooltipShortcut>
     </Box>
   );
-}
+};
 
-function Attachments() {
-  return (
-    <Paper className="message-attachment-card bg-grey">
-      <Box p="5px 15px 15px">
-        <TextField
-          fullWidth
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <BoltRounded />
-              </InputAdornment>
-            ),
-            sx: {
-              height: "40px",
-            },
-          }}
-          placeholder="Search shortcuts"
-        />
-      </Box>
-      <Divider />
-      {attachmentDetails.map((value, index) => (
-        <Box
-          key={index}
-          className="d-flex flex-column justify-center"
-          p="10px 0px 0px"
-        >
-          <Typography variant="subtitle2" className="text-grey-4" pl={2.5}>
-            {value.caption}
-          </Typography>
-          {value.details.map((details, index) =>
-            details.shortCutIcon ? (
-              <Button key={index} className="user-button flex-start" fullWidth>
-                <Box
-                  className="flex-between full-width"
-                  alignItems="center"
-                  pr={2}
-                >
-                  <Box className="d-flex align-center full-width" pl={2}>
-                    <details.icon />
-                    <Typography variant="subtitle2" className="pl-2">
-                      {details.item}
-                    </Typography>
-                  </Box>
-                  <Box className="d-flex align-center">
-                    <details.shortCutIcon sx={{ fontSize: "1rem" }} />
-                    <Typography variant="subtitle2" pt={0.1}>
-                      {details.key}
-                    </Typography>
-                  </Box>
-                </Box>
-              </Button>
-            ) : (
-              <Button key={index} className="user-button flex-start" fullWidth>
+const Attachments: FC = () => (
+  <Paper className="message-attachment-card bg-grey">
+    <Box p="5px 15px 15px">
+      <TextField
+        fullWidth
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <BoltRounded />
+            </InputAdornment>
+          ),
+          sx: {
+            height: "40px",
+          },
+        }}
+        placeholder="Search shortcuts"
+      />
+    </Box>
+    <Divider />
+    {attachmentDetails.map((value, index) => (
+      <Box
+        key={index}
+        className="d-flex flex-column justify-center"
+        p="10px 0px 0px"
+      >
+        <Typography variant="subtitle2" className="text-grey-4" pl={2.5}>
+          {value.caption}
+        </Typography>
+        {value.details.map((details, index) =>
+          details.shortCutIcon ? (
+            <Button key={index} className="user-button flex-start" fullWidth>
+              <Box
+                className="flex-between full-width"
+                alignItems="center"
+                pr={2}
+              >
                 <Box className="d-flex align-center full-width" pl={2}>
                   <details.icon />
-                  <Typography variant="body2" className="pl-2">
+                  <Typography variant="subtitle2" className="pl-2">
                     {details.item}
                   </Typography>
                 </Box>
-              </Button>
-            )
-          )}
-          {index !== attachmentDetails.length - 1 && <Divider />}
-        </Box>
-      ))}
-    </Paper>
-  );
-}
+                <Box className="d-flex align-center">
+                  <details.shortCutIcon sx={{ fontSize: "1rem" }} />
+                  <Typography variant="subtitle2" pt={0.1}>
+                    {details.key}
+                  </Typography>
+                </Box>
+              </Box>
+            </Button>
+          ) : (
+            <Button key={index} className="user-button flex-start" fullWidth>
+              <Box className="d-flex align-center full-width" pl={2}>
+                <details.icon />
+                <Typography variant="body2" className="pl-2">
+                  {details.item}
+                </Typography>
+              </Box>
+            </Button>
+          )
+        )}
+        {index !== attachmentDetails.length - 1 && <Divider />}
+      </Box>
+    ))}
+  </Paper>
+);
 
-function MessageAttachments(props: IMessageAttachmentsProps) {
+const MessageAttachments: FC<IMessageAttachmentsProps> = (props) => {
   const { onChange } = props;
   const [openTrialDialog, setOpenTrialDialog] = useState(false);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -529,7 +527,7 @@ function MessageAttachments(props: IMessageAttachmentsProps) {
       </Popover>
     </>
   );
-}
+};
 
 function MessageInput() {
   const [messageInput, setMessageInput] = useState("");

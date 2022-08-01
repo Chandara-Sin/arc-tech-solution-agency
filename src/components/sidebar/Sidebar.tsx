@@ -1,5 +1,9 @@
-import React, { Fragment, useState } from "react";
+import React, { FC, Fragment, useState } from "react";
 import "./Sidebar.css";
+import { useNavigate } from "react-router-dom";
+import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
+import TooltipDetails from "../tooltip-details/TooltipDetails";
+import { IMenuList } from "./SidebarType";
 import {
   Drawer,
   List,
@@ -27,8 +31,6 @@ import {
   KeyboardCommandKeyRounded,
   MoreVertRounded,
 } from "@mui/icons-material";
-import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
-import TooltipDetails from "../tooltip-details/TooltipDetails";
 import { allMenu } from "./menu-list";
 import {
   groupBrowseDetails,
@@ -36,209 +38,203 @@ import {
   tools,
   workspaces,
 } from "./sidebar-data";
-import { IMenuList } from "./SidebarType";
-import { useNavigate } from "react-router-dom";
 
-function GroupBrowse() {
-  return (
-    <Paper className="group-section-card">
-      {groupBrowseDetails.map((value, index) => (
-        <Fragment key={index}>
-          <Box className="group-setting">
-            {value.map((browseDetails, index) => (
-              <Button key={index} className="user-button flex-start" fullWidth>
-                <Box
-                  className="flex-start full-width"
-                  alignContent="center"
-                  pl={2}
-                >
-                  <browseDetails.icon fontSize="small" />
-                  <Typography variant="subtitle2" className="pl-2">
-                    {browseDetails.item}
-                  </Typography>
-                </Box>
-              </Button>
-            ))}
-          </Box>
-          <Divider />
-        </Fragment>
-      ))}
-      <Divider />
-      <Box className="user-details">
-        <Button className="user-button flex-start" fullWidth>
-          <Typography variant="subtitle2" className="pl-4">
-            Customize this list in your{" "}
-            <span className="text-primary">preferences</span>
+const GroupBrowse: FC = () => (
+  <Paper className="group-section-card">
+    {groupBrowseDetails.map((value, index) => (
+      <Fragment key={index}>
+        <Box className="group-setting">
+          {value.map((browseDetails, index) => (
+            <Button key={index} className="user-button flex-start" fullWidth>
+              <Box
+                className="flex-start full-width"
+                alignContent="center"
+                pl={2}
+              >
+                <browseDetails.icon fontSize="small" />
+                <Typography variant="subtitle2" className="pl-2">
+                  {browseDetails.item}
+                </Typography>
+              </Box>
+            </Button>
+          ))}
+        </Box>
+        <Divider />
+      </Fragment>
+    ))}
+    <Divider />
+    <Box className="user-details">
+      <Button className="user-button flex-start" fullWidth>
+        <Typography variant="subtitle2" className="pl-4">
+          Customize this list in your{" "}
+          <span className="text-primary">preferences</span>
+        </Typography>
+      </Button>
+    </Box>
+  </Paper>
+);
+
+const GroupSetting: FC = () => (
+  <Paper className="group-section-card">
+    <Grid container p="10px 0px">
+      <Grid xs={3} item className="content-center">
+        <Box className="group-name content-center">
+          <Typography variant="h5" color="#fff">
+            S
           </Typography>
-        </Button>
-      </Box>
-    </Paper>
-  );
-}
-
-function GroupSetting() {
-  return (
-    <Paper className="group-section-card">
-      <Grid container p="10px 0px">
-        <Grid xs={3} item className="content-center">
-          <Box className="group-name content-center">
-            <Typography variant="h5" color="#fff">
-              S
-            </Typography>
-          </Box>
-        </Grid>
-        <Grid xs={9} item alignSelf="center" justifyItems="center">
-          <Grid display="flex" flexDirection="column">
-            <Typography variant="subtitle2" className="text-bold">
-              Slack
-            </Typography>
-            <Typography variant="caption">slack-ew2313.slack.com</Typography>
-          </Grid>
+        </Box>
+      </Grid>
+      <Grid xs={9} item alignSelf="center" justifyItems="center">
+        <Grid display="flex" flexDirection="column">
+          <Typography variant="subtitle2" className="text-bold">
+            Slack
+          </Typography>
+          <Typography variant="caption">slack-ew2313.slack.com</Typography>
         </Grid>
       </Grid>
-      <Divider />
-      <Box className="user-setting d-flex flex-column justify-center">
-        <Button className="user-button user-button-text flex-start" fullWidth>
-          <Typography variant="body2" align="left">
-            Your work place is currently on the free version of Slack.{" "}
-            <Link href="#" underline="hover" color="inherit">
-              See plans
-            </Link>
-          </Typography>
-        </Button>
-      </Box>
-      <Divider />
-      <Box className="user-setting d-flex flex-column justify-center">
-        <Button className="user-button flex-start" fullWidth>
-          <Typography variant="subtitle2" className="pl-4">
-            Invite people to Slack
-          </Typography>
-        </Button>
-        <Button className="user-button flex-start" fullWidth>
-          <Typography variant="subtitle2" className="pl-4">
-            Create a channel
-          </Typography>
-        </Button>
-      </Box>
-      <Divider />
-      <Box className="user-setting d-flex flex-column justify-center">
-        <Button className="user-button flex-start" fullWidth>
-          <Typography variant="subtitle2" className="pl-4">
-            Preferences
-          </Typography>
-        </Button>
-        <TooltipDetails
-          placement="right-start"
-          title={
-            <Paper className="user-card">
-              {settings.map((item, index) => (
-                <Fragment key={index}>
-                  <Box className="pl-4 pt-1">
-                    <Typography variant="caption" className="text-grey-4">
-                      {item.caption}
+    </Grid>
+    <Divider />
+    <Box className="user-setting d-flex flex-column justify-center">
+      <Button className="user-button user-button-text flex-start" fullWidth>
+        <Typography variant="body2" align="left">
+          Your work place is currently on the free version of Slack.{" "}
+          <Link href="#" underline="hover" color="inherit">
+            See plans
+          </Link>
+        </Typography>
+      </Button>
+    </Box>
+    <Divider />
+    <Box className="user-setting d-flex flex-column justify-center">
+      <Button className="user-button flex-start" fullWidth>
+        <Typography variant="subtitle2" className="pl-4">
+          Invite people to Slack
+        </Typography>
+      </Button>
+      <Button className="user-button flex-start" fullWidth>
+        <Typography variant="subtitle2" className="pl-4">
+          Create a channel
+        </Typography>
+      </Button>
+    </Box>
+    <Divider />
+    <Box className="user-setting d-flex flex-column justify-center">
+      <Button className="user-button flex-start" fullWidth>
+        <Typography variant="subtitle2" className="pl-4">
+          Preferences
+        </Typography>
+      </Button>
+      <TooltipDetails
+        placement="right-start"
+        title={
+          <Paper className="user-card">
+            {settings.map((item, index) => (
+              <Fragment key={index}>
+                <Box className="pl-4 pt-1">
+                  <Typography variant="caption" className="text-grey-4">
+                    {item.caption}
+                  </Typography>
+                </Box>
+                {item.details.map((value, index) => (
+                  <Button
+                    key={index}
+                    className="user-button flex-start"
+                    fullWidth
+                  >
+                    <Typography variant="subtitle2" className="pl-4">
+                      {value}
                     </Typography>
-                  </Box>
-                  {item.details.map((value, index) => (
-                    <Button
-                      key={index}
-                      className="user-button flex-start"
-                      fullWidth
-                    >
-                      <Typography variant="subtitle2" className="pl-4">
-                        {value}
-                      </Typography>
-                    </Button>
-                  ))}
-                  {index !== settings.length - 1 && <Divider />}
-                </Fragment>
-              ))}
-            </Paper>
-          }
-        >
-          <Button className="user-button flex-start" fullWidth>
-            <Box className="flex-between full-width" alignItems="center" pr={2}>
-              <Typography variant="subtitle2" className="pl-4">
-                Setting & administration
-              </Typography>
-              <ArrowForwardIos sx={{ fontSize: "0.6rem" }} />
-            </Box>
-          </Button>
-        </TooltipDetails>
-      </Box>
-      <Divider />
-      <TooltipDetails
-        placement="right-start"
-        title={
-          <Paper className="user-card">
-            {tools.details.map((value, index) => (
-              <Button key={index} className="user-button flex-start" fullWidth>
-                <Typography variant="subtitle2" className="pl-4">
-                  {value}
-                </Typography>
-              </Button>
+                  </Button>
+                ))}
+                {index !== settings.length - 1 && <Divider />}
+              </Fragment>
             ))}
           </Paper>
         }
       >
-        <Box className="user-details">
-          <Button className="user-button flex-start" fullWidth>
-            <Box className="flex-between full-width" alignItems="center" pr={2}>
-              <Typography variant="subtitle2" className="pl-4">
-                Tools
-              </Typography>
-              <ArrowForwardIos sx={{ fontSize: "0.6rem" }} />
-            </Box>
-          </Button>
-        </Box>
+        <Button className="user-button flex-start" fullWidth>
+          <Box className="flex-between full-width" alignItems="center" pr={2}>
+            <Typography variant="subtitle2" className="pl-4">
+              Setting & administration
+            </Typography>
+            <ArrowForwardIos sx={{ fontSize: "0.6rem" }} />
+          </Box>
+        </Button>
       </TooltipDetails>
-      <Divider />
-      <TooltipDetails
-        placement="right-start"
-        title={
-          <Paper className="user-card">
-            {workspaces.details.map((value, index) => (
-              <Button key={index} className="user-button flex-start" fullWidth>
-                <Typography variant="subtitle2" className="pl-4">
-                  {value}
-                </Typography>
-              </Button>
-            ))}
-          </Paper>
-        }
-      >
-        <Box className="user-details">
-          <Button className="user-button flex-start" fullWidth>
-            <Box className="flex-between full-width" alignItems="center" pr={2}>
+    </Box>
+    <Divider />
+    <TooltipDetails
+      placement="right-start"
+      title={
+        <Paper className="user-card">
+          {tools.details.map((value, index) => (
+            <Button key={index} className="user-button flex-start" fullWidth>
               <Typography variant="subtitle2" className="pl-4">
-                Add workspaces
+                {value}
               </Typography>
-              <ArrowForwardIos sx={{ fontSize: "0.6rem" }} />
-            </Box>
-          </Button>
-        </Box>
-      </TooltipDetails>
-      <Divider />
+            </Button>
+          ))}
+        </Paper>
+      }
+    >
       <Box className="user-details">
         <Button className="user-button flex-start" fullWidth>
           <Box className="flex-between full-width" alignItems="center" pr={2}>
             <Typography variant="subtitle2" className="pl-4">
-              Sign in on Mobile
+              Tools
             </Typography>
-            <MobileFriendly sx={{ fontSize: "1rem" }} />
+            <ArrowForwardIos sx={{ fontSize: "0.6rem" }} />
           </Box>
         </Button>
       </Box>
-      <Divider />
+    </TooltipDetails>
+    <Divider />
+    <TooltipDetails
+      placement="right-start"
+      title={
+        <Paper className="user-card">
+          {workspaces.details.map((value, index) => (
+            <Button key={index} className="user-button flex-start" fullWidth>
+              <Typography variant="subtitle2" className="pl-4">
+                {value}
+              </Typography>
+            </Button>
+          ))}
+        </Paper>
+      }
+    >
       <Box className="user-details">
         <Button className="user-button flex-start" fullWidth>
-          <Typography variant="subtitle2" className="pl-4">
-            Sign out of Slack
-          </Typography>
+          <Box className="flex-between full-width" alignItems="center" pr={2}>
+            <Typography variant="subtitle2" className="pl-4">
+              Add workspaces
+            </Typography>
+            <ArrowForwardIos sx={{ fontSize: "0.6rem" }} />
+          </Box>
         </Button>
       </Box>
-    </Paper>
-  );
-}
+    </TooltipDetails>
+    <Divider />
+    <Box className="user-details">
+      <Button className="user-button flex-start" fullWidth>
+        <Box className="flex-between full-width" alignItems="center" pr={2}>
+          <Typography variant="subtitle2" className="pl-4">
+            Sign in on Mobile
+          </Typography>
+          <MobileFriendly sx={{ fontSize: "1rem" }} />
+        </Box>
+      </Button>
+    </Box>
+    <Divider />
+    <Box className="user-details">
+      <Button className="user-button flex-start" fullWidth>
+        <Typography variant="subtitle2" className="pl-4">
+          Sign out of Slack
+        </Typography>
+      </Button>
+    </Box>
+  </Paper>
+);
 
 function Sidebar() {
   const navigate = useNavigate();

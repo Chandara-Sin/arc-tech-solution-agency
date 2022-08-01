@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import "./Authen.css";
 import { useAuth } from "../../contexts/Auth";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ import {
   Typography,
 } from "@mui/material";
 
-function GetStarted() {
+const GetStarted: FC = () => {
   const { signIn } = useAuth();
   const navigate = useNavigate();
   const {
@@ -83,6 +83,6 @@ function GetStarted() {
       </Box>
     </Container>
   );
-}
+};
 
 export default GetStarted;

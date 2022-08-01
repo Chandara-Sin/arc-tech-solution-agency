@@ -14,38 +14,36 @@ import {
 } from "@mui/icons-material";
 import { regionDetails } from "./main-footer-data";
 
-function RegionDetails() {
-  return (
-    <Box className="region-details-card">
-      <Typography className="text-bold mb-1" variant="subtitle2">
-        Change region
-      </Typography>
-      <Typography className="text-medium mb-1" variant="subtitle2">
-        Selecting a different region will change the language and content of
-        Slack.com.
-      </Typography>
-      <Box className="d-flex">
-        {regionDetails.map(({ region, languages }, index) => (
-          <Box key={index} className="d-flex flex-column mr-4">
-            <Typography className="text-bold mb-1" variant="subtitle2">
-              {region}
-            </Typography>
-            {languages.map((value, index) => (
-              <Link
-                href="#"
-                key={index}
-                className="footer-link text-medium mb-1"
-                underline="hover"
-              >
-                {value}
-              </Link>
-            ))}
-          </Box>
-        ))}
-      </Box>
+const RegionDetails = () => (
+  <Box className="region-details-card">
+    <Typography className="text-bold mb-1" variant="subtitle2">
+      Change region
+    </Typography>
+    <Typography className="text-medium mb-1" variant="subtitle2">
+      Selecting a different region will change the language and content of
+      Slack.com.
+    </Typography>
+    <Box className="d-flex">
+      {regionDetails.map(({ region, languages }, index) => (
+        <Box key={index} className="d-flex flex-column mr-4">
+          <Typography className="text-bold mb-1" variant="subtitle2">
+            {region}
+          </Typography>
+          {languages.map((value, index) => (
+            <Link
+              href="#"
+              key={index}
+              className="footer-link text-medium mb-1"
+              underline="hover"
+            >
+              {value}
+            </Link>
+          ))}
+        </Box>
+      ))}
     </Box>
-  );
-}
+  </Box>
+);
 
 function MainFooter() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);

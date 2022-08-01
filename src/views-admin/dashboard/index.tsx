@@ -1,10 +1,5 @@
-import React from 'react'
+import React, { FC } from "react";
 
-function dashboard() {
-  return (
-    <div>dashboard</div>
-  )
-}
+const dashboard: FC = () => <div>dashboard</div>;
 
 export default dashboard;
-

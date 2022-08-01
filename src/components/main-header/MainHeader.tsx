@@ -1,9 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
 import "./MainHeader.css";
 import { Link, useLocation } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 
-function MainHeader() {
+const MainHeader: FC = () => {
   const { pathname } = useLocation();
   return (
     <header className="main-header full-width">
@@ -28,6 +28,6 @@ function MainHeader() {
       )}
     </header>
   );
-}
+};
 
 export default MainHeader;

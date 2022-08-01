@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { useAuth } from "../../contexts/Auth";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -7,7 +7,7 @@ import { IFormSignInProps } from "./AuthenType";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
 
-function SignInWorkSpace() {
+const SignInWorkSpace: FC = () => {
   const { signIn } = useAuth();
   const navigate = useNavigate();
   const {
@@ -83,6 +83,6 @@ function SignInWorkSpace() {
       </Box>
     </Container>
   );
-}
+};
 
 export default SignInWorkSpace;

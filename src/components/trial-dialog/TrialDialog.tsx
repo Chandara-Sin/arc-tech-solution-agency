@@ -1,5 +1,6 @@
-import React from "react";
+import React, { FC } from "react";
 import "./TrialDialog.css";
+import { ITrialDialogProps } from "./TrialDialogType";
 import {
   Box,
   Button,
@@ -11,16 +12,13 @@ import {
   Link,
   Typography,
 } from "@mui/material";
-import { ITrialDialogProps } from "./TrialDialogType";
 import { CloseRounded } from "@mui/icons-material";
 
-function TrialDialog(props: ITrialDialogProps) {
+const TrialDialog: FC<ITrialDialogProps> = (props) => {
   const { onClose, open } = props;
-
   const handleClose = () => {
     onClose(false);
   };
-
   return (
     <Dialog
       fullWidth={true}
@@ -82,6 +80,6 @@ function TrialDialog(props: ITrialDialogProps) {
       </DialogContent>
     </Dialog>
   );
-}
+};
 
 export default TrialDialog;

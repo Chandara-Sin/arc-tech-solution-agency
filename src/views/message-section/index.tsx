@@ -12,10 +12,9 @@ import ChannelDetailsDialog from "../../components/channel-details-dialog/Channe
 import Message from "../../components/message/Message";
 import MessageInput from "../../components/message-input/MessageInput";
 
-function ChannelHeader() {
+const ChannelHeader = () => {
   const [openChannelDetailsDialog, setOpenChannelDetailsDialog] =
     useState(false);
-
   return (
     <Paper className="header-details" elevation={0}>
       <Box className="flex-between align-center" sx={{ p: "8px 14px" }}>
@@ -84,7 +83,7 @@ function ChannelHeader() {
       </Box>
     </Paper>
   );
-}
+};
 
 function MessageSection() {
   return (

@@ -1,3 +1,4 @@
+import { FC } from "react";
 import {
   BrowserRouter as Router,
   Navigate,
@@ -71,26 +72,24 @@ const AdminRoute = () => {
   );
 };
 
-const List = () => {
-  return (
-    <RouteList>
-      <Route element={<PublicRoute />}>
-        <Route path="/" element={<Navigate to="/signin" />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/get-started" element={<GetStarted />} />
-        <Route path="/workspace-signin" element={<SignInWorkSpace />} />
-      </Route>
-      <Route element={<MemberRoute />}>
-        <Route path="/browse-connect" element={<BrowseConnect />} />
-        <Route path="/groups/:id" element={<MessageSection />} />
-      </Route>
-      <Route path="/dashboard" element={<AdminRoute />}>
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Route>
-      <Route path="*" element={<Navigate to="/" />} />
-    </RouteList>
-  );
-};
+const List: FC = () => (
+  <RouteList>
+    <Route element={<PublicRoute />}>
+      <Route path="/" element={<Navigate to="/signin" />} />
+      <Route path="/signin" element={<SignIn />} />
+      <Route path="/get-started" element={<GetStarted />} />
+      <Route path="/workspace-signin" element={<SignInWorkSpace />} />
+    </Route>
+    <Route element={<MemberRoute />}>
+      <Route path="/browse-connect" element={<BrowseConnect />} />
+      <Route path="/groups/:id" element={<MessageSection />} />
+    </Route>
+    <Route path="/dashboard" element={<AdminRoute />}>
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Route>
+    <Route path="*" element={<Navigate to="/" />} />
+  </RouteList>
+);
 
 function Routes() {
   return (

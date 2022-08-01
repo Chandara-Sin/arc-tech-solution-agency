@@ -33,14 +33,10 @@ const initialAuth: IAuthContext = {
 
 const AuthContext = createContext<IAuthContext>(initialAuth);
 
-function useAuth() {
-  return useContext(AuthContext);
-}
+const useAuth = () => useContext(AuthContext);
 
-function AuthProvider({ children }: { children: ReactNode }) {
-  return (
-    <AuthContext.Provider value={initialAuth}>{children}</AuthContext.Provider>
-  );
-}
+const AuthProvider = ({ children }: { children: ReactNode }) => (
+  <AuthContext.Provider value={initialAuth}>{children}</AuthContext.Provider>
+);
 
 export { useAuth, AuthProvider };

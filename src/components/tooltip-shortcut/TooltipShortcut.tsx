@@ -1,12 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
 import "./TooltipShortcut.css";
-import { Box, Paper, Tooltip, Typography } from "@mui/material";
 import { ITooltipShortcutProps } from "./TooltipShortcutType";
+import { Box, Paper, Tooltip, Typography } from "@mui/material";
 
-function TooltipShortcut(props: ITooltipShortcutProps) {
+const TooltipShortcut: FC<ITooltipShortcutProps> = (props) => {
   const { children, placement, hasArrow, tooltipContent, style } = props;
   const { title, content } = tooltipContent;
-
   return (
     <Tooltip
       disableHoverListener={!title.name}
@@ -63,6 +62,6 @@ function TooltipShortcut(props: ITooltipShortcutProps) {
       {children}
     </Tooltip>
   );
-}
+};
 
 export default TooltipShortcut;

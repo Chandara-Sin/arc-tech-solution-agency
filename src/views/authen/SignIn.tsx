@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import "./Authen.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/Auth";
@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 import { AutoAwesomeRounded } from "@mui/icons-material";
 
-function SignIn() {
+const SignIn: FC = () => {
   const { signIn } = useAuth();
   const navigate = useNavigate();
   const {
@@ -27,14 +27,12 @@ function SignIn() {
   } = useForm<IFormSignInProps>({
     resolver: yupResolver(signInSchema),
   });
-
   const onSubmit = (data: IFormSignInProps) => {
     const next = () => {
       navigate("/browse-connect", { replace: true });
     };
     signIn("member", next);
   };
-
   return (
     <Container className="signin-container d-flex flex-column align-center">
       <Typography className="text-bold mb-2" variant="h3">
@@ -134,6 +132,6 @@ function SignIn() {
       </Box>
     </Container>
   );
-}
+};
 
 export default SignIn;

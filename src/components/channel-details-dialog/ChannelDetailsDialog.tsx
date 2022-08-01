@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import "./ChannelDetailsDialog.css";
 import {
   Box,
@@ -29,14 +29,12 @@ const tabs = [
   { tabName: "Settings", value: "settings" },
 ];
 
-function ChannelDetailsDialog(props: IChannelDetailsDialogProps) {
+const ChannelDetailsDialog: FC<IChannelDetailsDialogProps> = (props) => {
   const { open, onClose } = props;
   const [tabSelected, setTabSelected] = useState("about");
-
   const handleTabChange = (event: React.SyntheticEvent, value: string) => {
     setTabSelected(value);
   };
-  
   return (
     <Dialog
       fullWidth={true}
@@ -131,6 +129,6 @@ function ChannelDetailsDialog(props: IChannelDetailsDialogProps) {
       </DialogContent>
     </Dialog>
   );
-}
+};
 
 export default ChannelDetailsDialog;
