@@ -27,7 +27,6 @@ import Dashboard from "../pages-admin/dashboard";
 
 const PublicRoute = () => {
   const { isAuthenticated, role } = useAuth();
-  const location = useLocation();
   return !isAuthenticated ? (
     <>
       <MainHeader />
@@ -35,11 +34,11 @@ const PublicRoute = () => {
       <MainFooter />
     </>
   ) : role === "member" ? (
-    <Navigate to="/browse-connect" state={{ from: location }} replace />
+    <Navigate to="/browse-connect" replace />
   ) : role === "admin" ? (
-    <Navigate to="/dashboard" state={{ from: location }} replace />
+    <Navigate to="/dashboard" replace />
   ) : (
-    <Navigate to="/" state={{ from: location }} replace />
+    <Navigate to="/" replace />
   );
 };
 

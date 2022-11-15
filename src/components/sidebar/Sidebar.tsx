@@ -274,6 +274,7 @@ function Sidebar() {
             })),
           },
         }));
+    console.log(path);
     navigate(path);
   };
 
