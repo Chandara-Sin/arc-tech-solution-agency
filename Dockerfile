@@ -1,4 +1,4 @@
-FROM node:16.18.0-bullseye-slim as builder
+FROM node:16.18.0-bullseye-slim AS builder
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --production --check-file

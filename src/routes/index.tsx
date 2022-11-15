@@ -12,18 +12,18 @@ import { AuthProvider, useAuth } from "../contexts/Auth";
 // Authen
 import MainHeader from "../components/main-header/MainHeader";
 import MainFooter from "../components/main-footer/MainFooter";
-import SignIn from "../views/authen/SignIn";
-import GetStarted from "../views/authen/GetStarted";
-import SignInWorkSpace from "../views/authen/SignInWorkSpace";
+import SignIn from "../pages/authen/SignIn";
+import GetStarted from "../pages/authen/GetStarted";
+import SignInWorkSpace from "../pages/authen/SignInWorkSpace";
 
 // Member
 import { Box } from "@mui/material";
 import Header from "../components/header/Header";
-import MessageSection from "../views/message-section";
-import BrowseConnect from "../views/browse-connect";
+import MessageSection from "../pages/message-section";
+import BrowseConnect from "../pages/browse-connect";
 
 // Admin
-import Dashboard from "../views-admin/dashboard";
+import Dashboard from "../pages-admin/dashboard";
 
 const PublicRoute = () => {
   const { isAuthenticated, role } = useAuth();
