@@ -50,7 +50,7 @@ function MainFooter() {
   const handleClickPopover = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const open = Boolean(anchorEl);
+  const open = !!anchorEl;
   return (
     <>
       <footer className="main-footer d-flex flex-column align-center">

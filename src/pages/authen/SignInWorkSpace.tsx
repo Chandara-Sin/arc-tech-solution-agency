@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useAuth } from "../../contexts/Auth";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";

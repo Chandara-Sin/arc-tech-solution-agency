@@ -4,7 +4,6 @@ import {
   Navigate,
   Routes as RouteList,
   Route,
-  useLocation,
   Outlet,
 } from "react-router-dom";
 import { AuthProvider, useAuth } from "../contexts/Auth";

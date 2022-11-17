@@ -16,9 +16,7 @@ import { CloseRounded } from "@mui/icons-material";
 
 const TrialDialog: FC<ITrialDialogProps> = (props) => {
   const { onClose, open } = props;
-  const handleClose = () => {
-    onClose(false);
-  };
+  const handleClose = () => onClose(false);
   return (
     <Dialog
       fullWidth={true}

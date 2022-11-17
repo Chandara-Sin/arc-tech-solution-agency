@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import "./BrowseConnect.css";
 import { Box, Button, Paper, Typography } from "@mui/material";
 import {

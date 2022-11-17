@@ -32,9 +32,8 @@ const tabs = [
 const ChannelDetailsDialog: FC<IChannelDetailsDialogProps> = (props) => {
   const { open, onClose } = props;
   const [tabSelected, setTabSelected] = useState("about");
-  const handleTabChange = (event: React.SyntheticEvent, value: string) => {
+  const handleTabChange = (_: React.SyntheticEvent, value: string) =>
     setTabSelected(value);
-  };
   return (
     <Dialog
       fullWidth={true}

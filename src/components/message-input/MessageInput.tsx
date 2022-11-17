@@ -409,7 +409,7 @@ const MessageAttachments: FC<IMessageAttachmentsProps> = (props) => {
       [attachment]: value,
     }));
   };
-  const open = Boolean(anchorEl);
+  const open = !!anchorEl;
 
   return (
     <>

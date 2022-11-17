@@ -274,7 +274,6 @@ function Sidebar() {
             })),
           },
         }));
-    console.log(path);
     navigate(path);
   };
 
@@ -309,7 +308,7 @@ function Sidebar() {
     setAnchorEl(null);
     setMenuSelected(null);
   };
-  const open = Boolean(anchorEl);
+  const open = !!anchorEl;
 
   return (
     <>

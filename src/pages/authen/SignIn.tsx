@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import "./Authen.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/Auth";

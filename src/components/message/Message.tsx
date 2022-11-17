@@ -87,7 +87,7 @@ function Message() {
   const handleMessageDate = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const open = Boolean(anchorEl);
+  const open = !!anchorEl;
   return (
     <Box className="message-card">
       <Divider>

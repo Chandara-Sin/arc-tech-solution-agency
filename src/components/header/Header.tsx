@@ -42,10 +42,8 @@ const SearchPopover: FC = () => {
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const openDialog = Boolean(anchorEl);
+  const handleClose = () => setAnchorEl(null);
+  const openDialog = !!anchorEl;
   return (
     <>
       <Box className="search-container">
