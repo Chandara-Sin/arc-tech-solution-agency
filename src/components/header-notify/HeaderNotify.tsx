@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import "./HeaderNotify.css";
 import { Box, Button, Divider, Paper, Typography } from "@mui/material";
 import { AccessTime, ArrowForwardIos } from "@mui/icons-material";
@@ -39,10 +39,10 @@ const HeaderNotify: FC = () => (
             />
           </TooltipShortcut>
         </Box>
-        {suggestNotifyTime.map((value, index) => (
+        {suggestNotifyTime.map((time, index) => (
           <Button key={index} className="user-button flex-start" fullWidth>
             <Typography variant="subtitle2" className="pl-4">
-              {value}
+              {time}
             </Typography>
           </Button>
         ))}

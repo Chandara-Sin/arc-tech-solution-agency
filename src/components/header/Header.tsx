@@ -213,15 +213,15 @@ const UserHistory: FC = () => (
     <Typography variant="caption" className="pl-4 text-grey-4" py="5px">
       Recent
     </Typography>
-    {recentHistories.map((value, index) => (
+    {recentHistories.map(({ icon: Icon, item }, index) => (
       <Button
         key={index}
         className="user-button flex-start user-button-text"
         fullWidth
       >
-        <value.icon fontSize="small" />
+        <Icon fontSize="small" />
         <Typography variant="subtitle2" className="text-bold pl-1">
-          {value.item}
+          {item}
         </Typography>
       </Button>
     ))}

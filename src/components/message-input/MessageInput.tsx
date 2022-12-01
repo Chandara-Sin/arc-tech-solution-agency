@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import "./MessageInput.css";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
 import {
@@ -307,47 +307,48 @@ const Attachments: FC = () => (
       />
     </Box>
     <Divider />
-    {attachmentDetails.map((value, index) => (
+    {attachmentDetails.map(({ caption, details }, index) => (
       <Box
         key={index}
         className="d-flex flex-column justify-center"
         p="10px 0px 0px"
       >
         <Typography variant="subtitle2" className="text-grey-4" pl={2.5}>
-          {value.caption}
+          {caption}
         </Typography>
-        {value.details.map((details, index) =>
-          details.shortCutIcon ? (
-            <Button key={index} className="user-button flex-start" fullWidth>
-              <Box
-                className="flex-between full-width"
-                alignItems="center"
-                pr={2}
-              >
+        {details.map(
+          ({ shortCutIcon: ShortCutIcon, icon: Icon, item, key }, index) =>
+            ShortCutIcon ? (
+              <Button key={index} className="user-button flex-start" fullWidth>
+                <Box
+                  className="flex-between full-width"
+                  alignItems="center"
+                  pr={2}
+                >
+                  <Box className="d-flex align-center full-width" pl={2}>
+                    <Icon />
+                    <Typography variant="subtitle2" className="pl-2">
+                      {item}
+                    </Typography>
+                  </Box>
+                  <Box className="d-flex align-center">
+                    <ShortCutIcon sx={{ fontSize: "1rem" }} />
+                    <Typography variant="subtitle2" pt={0.1}>
+                      {key}
+                    </Typography>
+                  </Box>
+                </Box>
+              </Button>
+            ) : (
+              <Button key={index} className="user-button flex-start" fullWidth>
                 <Box className="d-flex align-center full-width" pl={2}>
-                  <details.icon />
-                  <Typography variant="subtitle2" className="pl-2">
-                    {details.item}
+                  <Icon />
+                  <Typography variant="body2" className="pl-2">
+                    {item}
                   </Typography>
                 </Box>
-                <Box className="d-flex align-center">
-                  <details.shortCutIcon sx={{ fontSize: "1rem" }} />
-                  <Typography variant="subtitle2" pt={0.1}>
-                    {details.key}
-                  </Typography>
-                </Box>
-              </Box>
-            </Button>
-          ) : (
-            <Button key={index} className="user-button flex-start" fullWidth>
-              <Box className="d-flex align-center full-width" pl={2}>
-                <details.icon />
-                <Typography variant="body2" className="pl-2">
-                  {details.item}
-                </Typography>
-              </Box>
-            </Button>
-          )
+              </Button>
+            )
         )}
         {index !== attachmentDetails.length - 1 && <Divider />}
       </Box>

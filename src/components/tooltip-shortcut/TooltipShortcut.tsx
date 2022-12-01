@@ -25,30 +25,28 @@ const TooltipShortcut: FC<ITooltipShortcutProps> = (props) => {
           </Typography>
           {content && (
             <Box className="content-center" style={content.style}>
-              {content.shortcutKey.map((item, index) =>
-                item.icon ? (
+              {content.shortcutKey.map(({ icon: Icon, style, key }, index) =>
+                Icon ? (
                   <Paper
                     key={index}
                     className="tooltip-shortcut content-center"
-                    style={item.style}
+                    style={style}
                   >
-                    {item.icon && (
-                      <item.icon className="tooltip-shortcut-button" />
-                    )}
+                    {Icon && <Icon className="tooltip-shortcut-button" />}
                   </Paper>
                 ) : (
                   <Paper
                     key={index}
                     className={`${
-                      item.key !== "Press" ? "tooltip-shortcut" : "bg-transpar"
+                      key !== "Press" ? "tooltip-shortcut" : "bg-transpar"
                     } content-center`}
-                    style={item.style}
+                    style={style}
                   >
                     <Typography
                       variant="subtitle2"
-                      className={`${item.key === "Press" ? "text-grey-4" : ""}`}
+                      className={`${key === "Press" ? "text-grey-4" : ""}`}
                     >
-                      {item.key}
+                      {key}
                     </Typography>
                   </Paper>
                 )

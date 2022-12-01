@@ -109,12 +109,12 @@ const ChannelDetailsDialog: FC<IChannelDetailsDialogProps> = (props) => {
           <TabContext value={tabSelected}>
             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
               <TabList onChange={handleTabChange}>
-                {tabs.map((item, index) => (
+                {tabs.map(({ tabName, value }, index) => (
                   <Tab
                     key={index}
                     className="text-transform-none"
-                    label={item.tabName}
-                    value={item.value}
+                    label={tabName}
+                    value={value}
                   />
                 ))}
               </TabList>

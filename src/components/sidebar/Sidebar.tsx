@@ -41,19 +41,19 @@ import {
 
 const GroupBrowse: FC = () => (
   <Paper className="group-section-card">
-    {groupBrowseDetails.map((value, index) => (
+    {groupBrowseDetails.map((browseDetailsList, index) => (
       <Fragment key={index}>
         <Box className="group-setting">
-          {value.map((browseDetails, index) => (
+          {browseDetailsList.map(({ icon: Icon, item }, index) => (
             <Button key={index} className="user-button flex-start" fullWidth>
               <Box
                 className="flex-start full-width"
                 alignContent="center"
                 pl={2}
               >
-                <browseDetails.icon fontSize="small" />
+                <Icon fontSize="small" />
                 <Typography variant="subtitle2" className="pl-2">
-                  {browseDetails.item}
+                  {item}
                 </Typography>
               </Box>
             </Button>
@@ -128,14 +128,14 @@ const GroupSetting: FC = () => (
         placement="right-start"
         title={
           <Paper className="user-card">
-            {settings.map((item, index) => (
+            {settings.map(({ caption, details }, index) => (
               <Fragment key={index}>
                 <Box className="pl-4 pt-1">
                   <Typography variant="caption" className="text-grey-4">
-                    {item.caption}
+                    {caption}
                   </Typography>
                 </Box>
-                {item.details.map((value, index) => (
+                {details.map((value, index) => (
                   <Button
                     key={index}
                     className="user-button flex-start"
@@ -374,21 +374,21 @@ function Sidebar() {
                 </Box>
               </TooltipShortcut>
             </ListItem>
-            {menus.browse.map((browse, index) => (
+            {menus.browse.map(({ icon: Icon, path, title }, index) => (
               <ListItemButton
                 key={index}
                 className="sidebar-browse p-0"
-                onClick={() => handleMenuClick("browse", index, browse.path)}
+                onClick={() => handleMenuClick("browse", index, path)}
               >
                 <Box className="content-center" pl={2}>
-                  <browse.icon
+                  <Icon
                     sx={{
                       fontSize: "1.5rem",
                     }}
                     className="text-grey-2 pr-2"
                   />
                   <ListItemText
-                    primary={browse.title}
+                    primary={title}
                     primaryTypographyProps={{
                       className: "sidebar-menu",
                     }}
@@ -498,26 +498,26 @@ function Sidebar() {
                 timeout="auto"
                 unmountOnExit
               >
-                {menus.channels.subMenu.map((subMenu, index) => (
-                  <ListItemButton
-                    className="sidebar-button my-1"
-                    key={index}
-                    onClick={() =>
-                      handleMenuClick("channel", index, subMenu.path)
-                    }
-                  >
-                    <Box className="d-flex align-center" pl={4.5}>
-                      <subMenu.icon className="text-grey-2 numbers-button" />
-                      <ListItemText
-                        primary={subMenu.title}
-                        primaryTypographyProps={{
-                          className: "sidebar-menu",
-                        }}
-                        className="text-grey-2 pl-2 m-0"
-                      />
-                    </Box>
-                  </ListItemButton>
-                ))}
+                {menus.channels.subMenu.map(
+                  ({ icon: Icon, path, title }, index) => (
+                    <ListItemButton
+                      className="sidebar-button my-1"
+                      key={index}
+                      onClick={() => handleMenuClick("channel", index, path)}
+                    >
+                      <Box className="d-flex align-center" pl={4.5}>
+                        <Icon className="text-grey-2 numbers-button" />
+                        <ListItemText
+                          primary={title}
+                          primaryTypographyProps={{
+                            className: "sidebar-menu",
+                          }}
+                          className="text-grey-2 pl-2 m-0"
+                        />
+                      </Box>
+                    </ListItemButton>
+                  )
+                )}
                 <ListItemButton className="sidebar-button my-1">
                   <Box className="d-flex align-center" pl={4.2}>
                     <IconButton className="add-button">
@@ -614,26 +614,28 @@ function Sidebar() {
                 timeout="auto"
                 unmountOnExit
               >
-                {menus.directMessage.subMenu.map((subMenu, index) => (
-                  <ListItemButton
-                    className="sidebar-button p-0 my-1"
-                    key={index}
-                    onClick={() =>
-                      handleMenuClick("directMessage", index, subMenu.path)
-                    }
-                  >
-                    <Box className="d-flex align-center" pl={4.5}>
-                      <subMenu.icon className="text-grey-2 numbers-button" />
-                      <ListItemText
-                        primary={subMenu.title}
-                        primaryTypographyProps={{
-                          className: "sidebar-menu",
-                        }}
-                        className="text-grey-2 pl-2 m-0"
-                      />
-                    </Box>
-                  </ListItemButton>
-                ))}
+                {menus.directMessage.subMenu.map(
+                  ({ icon: Icon, path, title }, index) => (
+                    <ListItemButton
+                      className="sidebar-button p-0 my-1"
+                      key={index}
+                      onClick={() =>
+                        handleMenuClick("directMessage", index, path)
+                      }
+                    >
+                      <Box className="d-flex align-center" pl={4.5}>
+                        <Icon className="text-grey-2 numbers-button" />
+                        <ListItemText
+                          primary={title}
+                          primaryTypographyProps={{
+                            className: "sidebar-menu",
+                          }}
+                          className="text-grey-2 pl-2 m-0"
+                        />
+                      </Box>
+                    </ListItemButton>
+                  )
+                )}
                 <ListItemButton className="sidebar-button p-0 my-1">
                   <Box className="d-flex align-center" pl={4.2}>
                     <IconButton className="add-button">
