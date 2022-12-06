@@ -1,6 +1,6 @@
-import { IEmojiData } from "emoji-picker-react";
-import { ICardItem, ICardItemShortCut } from "../../app/globalType";
-import {ITooltipShortcutProps} from "../tooltip-shortcut/TooltipShortcutType"
+import { EmojiClickData } from "emoji-picker-react";
+import { ICardItemShortCut } from "../../app/globalType";
+import { ITooltipShortcutProps } from "../tooltip-shortcut/TooltipShortcutType";
 
 export interface IMessageInputProps {
   onChange: (data: IOnSubmitMessage) => void;
@@ -22,7 +22,7 @@ export interface IMessageInputFormats {
   code: boolean;
   format: boolean;
   mention: boolean;
-  emojiObject: IEmojiData | null;
+  emoji: EmojiClickData | null;
 }
 
 export interface IMessageFormatProps {
@@ -46,10 +46,11 @@ export interface IMessageAttachmentsProps {
 export interface IMessageAttachments {
   format: boolean;
   mention: boolean;
-  emojiObject: IEmojiData | null;
+  emoji: EmojiClickData | null;
 }
 
-export interface IMessageFormatsDeails extends Omit<ITooltipShortcutProps, 'children'> {
+export interface IMessageFormatsDeails
+  extends Omit<ITooltipShortcutProps, "children"> {
   format: string;
 }
 
@@ -57,4 +58,3 @@ export interface IAttachmentDetails {
   caption: string;
   details: ICardItemShortCut[];
 }
-

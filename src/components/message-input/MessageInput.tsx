@@ -39,7 +39,11 @@ import {
   StrikethroughSRounded,
   VideocamOutlined,
 } from "@mui/icons-material";
-import Picker, { IEmojiData, SKIN_TONE_MEDIUM_LIGHT } from "emoji-picker-react";
+import Picker, {
+  EmojiClickData,
+  EmojiStyle,
+  SkinTones,
+} from "emoji-picker-react";
 import TrialDialog from "../trial-dialog/TrialDialog";
 import { attachmentDetails } from "./message-input-data";
 
@@ -363,18 +367,18 @@ const MessageAttachments: FC<IMessageAttachmentsProps> = (props) => {
   const [menuSelected, setMenuSelected] = useState<
     "emoji" | "attachment" | null
   >(null);
-  const [chosenEmoji, setChosenEmoji] = useState<IEmojiData | null>(null);
+  const [chosenEmoji, setChosenEmoji] = useState<EmojiClickData | null>(null);
   const [attachments, setAttachments] = useState<IMessageAttachments>({
     format: false,
     mention: false,
-    emojiObject: null,
+    emoji: null,
   });
 
   useEffect(() => {
     onChange({
       format: attachments.format,
       mention: attachments.mention,
-      emojiObject: chosenEmoji,
+      emoji: chosenEmoji,
     });
   }, [attachments, chosenEmoji, onChange]);
 
@@ -397,11 +401,8 @@ const MessageAttachments: FC<IMessageAttachmentsProps> = (props) => {
     setOpenTrialDialog(false);
   };
 
-  const onEmojiClick = (
-    event: React.MouseEvent<Element, MouseEvent>,
-    emojiObject: IEmojiData
-  ) => {
-    setChosenEmoji(emojiObject);
+  const onEmojiClick = (emoji: EmojiClickData, _: MouseEvent) => {
+    setChosenEmoji(emoji);
   };
 
   const handleAttachmentChange = (attachment: string, value: boolean) => {
@@ -518,11 +519,13 @@ const MessageAttachments: FC<IMessageAttachmentsProps> = (props) => {
         {menuSelected === "attachment" && <Attachments />}
         {menuSelected === "emoji" && (
           <Picker
+            emojiStyle={EmojiStyle.NATIVE}
             onEmojiClick={onEmojiClick}
-            disableAutoFocus={true}
-            skinTone={SKIN_TONE_MEDIUM_LIGHT}
-            groupNames={{ smileys_people: "PEOPLE" }}
-            native
+            lazyLoadEmojis
+            defaultSkinTone={SkinTones.MEDIUM_LIGHT}
+            height={380}
+            width={330}
+            previewConfig={{ showPreview: false }}
           />
         )}
       </Popover>
@@ -545,7 +548,7 @@ function MessageInput() {
     {
       format: false,
       mention: false,
-      emojiObject: null,
+      emoji: null,
     }
   );
   const handleMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
