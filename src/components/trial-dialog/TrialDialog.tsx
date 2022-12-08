@@ -44,7 +44,7 @@ const TrialDialog: FC<ITrialDialogProps> = (props) => {
           </Typography>
           <CardMedia
             component="video"
-            src={require("../../assets/video/trial_video.mov")}
+            src="/assets/video/trial_video.mov"
             autoPlay
             loop
             className="dialog-video"

@@ -6,6 +6,7 @@ import {
   BorderColorRounded,
   TipsAndUpdatesRounded,
 } from "@mui/icons-material";
+import slackConnect from "../../assets/image/Slack_Connect.png";
 
 const BrowseConnect: FC = () => (
   <Paper className="browse-header-container" elevation={0}>
@@ -36,11 +37,7 @@ const BrowseConnect: FC = () => (
         </Button>
       </Box>
       <Box p="5px 10px 15px 0px">
-        <img
-          src={require("../../assets/image/Slack_Connect.png")}
-          width="300px"
-          alt="slack-connect"
-        />
+        <img src={slackConnect} width="300px" alt="slack-connect" />
       </Box>
     </Box>
     <Box className="flex-center" marginY="40px">
