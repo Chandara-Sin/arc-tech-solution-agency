@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import "./TrialDialog.css";
 import { ITrialDialogProps } from "./TrialDialogType";
 import {
@@ -13,6 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import { CloseRounded } from "@mui/icons-material";
+import trialVideo from "../../assets/video/trial_video.mov";
 
 const TrialDialog: FC<ITrialDialogProps> = (props) => {
   const { onClose, open } = props;
@@ -44,7 +45,7 @@ const TrialDialog: FC<ITrialDialogProps> = (props) => {
           </Typography>
           <CardMedia
             component="video"
-            src="/assets/video/trial_video.mov"
+            src={trialVideo}
             autoPlay
             loop
             className="dialog-video"
