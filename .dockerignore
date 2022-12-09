@@ -5,6 +5,6 @@ docker-compose.yml
 
 # Generated file when install and build
 node_modules
-build
+dist
 .gitignore
 README.md
