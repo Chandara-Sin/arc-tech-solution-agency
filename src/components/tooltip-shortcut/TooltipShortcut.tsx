@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import "./TooltipShortcut.css";
 import { ITooltipShortcutProps } from "./TooltipShortcutType";
 import { Box, Paper, Tooltip, Typography } from "@mui/material";
