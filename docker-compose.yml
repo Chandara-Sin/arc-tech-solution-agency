@@ -1,8 +1,8 @@
 version: '3.9'
 services:
-    slack-clone:
-        image: slack-clone
-        container_name: slack-clone
+    slack-clone-web:
+        image: slack-clone-web
+        container_name: slack-clone-web
         build:
           context: .
           dockerfile: Dockerfile
