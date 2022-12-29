@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { Box, Button, CardMedia, Container, Typography } from "@mui/material";
-import internalServerError from "../../assets/image/internal-server-error.gif";
 import { useNavigate } from "react-router-dom";
+import { Box, Button, CardMedia, Container, Typography } from "@mui/material";
+import internalServerError from "../assets/image/internal-server-error.gif";
 
-const ErrorPage: FC = () => {
+const Error: FC = () => {
   const navigate = useNavigate();
   return (
     <Container className="full-width" style={{ height: "100vh" }}>
@@ -37,4 +37,4 @@ const ErrorPage: FC = () => {
   );
 };
 
-export default ErrorPage;
+export default Error;

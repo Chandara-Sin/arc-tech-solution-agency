@@ -25,7 +25,7 @@ import BrowseConnect from "../pages/browse-connect";
 import Dashboard from "../pages-admin/dashboard";
 
 // Error Pages
-import ErrorPage from "../pages/error";
+import Error from "../pages/_error";
 
 const PublicRoute = () => {
   const { isAuthenticated, role } = useAuth();
@@ -88,7 +88,7 @@ const List: FC = () => (
     <Route path="/dashboard" element={<AdminRoute />}>
       <Route path="/dashboard" element={<Dashboard />} />
     </Route>
-    <Route path="*" element={<ErrorPage />} />
+    <Route path="*" element={<Error />} />
   </RouteList>
 );
 
