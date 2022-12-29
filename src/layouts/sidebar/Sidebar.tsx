@@ -1,8 +1,8 @@
 import React, { FC, Fragment, useState } from "react";
 import "./Sidebar.css";
 import { useNavigate } from "react-router-dom";
-import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
-import TooltipDetails from "../tooltip-details/TooltipDetails";
+import TooltipShortcut from "../../components/tooltip-shortcut/TooltipShortcut";
+import TooltipDetails from "../../components/tooltip-details/TooltipDetails";
 import { IMenuList } from "./SidebarType";
 import {
   Drawer,

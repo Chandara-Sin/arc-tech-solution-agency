@@ -21,12 +21,12 @@ export const regionDetails = [
   {
     region: "Asia Pacific",
     languages: [
-        "简体中文",
-        "繁體中文",
-        "India (English)",
-        "Italia (italiano)",
-        "日本 (日本語)",
-        "한국어",
-      ],
-  }
+      "简体中文",
+      "繁體中文",
+      "India (English)",
+      "Italia (italiano)",
+      "日本 (日本語)",
+      "한국어",
+    ],
+  },
 ];

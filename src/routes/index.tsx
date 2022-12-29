@@ -9,15 +9,15 @@ import {
 import { AuthProvider, useAuth } from "../contexts/Auth";
 
 // Authen
-import MainHeader from "../components/main-header/MainHeader";
-import MainFooter from "../components/main-footer/MainFooter";
+import MainHeader from "../layouts/main-header/MainHeader";
+import MainFooter from "../layouts/main-footer/MainFooter";
 import SignIn from "../pages/authen/SignIn";
 import GetStarted from "../pages/authen/GetStarted";
 import SignInWorkSpace from "../pages/authen/SignInWorkSpace";
 
 // Member
 import { Box } from "@mui/material";
-import Header from "../components/header/Header";
+import Header from "../layouts/header/Header";
 import MessageSection from "../pages/message-section";
 import BrowseConnect from "../pages/browse-connect";
 

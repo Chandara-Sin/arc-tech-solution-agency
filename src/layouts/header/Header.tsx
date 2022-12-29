@@ -33,8 +33,8 @@ import {
   SearchRounded,
 } from "@mui/icons-material";
 import Sidebar from "../sidebar/Sidebar";
-import HeaderNotify from "../header-notify/HeaderNotify";
-import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
+import HeaderNotify from "../../components/header-notify/HeaderNotify";
+import TooltipShortcut from "../../components/tooltip-shortcut/TooltipShortcut";
 import { recentHistories } from "./example-data";
 
 const SearchPopover: FC = () => {
