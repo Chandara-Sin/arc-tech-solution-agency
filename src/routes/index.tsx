@@ -24,6 +24,9 @@ import BrowseConnect from "../pages/browse-connect";
 // Admin
 import Dashboard from "../pages-admin/dashboard";
 
+// Error Pages
+import ErrorPage from "../pages/error";
+
 const PublicRoute = () => {
   const { isAuthenticated, role } = useAuth();
   return !isAuthenticated ? (
@@ -85,7 +88,7 @@ const List: FC = () => (
     <Route path="/dashboard" element={<AdminRoute />}>
       <Route path="/dashboard" element={<Dashboard />} />
     </Route>
-    <Route path="*" element={<Navigate to="/" />} />
+    <Route path="*" element={<ErrorPage />} />
   </RouteList>
 );
 
