@@ -8,7 +8,7 @@ import { IMenuList } from "./SidebarType";
 export const allMenu: IMenuList = {
   browse: [
     {
-      title: "Drafts",
+      title: "Drafts & sent",
       icon: CreateRounded,
       path: "browse-drafts",
       isActive: false,

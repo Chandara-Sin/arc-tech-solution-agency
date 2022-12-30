@@ -20,6 +20,7 @@ import { Box } from "@mui/material";
 import Header from "../layouts/header/Header";
 import MessageSection from "../pages/message-section";
 import BrowseConnect from "../pages/browse-connect";
+import BroweDrafts from "../pages/browse-drafts";
 
 // Admin
 import Dashboard from "../pages-admin/dashboard";
@@ -82,6 +83,7 @@ const List: FC = () => (
       <Route path="/workspace-signin" element={<SignInWorkSpace />} />
     </Route>
     <Route element={<MemberRoute />}>
+      <Route path="/browse-drafts" element={<BroweDrafts />} />
       <Route path="/browse-connect" element={<BrowseConnect />} />
       <Route path="/groups/:id" element={<MessageSection />} />
     </Route>
