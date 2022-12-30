@@ -25,13 +25,12 @@ const Error: FC = () => {
             Go Back
           </Button>
         </Box>
-        <Box style={{ width: "30rem" }}>
-          <CardMedia
-            component="img"
-            src={internalServerError}
-            alt="Internal Server Error"
-          />
-        </Box>
+        <CardMedia
+          component="img"
+          src={internalServerError}
+          alt="Internal Server Error"
+          sx={{ width: "30rem" }}
+        />
       </Box>
     </Container>
   );

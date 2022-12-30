@@ -8,7 +8,8 @@
 }
 
 .browse-header {
-  padding: 10.5px 14px;
+  padding: 0px 14px;
+  min-height: 52px;
   border-bottom: 1px solid #d3d3d3;
 }
 
