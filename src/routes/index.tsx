@@ -1,10 +1,8 @@
-import { FC } from "react";
 import {
-  BrowserRouter as Router,
   Navigate,
-  Routes as RouteList,
-  Route,
   Outlet,
+  createBrowserRouter,
+  RouterProvider,
 } from "react-router-dom";
 import { AuthProvider, useAuth } from "../contexts/Auth";
 
@@ -74,34 +72,41 @@ const AdminRoute = () => {
   );
 };
 
-const List: FC = () => (
-  <RouteList>
-    <Route element={<PublicRoute />}>
-      <Route path="/" element={<Navigate to="/signin" />} />
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/get-started" element={<GetStarted />} />
-      <Route path="/workspace-signin" element={<SignInWorkSpace />} />
-    </Route>
-    <Route element={<MemberRoute />}>
-      <Route path="/browse-drafts" element={<BroweDrafts />} />
-      <Route path="/browse-connect" element={<BrowseConnect />} />
-      <Route path="/groups/:id" element={<MessageSection />} />
-    </Route>
-    <Route path="/dashboard" element={<AdminRoute />}>
-      <Route path="/dashboard" element={<Dashboard />} />
-    </Route>
-    <Route path="*" element={<Error />} />
-  </RouteList>
-);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <PublicRoute />,
+    errorElement: <Error />,
+    children: [
+      { path: "/", element: <Navigate to="/signin" /> },
+      { path: "/signin", element: <SignIn /> },
+      { path: "/get-started", element: <GetStarted /> },
+      { path: "/workspace-signin", element: <SignInWorkSpace /> },
+    ],
+  },
+  {
+    element: <MemberRoute />,
+    children: [
+      { path: "/browse-drafts", element: <BroweDrafts /> },
+      { path: "/browse-connect", element: <BrowseConnect /> },
+      { path: "/groups/:id", element: <MessageSection /> },
+    ],
+  },
+  {
+    element: <AdminRoute />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+    ],
+  },
+]);
 
-function Routes() {
-  return (
-    <AuthProvider>
-      <Router>
-        <List />
-      </Router>
-    </AuthProvider>
-  );
-}
+const Routes = () => (
+  <AuthProvider>
+    <RouterProvider router={router} />
+  </AuthProvider>
+);
 
 export default Routes;
