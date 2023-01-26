@@ -8,6 +8,7 @@ node_modules
 dist
 .gitignore
 README.md
+.vscode
 
 # Yarn
 .pnp.*
