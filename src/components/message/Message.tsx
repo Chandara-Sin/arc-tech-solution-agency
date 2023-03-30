@@ -18,13 +18,14 @@ import {
   KeyboardArrowRightRounded,
   Person,
 } from "@mui/icons-material";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { CalendarPicker, LocalizationProvider } from "@mui/x-date-pickers";
+import dayjs, { Dayjs } from "dayjs";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DateCalendar, LocalizationProvider } from "@mui/x-date-pickers";
 
 const suggestMessageDate = ["Most recent", "Last week", "Last month"];
 
 const MessageDate: FC = () => {
-  const [date, setDate] = useState<Date | null>(new Date());
+  const [date, setDate] = useState<Dayjs | null>(dayjs(new Date()));
   const [openDateDialog, setOpenDateDialog] = useState(false);
   return (
     <>
@@ -69,10 +70,10 @@ const MessageDate: FC = () => {
           </IconButton>
         </DialogTitle>
         <DialogContent sx={{ height: "320px" }}>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <CalendarPicker
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DateCalendar
               className="calender-picker"
-              date={date}
+              value={date}
               onChange={(newDate) => setDate(newDate)}
             />
           </LocalizationProvider>
