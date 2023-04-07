@@ -1,5 +1,4 @@
 import { FC } from "react";
-import "./HeaderNotify.css";
 import { Box, Button, Divider, Paper, Typography } from "@mui/material";
 import { AccessTime, ArrowForwardIos } from "@mui/icons-material";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
