@@ -1,5 +1,12 @@
-import React, { FC, useState } from "react";
-import "./ChannelDetailsDialog.css";
+import {
+  CloseRounded,
+  KeyboardArrowRightRounded,
+  NotificationsNone,
+  NumbersRounded,
+  PhoneRounded,
+  StarBorderRounded,
+} from "@mui/icons-material";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
 import {
   Box,
   Button,
@@ -10,17 +17,14 @@ import {
   Tab,
   Typography,
 } from "@mui/material";
-import {
-  CloseRounded,
-  KeyboardArrowRightRounded,
-  NotificationsNone,
-  NumbersRounded,
-  PhoneRounded,
-  StarBorderRounded,
-} from "@mui/icons-material";
-import { TabContext, TabList, TabPanel } from "@mui/lab";
-import { IChannelDetailsDialogProps } from "./ChannelDetailsDialogType";
+import React, { FC, useState } from "react";
 import TooltipShortcut from "../tooltip-shortcut/TooltipShortcut";
+import "./ChannelDetailsDialog.css";
+
+interface IChannelDetailsDialogProps {
+  onClose: (value: boolean) => void;
+  open: boolean;
+}
 
 const tabs = [
   { tabName: "About", value: "about" },

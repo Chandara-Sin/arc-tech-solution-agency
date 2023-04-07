@@ -1,6 +1,4 @@
-import { FC } from "react";
-import "./TrialDialog.css";
-import { ITrialDialogProps } from "./TrialDialogType";
+import { CloseRounded } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -12,8 +10,14 @@ import {
   Link,
   Typography,
 } from "@mui/material";
-import { CloseRounded } from "@mui/icons-material";
+import { FC } from "react";
 import trialVideo from "../../assets/video/trial_video.mov";
+import "./TrialDialog.css";
+
+interface ITrialDialogProps {
+  onClose: (value: boolean) => void;
+  open: boolean;
+}
 
 const TrialDialog: FC<ITrialDialogProps> = (props) => {
   const { onClose, open } = props;
