@@ -1,3 +1,3 @@
-export interface IFormSignInProps{
-    email: string;
+export interface IFormSignIn {
+  email: string;
 }

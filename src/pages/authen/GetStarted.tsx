@@ -2,7 +2,7 @@ import { FC } from "react";
 import "./Authen.css";
 import { useAuth } from "../../contexts/Auth";
 import { useNavigate } from "react-router-dom";
-import { IFormSignInProps } from "./AuthenType";
+import { IFormSignIn } from "./AuthenType";
 import { signInSchema } from "./AuthenSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -22,10 +22,10 @@ const GetStarted: FC = () => {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<IFormSignInProps>({
+  } = useForm<IFormSignIn>({
     resolver: yupResolver(signInSchema),
   });
-  const onSubmit = (data: IFormSignInProps) => {
+  const onSubmit = (data: IFormSignIn) => {
     const next = () => {
       navigate("/browse-connect", { replace: true });
     };

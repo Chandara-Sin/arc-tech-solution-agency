@@ -3,7 +3,7 @@ import { useAuth } from "../../contexts/Auth";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { signInSchema } from "./AuthenSchema";
-import { IFormSignInProps } from "./AuthenType";
+import { IFormSignIn } from "./AuthenType";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
 
@@ -14,10 +14,10 @@ const SignInWorkSpace: FC = () => {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<IFormSignInProps>({
+  } = useForm<IFormSignIn>({
     resolver: yupResolver(signInSchema),
   });
-  const onSubmit = (data: IFormSignInProps) => {
+  const onSubmit = (data: IFormSignIn) => {
     const next = () => {
       navigate("/browse-connect", { replace: true });
     };
