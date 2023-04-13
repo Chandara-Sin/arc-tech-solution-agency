@@ -218,6 +218,9 @@ code {
 .justify-space-around {
   justify-content: space-around !important;
 }
+.justify-space-evenly {
+  justify-content: space-evenly !important;
+}
 .justify-end {
   justify-content: flex-end !important;
 }

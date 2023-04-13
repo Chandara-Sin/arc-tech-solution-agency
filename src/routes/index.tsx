@@ -12,6 +12,7 @@ import MainFooter from "../layouts/main-footer/MainFooter";
 import SignIn from "../pages/authen/SignIn";
 import GetStarted from "../pages/authen/GetStarted";
 import SignInWorkSpace from "../pages/authen/SignInWorkSpace";
+import VerifyCode from "../pages/authen/VerifyCode";
 
 // Member
 import { Box } from "@mui/material";
@@ -82,6 +83,7 @@ const router = createBrowserRouter([
       { path: "/signin", element: <SignIn /> },
       { path: "/get-started", element: <GetStarted /> },
       { path: "/workspace-signin", element: <SignInWorkSpace /> },
+      { path: "/verify-code", element: <VerifyCode /> },
     ],
   },
   {

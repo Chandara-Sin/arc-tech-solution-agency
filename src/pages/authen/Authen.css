@@ -82,6 +82,46 @@
   text-decoration: underline;
 }
 
-.signin-workspace-link{
+.signin-workspace-link {
   font-size: 0.85rem !important;
+}
+
+.verify-input {
+  width: 4.5rem;
+}
+
+.verify-input > div > input {
+  height: 4.5rem;
+  border-radius: 0px;
+  text-align: center;
+  font-size: 2.4rem;
+  color: #343434;
+}
+
+.verify-input > div > fieldset {
+  border-radius: 0px;
+}
+
+.verify-input:nth-child(even) > div > fieldset {
+  border-inline-width: 0px;
+}
+
+.verify-input:first-child > div > fieldset {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.verify-input:nth-child(3) > div > fieldset {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.verify-input:nth-child(5) > div > fieldset {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.verify-input:last-child > div > fieldset {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
