@@ -34,8 +34,8 @@ const OutlookLogo = (props?: React.SVGProps<SVGSVGElement>) => (
       gradientUnits="userSpaceOnUse"
       id="a"
     >
-      <stop offset="0" stop-color="#35b8f1" />
-      <stop offset="1" stop-color="#28a8ea" />
+      <stop offset="0" stopColor="#35b8f1" />
+      <stop offset="1" stopColor="#28a8ea" />
     </linearGradient>
     <path
       d="M1811.58 927.593l-.809.426-634.492 356.848c-2.768 1.703-5.578 3.321-8.517 4.769a88.437 88.437 0 01-34.407 8.517l-34.663-20.27a86.706 86.706 0 01-8.517-4.897L447.167 906.003h-.298l-21.036-11.753v722.384c.328 48.196 39.653 87.006 87.849 86.7h1230.914c.724 0 1.363-.341 2.129-.341a107.79 107.79 0 0029.808-6.217 86.066 86.066 0 0011.966-6.217c2.853-1.618 7.75-5.152 7.75-5.152a85.974 85.974 0 0034.833-68.772V894.25a38.323 38.323 0 01-19.502 33.343z"
@@ -87,9 +87,9 @@ const OutlookLogo = (props?: React.SVGProps<SVGSVGElement>) => (
       gradientUnits="userSpaceOnUse"
       id="b"
     >
-      <stop offset="0" stop-color="#1784d9" />
-      <stop offset=".5" stop-color="#107ad5" />
-      <stop offset="1" stop-color="#0a63c9" />
+      <stop offset="0" stopColor="#1784d9" />
+      <stop offset=".5" stopColor="#107ad5" />
+      <stop offset="1" stopColor="#0a63c9" />
     </linearGradient>
     <path
       d="M78.055 383.25h780.723c43.109 0 78.055 34.947 78.055 78.055v780.723c0 43.109-34.946 78.055-78.055 78.055H78.055c-43.109 0-78.055-34.947-78.055-78.055V461.305c0-43.108 34.947-78.055 78.055-78.055z"

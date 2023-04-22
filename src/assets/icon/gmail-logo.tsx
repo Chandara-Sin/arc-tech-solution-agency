@@ -9,7 +9,7 @@ const GmailLogo = (props?: React.SVGProps<SVGSVGElement>) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <g clip-path="url(#clip0_1:194)">
+    <g clipPath="url(#clip0_1:194)">
       <path
         d="M9.09091 100H30.303V48.4848L0 25.7576V90.9091C0 95.9394 4.07576 100 9.09091 100Z"
         fill="#4285F4"
