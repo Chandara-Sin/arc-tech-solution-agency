@@ -3,10 +3,12 @@ import { Box, Container } from "@mui/system";
 import {
   forwardRef,
   Fragment,
+  useCallback,
   useEffect,
   useImperativeHandle,
   useRef,
 } from "react";
+import { Controller, useForm, useWatch } from "react-hook-form";
 import GmailLogo from "../../assets/icon/gmail-logo";
 import OutlookLogo from "../../assets/icon/outlook-logo";
 import "./Authen.css";
@@ -139,6 +141,21 @@ const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
 );
 
 const VerifyCode = () => {
+  const { control } = useForm<{ authCode: string }>({
+    defaultValues: { authCode: "" },
+  });
+  const authCode = useWatch({ control, name: "authCode" });
+
+  const handleOnSubmit = useCallback(() => {
+    if (authCode.length === 6) {
+      console.log(authCode);
+    }
+  }, [authCode]);
+
+  useEffect(() => {
+    handleOnSubmit();
+  }, [handleOnSubmit]);
+
   return (
     <Container className="signin-container d-flex flex-column align-center">
       <Typography className="text-bold mb-2" variant="h3">
@@ -149,7 +166,11 @@ const VerifyCode = () => {
         code expired shortly, so please enter it soon.
       </Typography>
       <Box className="signin-started align-center text-center justify-center full-width">
-        <AuthCode />
+        <Controller
+          control={control}
+          name="authCode"
+          render={({ field: { onChange } }) => <AuthCode onChange={onChange} />}
+        />
         <Box className="d-flex align-center justify-space-evenly my-4">
           <Link
             className="text-transform-capitalize d-flex align-center pointer"
