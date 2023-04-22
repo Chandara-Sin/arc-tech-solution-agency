@@ -1,13 +1,19 @@
 import { Divider, Link, TextField, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
-import { forwardRef, Fragment, useImperativeHandle, useRef } from "react";
+import {
+  forwardRef,
+  Fragment,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+} from "react";
 import GmailLogo from "../../assets/icon/gmail-logo";
 import OutlookLogo from "../../assets/icon/outlook-logo";
 import "./Authen.css";
 import { AuthCodeProps, AuthCodeRef } from "./AuthenType";
 
 const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
-  ({ onChange, length = 6 }, ref) => {
+  ({ onChange, length = 6, autoFocus = false }, ref) => {
     const inputsRef = useRef<Array<HTMLInputElement>>([]);
 
     const handleOnChange = (
@@ -72,6 +78,10 @@ const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
         handleOnSubmit();
       },
     }));
+
+    useEffect(() => {
+      autoFocus && inputsRef.current[0].focus();
+    }, [autoFocus]);
 
     return (
       <form

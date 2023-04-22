@@ -8,6 +8,7 @@ export interface AuthCodeRef {
 }
 
 export interface AuthCodeProps {
+  autoFocus?: boolean;
   onChange?: (value: string) => void;
   length?: number;
 }
