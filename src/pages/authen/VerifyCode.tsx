@@ -25,6 +25,29 @@ const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
       handleOnSubmit();
     };
 
+    const handleOnKeyDown = (
+      e: React.KeyboardEvent<HTMLDivElement>,
+      index: number
+    ) => {
+      const { key } = e;
+      const target = e.target as HTMLInputElement;
+      const previousElementSibling = --index;
+      if (key === "Backspace") {
+        if (target.value === "") {
+          if (inputsRef.current[previousElementSibling]) {
+            const el = inputsRef.current[
+              previousElementSibling
+            ] as HTMLInputElement;
+            el.value = "";
+            el.focus();
+          }
+        } else {
+          target.value = "";
+        }
+        handleOnSubmit();
+      }
+    };
+
     const handleOnSubmit = () => {
       const value = inputsRef.current.map(({ value }) => value).join("");
       onChange && onChange(value);
@@ -48,6 +71,7 @@ const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
               inputProps={{ maxLength: "1" }}
               className="verify-input"
               onChange={(e) => handleOnChange(e, i)}
+              onKeyDown={(e) => handleOnKeyDown(e, i)}
               onFocus={handleOnFocus}
               inputRef={(el: HTMLInputElement) => {
                 inputsRef.current[i] = el;
