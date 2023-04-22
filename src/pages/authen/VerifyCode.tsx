@@ -23,8 +23,7 @@ const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
       const { value } = e.target;
       const nextElementSlibing = ++index;
       if (value.match(/\w{1}/)) {
-        inputsRef.current[nextElementSlibing] &&
-          inputsRef.current[nextElementSlibing].focus();
+        handleOnFocus(nextElementSlibing);
       } else {
         e.target.value = "";
       }
@@ -39,7 +38,7 @@ const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
       const target = e.target as HTMLInputElement;
       const previousElementSibling = --index;
       if (key === "Backspace") {
-        if (target.value === "") {
+        if (!target.value) {
           if (inputsRef.current[previousElementSibling]) {
             const el = inputsRef.current[
               previousElementSibling
@@ -54,13 +53,35 @@ const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
       }
     };
 
+    const handleOnPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+      const pastedValue = e.clipboardData.getData("Text");
+      let currentInput = 0;
+      for (let i = 0; i < pastedValue.length; i++) {
+        const pastedCharacter = pastedValue.charAt(i);
+        const currentValue = inputsRef.current[currentInput].value;
+
+        if (pastedCharacter.match(/\w{1}/)) {
+          if (!currentValue) {
+            inputsRef.current[currentInput].value = pastedCharacter;
+
+            const nextElementSlibing = currentInput + 1;
+            handleOnFocus(nextElementSlibing);
+
+            currentInput++;
+          }
+        }
+      }
+      handleOnSubmit();
+    };
+
+    const handleOnFocus = (index: number) => {
+      inputsRef.current[index] && inputsRef.current[index].focus();
+    };
+
     const handleOnSubmit = () => {
       const value = inputsRef.current.map(({ value }) => value).join("");
       onChange && onChange(value);
     };
-
-    const handleOnFocus = (e: React.FocusEvent<HTMLInputElement>) =>
-      e.target.select();
 
     useImperativeHandle(ref, () => ({
       focus: () => {
@@ -99,7 +120,7 @@ const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
               className="verify-input"
               onChange={(e) => handleOnChange(e, i)}
               onKeyDown={(e) => handleOnKeyDown(e, i)}
-              onFocus={handleOnFocus}
+              onPaste={handleOnPaste}
               inputRef={(el: HTMLInputElement) => {
                 inputsRef.current[i] = el;
               }}
