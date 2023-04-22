@@ -7,7 +7,7 @@ import "./Authen.css";
 import { AuthCodeProps, AuthCodeRef } from "./AuthenType";
 
 const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
-  ({ onChange, length = 6 }) => {
+  ({ onChange, length = 6 }, ref) => {
     const inputsRef = useRef<Array<HTMLInputElement>>([]);
 
     const handleOnChange = (
@@ -55,6 +55,23 @@ const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
 
     const handleOnFocus = (e: React.FocusEvent<HTMLInputElement>) =>
       e.target.select();
+
+    useImperativeHandle(ref, () => ({
+      focus: () => {
+        if (inputsRef.current) {
+          inputsRef.current[0].focus();
+        }
+      },
+      clear: () => {
+        if (inputsRef.current) {
+          for (let i = 0; i < inputsRef.current.length; i++) {
+            inputsRef.current[i].value = "";
+          }
+          inputsRef.current[0].focus();
+        }
+        handleOnSubmit();
+      },
+    }));
 
     return (
       <form
