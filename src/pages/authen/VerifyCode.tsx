@@ -141,21 +141,11 @@ const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
 );
 
 const VerifyCode = () => {
-  const { control } = useForm<{ authCode: string }>({
-    defaultValues: { authCode: "" },
-  });
-  const authCode = useWatch({ control, name: "authCode" });
-
-  const handleOnSubmit = useCallback(() => {
+  const handleOnChange = (authCode: string) => {
     if (authCode.length === 6) {
       console.log(authCode);
     }
-  }, [authCode]);
-
-  useEffect(() => {
-    handleOnSubmit();
-  }, [handleOnSubmit]);
-
+  };
   return (
     <Container className="signin-container d-flex flex-column align-center">
       <Typography className="text-bold mb-2" variant="h3">
@@ -166,11 +156,7 @@ const VerifyCode = () => {
         code expired shortly, so please enter it soon.
       </Typography>
       <Box className="signin-started align-center text-center justify-center full-width">
-        <Controller
-          control={control}
-          name="authCode"
-          render={({ field: { onChange } }) => <AuthCode onChange={onChange} />}
-        />
+        <AuthCode onChange={handleOnChange} />
         <Box className="d-flex align-center justify-space-evenly my-4">
           <Link
             className="text-transform-capitalize d-flex align-center pointer"
