@@ -3,12 +3,10 @@ import { Box, Container } from "@mui/system";
 import {
   forwardRef,
   Fragment,
-  useCallback,
   useEffect,
   useImperativeHandle,
   useRef,
 } from "react";
-import { Controller, useForm, useWatch } from "react-hook-form";
 import GmailLogo from "../../assets/icon/gmail-logo";
 import OutlookLogo from "../../assets/icon/outlook-logo";
 import "./Authen.css";
