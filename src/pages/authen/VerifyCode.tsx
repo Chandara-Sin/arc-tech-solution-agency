@@ -141,7 +141,7 @@ const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
 const VerifyCode = () => {
   const handleOnChange = (authCode: string) => {
     if (authCode.length === 6) {
-      console.log(authCode);
+      console.info(authCode);
     }
   };
   return (
