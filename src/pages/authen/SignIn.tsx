@@ -1,11 +1,11 @@
 import { FC } from "react";
 import "./Authen.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../contexts/Auth";
 import { IFormSignIn } from "./AuthenType";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signInSchema } from "./AuthenSchema";
+import { signUp } from "../../api/authentications/Authentication";
 import {
   Box,
   Button,
@@ -18,10 +18,8 @@ import {
 import { AutoAwesomeRounded } from "@mui/icons-material";
 import GoogleLogo from "../../assets/icon/google-logo";
 import GitHubLogo from "../../assets/icon/github-logo";
-import { signUp } from "../../api/authentications/Authentication";
 
 const SignIn: FC = () => {
-  const { signIn } = useAuth();
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -31,11 +29,8 @@ const SignIn: FC = () => {
     resolver: yupResolver(signInSchema),
   });
   const onSubmit = async ({ email }: IFormSignIn) => {
-    const next = () => {
-      navigate("/browse-connect", { replace: true });
-    };
-    await signUp({ grant_type: "auth_code", email });
-    signIn("member", next);
+    await signUp({ email });
+    navigate("/verify-code", { replace: true });
   };
   return (
     <Container className="signin-container d-flex flex-column align-center">

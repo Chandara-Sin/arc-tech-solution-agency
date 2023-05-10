@@ -7,8 +7,10 @@ import {
   useImperativeHandle,
   useRef,
 } from "react";
+import { useNavigate } from "react-router-dom";
 import GmailLogo from "../../assets/icon/gmail-logo";
 import OutlookLogo from "../../assets/icon/outlook-logo";
+import { useAuth } from "../../contexts/Auth";
 import "./Authen.css";
 import { AuthCodeProps, AuthCodeRef } from "./AuthenType";
 
@@ -139,11 +141,19 @@ const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
 );
 
 const VerifyCode = () => {
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
+
   const handleOnChange = (authCode: string) => {
     if (authCode.length === 6) {
       console.log(authCode);
+      const next = () => {
+        navigate("/browse-connect", { replace: true });
+      };
+      signIn("member", next);
     }
   };
+
   return (
     <Container className="signin-container d-flex flex-column align-center">
       <Typography className="text-bold mb-2" variant="h3">

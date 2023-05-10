@@ -1,11 +1,11 @@
 import { FC } from "react";
 import "./Authen.css";
-import { useAuth } from "../../contexts/Auth";
 import { useNavigate } from "react-router-dom";
 import { IFormSignIn } from "./AuthenType";
 import { signInSchema } from "./AuthenSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { signUp } from "../../api/authentications/Authentication";
 import {
   Box,
   Button,
@@ -16,7 +16,6 @@ import {
 } from "@mui/material";
 
 const GetStarted: FC = () => {
-  const { signIn } = useAuth();
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -25,11 +24,9 @@ const GetStarted: FC = () => {
   } = useForm<IFormSignIn>({
     resolver: yupResolver(signInSchema),
   });
-  const onSubmit = (data: IFormSignIn) => {
-    const next = () => {
-      navigate("/browse-connect", { replace: true });
-    };
-    signIn("member", next);
+  const onSubmit = async ({ email }: IFormSignIn) => {
+    await signUp({ email });
+    navigate("/verify-code", { replace: true });
   };
   return (
     <Container className="signin-container d-flex flex-column align-center">
