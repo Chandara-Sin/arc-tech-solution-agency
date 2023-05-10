@@ -6,6 +6,7 @@ src/assets/video/trial_video.mov
 
 
 # local env files
+.env
 .env.local
 .env.*.local
 

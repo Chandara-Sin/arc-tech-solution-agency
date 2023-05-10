@@ -18,6 +18,7 @@ import {
 import { AutoAwesomeRounded } from "@mui/icons-material";
 import GoogleLogo from "../../assets/icon/google-logo";
 import GitHubLogo from "../../assets/icon/github-logo";
+import { signUp } from "../../api/authentications/Authentication";
 
 const SignIn: FC = () => {
   const { signIn } = useAuth();
@@ -29,10 +30,11 @@ const SignIn: FC = () => {
   } = useForm<IFormSignIn>({
     resolver: yupResolver(signInSchema),
   });
-  const onSubmit = (data: IFormSignIn) => {
+  const onSubmit = async ({ email }: IFormSignIn) => {
     const next = () => {
       navigate("/browse-connect", { replace: true });
     };
+    await signUp({ grant_type: "auth_code", email });
     signIn("member", next);
   };
   return (
