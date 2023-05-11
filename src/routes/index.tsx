@@ -28,7 +28,9 @@ import Dashboard from "../pages-admin/dashboard";
 import Error from "../pages/_error";
 
 const PublicRoute = () => {
-  const { isAuthenticated, role } = useAuth();
+  const {
+    user: { isAuthenticated, role },
+  } = useAuth();
   return !isAuthenticated ? (
     <>
       <MainHeader />
@@ -45,7 +47,9 @@ const PublicRoute = () => {
 };
 
 const MemberRoute = () => {
-  const { isAuthenticated, role } = useAuth();
+  const {
+    user: { isAuthenticated, role },
+  } = useAuth();
   return isAuthenticated && role === "member" ? (
     <>
       <Header />
@@ -63,7 +67,9 @@ const MemberRoute = () => {
 };
 
 const AdminRoute = () => {
-  const { isAuthenticated, role } = useAuth();
+  const {
+    user: { isAuthenticated, role },
+  } = useAuth();
   return isAuthenticated && role === "admin" ? (
     <Outlet />
   ) : role === "member" ? (

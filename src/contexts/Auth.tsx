@@ -1,32 +1,34 @@
 import { createContext, ReactNode, useContext } from "react";
-import { IAuthContext } from "./Types";
+import { IAuthContext, IUser } from "./Types";
+
+const initialUser: IUser = {
+  fullName: "",
+  email: "",
+  role: "guest",
+  profileImageUrl: "",
+  isAuthenticated: false,
+};
 
 const getUserFromLocalStorage = () => {
   const userStorage = localStorage.getItem("user");
-  const { isAuthenticated, role }: IAuthContext = userStorage
+  const { user }: IAuthContext = userStorage
     ? JSON.parse(userStorage)
-    : { isAuthenticated: false, role: "guest" };
-  return { isAuthenticated, role };
+    : { user: initialUser };
+  return user;
 };
 
 const user = getUserFromLocalStorage();
 
 const initialAuth: IAuthContext = {
-  isAuthenticated: user.isAuthenticated,
-  role: user.role,
-  signIn(role, cb) {
-    localStorage.setItem(
-      "user",
-      JSON.stringify({ isAuthenticated: true, role: role })
-    );
-    initialAuth.isAuthenticated = true;
-    initialAuth.role = role;
+  user,
+  signIn(user, cb) {
+    localStorage.setItem("user", JSON.stringify(user));
+    initialAuth.user = { ...user, isAuthenticated: true };
     cb();
   },
   signOut(cb) {
     localStorage.clear();
-    initialAuth.isAuthenticated = false;
-    initialAuth.role = "guest";
+    initialAuth.user = initialUser;
     cb();
   },
 };

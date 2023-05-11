@@ -150,7 +150,15 @@ const VerifyCode = () => {
       const next = () => {
         navigate("/browse-connect", { replace: true });
       };
-      signIn("member", next);
+      signIn(
+        {
+          fullName: "",
+          email: "",
+          profileImageUrl: "",
+          role: "member",
+        },
+        next
+      );
     }
   };
 
