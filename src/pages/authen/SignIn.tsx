@@ -29,8 +29,11 @@ const SignIn: FC = () => {
     resolver: yupResolver(signInSchema),
   });
   const onSubmit = async ({ email }: IFormSignIn) => {
-    await signUp({ email });
-    navigate("/verify-code", { replace: true });
+    try {
+      const { access_token } = await signUp({ email });
+      localStorage.setItem("session", JSON.stringify({ token: access_token }));
+      navigate("/verify-code", { replace: true });
+    } catch (error) {}
   };
   return (
     <Container className="signin-container d-flex flex-column align-center">
