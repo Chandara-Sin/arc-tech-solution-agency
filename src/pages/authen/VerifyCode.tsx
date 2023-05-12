@@ -8,6 +8,7 @@ import {
   useRef,
 } from "react";
 import { useNavigate } from "react-router-dom";
+import { verifyCode } from "../../api/authentications/Authentication";
 import GmailLogo from "../../assets/icon/gmail-logo";
 import OutlookLogo from "../../assets/icon/outlook-logo";
 import { useAuth } from "../../contexts/Auth";
@@ -144,12 +145,14 @@ const VerifyCode = () => {
   const { signIn } = useAuth();
   const navigate = useNavigate();
 
-  const handleOnChange = (authCode: string) => {
+  const handleOnChange = async (authCode: string) => {
     if (authCode.length === 6) {
-      console.log(authCode);
       const next = () => {
         navigate("/browse-connect", { replace: true });
       };
+      const session = localStorage.getItem("session");
+      const { token } = session ? JSON.parse(session) : { token: "" };
+      const { session_token } = await verifyCode(authCode, token);
       signIn(
         {
           fullName: "",

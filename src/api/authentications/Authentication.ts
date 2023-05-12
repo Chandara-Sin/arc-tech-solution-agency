@@ -22,12 +22,12 @@ export const signUp = ({ email }: IFormSignIn) =>
       });
   });
 
-export const verifyCode = (code: string) =>
+export const verifyCode = (code: string, token: string) =>
   new Promise((resolve: (value: IAuthCodeRes) => void, reject) => {
     const data: IAuthCodeBody = {
       grant_type: "verify_code",
       auth_code: code,
-      token: "",
+      token,
     };
     httpClient
       .post("/oauth/authcode", data, {
