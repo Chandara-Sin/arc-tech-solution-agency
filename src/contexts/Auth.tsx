@@ -9,7 +9,7 @@ const initialUser: IUser = {
   isAuthenticated: false,
 };
 
-const getUserFromLocalStorage = () => {
+const getUserFromStorage = () => {
   const userStorage = localStorage.getItem("user");
   const { user }: IAuthContext = userStorage
     ? JSON.parse(userStorage)
@@ -17,12 +17,15 @@ const getUserFromLocalStorage = () => {
   return user;
 };
 
-const user = getUserFromLocalStorage();
+const user = getUserFromStorage();
 
 const initialAuth: IAuthContext = {
   user,
   signIn(user, cb) {
-    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ ...user, isAuthenticated: true })
+    );
     initialAuth.user = { ...user, isAuthenticated: true };
     cb();
   },
@@ -41,4 +44,4 @@ const AuthProvider = ({ children }: { children: ReactNode }) => (
   <AuthContext.Provider value={initialAuth}>{children}</AuthContext.Provider>
 );
 
-export { useAuth, AuthProvider, getUserFromLocalStorage };
+export { useAuth, AuthProvider, getUserFromStorage as getUserFromLocalStorage };

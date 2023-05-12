@@ -141,6 +141,12 @@ const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
   }
 );
 
+const getTokenFromStorage = () => {
+  const session = localStorage.getItem("session");
+  const { token } = session ? JSON.parse(session) : { token: "" };
+  return token;
+};
+
 const VerifyCode = () => {
   const { signIn } = useAuth();
   const navigate = useNavigate();
@@ -150,8 +156,7 @@ const VerifyCode = () => {
       const next = () => {
         navigate("/browse-connect", { replace: true });
       };
-      const session = localStorage.getItem("session");
-      const { token } = session ? JSON.parse(session) : { token: "" };
+      const token = getTokenFromStorage();
       const { session_token } = await verifyCode(authCode, token);
       signIn(
         {
