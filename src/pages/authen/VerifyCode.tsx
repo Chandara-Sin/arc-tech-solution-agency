@@ -16,6 +16,20 @@ import { useAuth } from "../../contexts/Auth";
 import "./Authen.css";
 import { AuthCodeProps, AuthCodeRef, ISessionToken } from "./AuthenType";
 
+const getTokenFromStorage = () => {
+  const session = localStorage.getItem("session");
+  const { token } = session ? JSON.parse(session) : { token: "" };
+  return token;
+};
+
+export const decryptJWT = async <T extends object>(token: string) => {
+  try {
+    return decodeJwt(token) as T;
+  } catch (error) {
+    return { user_id: "", role: "guest", email: "" } as T;
+  }
+};
+
 const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
   ({ onChange, length = 6, autoFocus = false }, ref) => {
     const inputsRef = useRef<Array<HTMLInputElement>>([]);
@@ -142,20 +156,6 @@ const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
   }
 );
 
-const getTokenFromStorage = () => {
-  const session = localStorage.getItem("session");
-  const { token } = session ? JSON.parse(session) : { token: "" };
-  return token;
-};
-
-export const decryptJWT = async <T extends object>(token: string) => {
-  try {
-    return decodeJwt(token) as T;
-  } catch (error) {
-    return { user_id: "", role: "guest", email: "" } as T;
-  }
-};
-
 const VerifyCode = () => {
   const { signIn } = useAuth();
   const navigate = useNavigate();
@@ -168,10 +168,14 @@ const VerifyCode = () => {
         };
         const token = getTokenFromStorage();
         const { session_token } = await verifyCode(authCode, token);
-        const { email, role } = await decryptJWT<ISessionToken>(session_token);
+        const {
+          name: fullName,
+          email,
+          role,
+        } = await decryptJWT<ISessionToken>(session_token);
         signIn(
           {
-            fullName: "",
+            fullName,
             email,
             profileImageUrl: "",
             role,

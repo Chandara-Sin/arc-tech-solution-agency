@@ -20,4 +20,5 @@ export interface ISessionToken extends JWTPayload {
   user_id: string;
   email: string;
   role: TRole;
+  name: string;
 }
