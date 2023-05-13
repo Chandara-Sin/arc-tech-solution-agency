@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import "./Authen.css";
 import { useNavigate } from "react-router-dom";
 import { IFormSignIn } from "./AuthenType";
@@ -6,6 +6,7 @@ import { signInSchema } from "./AuthenSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUp } from "../../api/authentications/Authentication";
+import Toast from "../../components/toast/Toast";
 import {
   Box,
   Button,
@@ -24,9 +25,17 @@ const GetStarted: FC = () => {
   } = useForm<IFormSignIn>({
     resolver: yupResolver(signInSchema),
   });
+  const [open, setOpen] = useState(false);
+  const handleClose = () => setOpen(false);
   const onSubmit = async ({ email }: IFormSignIn) => {
-    await signUp({ email });
-    navigate("/verify-code", { replace: true });
+    try {
+      const { access_token } = await signUp({ email });
+      localStorage.setItem("session", JSON.stringify({ token: access_token }));
+      navigate("/verify-code", { replace: true });
+    } catch (error) {
+      console.error(error);
+      setOpen(true);
+    }
   };
   return (
     <Container className="signin-container d-flex flex-column align-center">
@@ -78,6 +87,7 @@ const GetStarted: FC = () => {
           .
         </Typography>
       </Box>
+      <Toast open={open} onClose={handleClose} severity="error" />
     </Container>
   );
 };

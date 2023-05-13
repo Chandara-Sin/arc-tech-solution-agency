@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { signInSchema } from "./AuthenSchema";
@@ -6,6 +6,7 @@ import { IFormSignIn } from "./AuthenType";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUp } from "../../api/authentications/Authentication";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import Toast from "../../components/toast/Toast";
 
 const SignInWorkSpace: FC = () => {
   const navigate = useNavigate();
@@ -16,9 +17,17 @@ const SignInWorkSpace: FC = () => {
   } = useForm<IFormSignIn>({
     resolver: yupResolver(signInSchema),
   });
+  const [open, setOpen] = useState(false);
+  const handleClose = () => setOpen(false);
   const onSubmit = async ({ email }: IFormSignIn) => {
-    await signUp({ email });
-    navigate("/verify-code", { replace: true });
+    try {
+      const { access_token } = await signUp({ email });
+      localStorage.setItem("session", JSON.stringify({ token: access_token }));
+      navigate("/verify-code", { replace: true });
+    } catch (error) {
+      console.error(error);
+      setOpen(true);
+    }
   };
   return (
     <Container className="signin-container d-flex flex-column align-center">
@@ -78,6 +87,7 @@ const SignInWorkSpace: FC = () => {
           </Link>
         </Typography>
       </Box>
+      <Toast open={open} onClose={handleClose} severity="error" />
     </Container>
   );
 };
