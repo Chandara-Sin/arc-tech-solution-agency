@@ -159,6 +159,7 @@ const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
 const VerifyCode = () => {
   const { signIn } = useAuth();
   const navigate = useNavigate();
+  const token = getTokenFromStorage();
 
   const handleOnChange = async (authCode: string) => {
     if (authCode.length === 6) {
@@ -166,7 +167,6 @@ const VerifyCode = () => {
         const next = () => {
           navigate("/browse-connect", { replace: true });
         };
-        const token = getTokenFromStorage();
         const { session_token } = await verifyCode(authCode, token);
         const {
           name: fullName,
@@ -195,7 +195,7 @@ const VerifyCode = () => {
         Check your email for a code
       </Typography>
       <Typography className="sub-heading text-center" variant="subtitle1">
-        We've send a 6-character code to <strong>example@gmail.com</strong>. The
+        We've send a 6-character code to <strong>{atob(token)}</strong>. The
         code expired shortly, so please enter it soon.
       </Typography>
       <Box className="signin-started align-center text-center justify-center full-width">
