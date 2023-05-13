@@ -1,5 +1,6 @@
 import { Divider, Link, TextField, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
+import { decodeJwt } from "jose";
 import {
   forwardRef,
   Fragment,
@@ -13,7 +14,7 @@ import GmailLogo from "../../assets/icon/gmail-logo";
 import OutlookLogo from "../../assets/icon/outlook-logo";
 import { useAuth } from "../../contexts/Auth";
 import "./Authen.css";
-import { AuthCodeProps, AuthCodeRef } from "./AuthenType";
+import { AuthCodeProps, AuthCodeRef, ISessionToken } from "./AuthenType";
 
 const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
   ({ onChange, length = 6, autoFocus = false }, ref) => {
@@ -147,26 +148,40 @@ const getTokenFromStorage = () => {
   return token;
 };
 
+export const decryptJWT = async <T extends object>(token: string) => {
+  try {
+    return decodeJwt(token) as T;
+  } catch (error) {
+    return { user_id: "", role: "guest", email: "" } as T;
+  }
+};
+
 const VerifyCode = () => {
   const { signIn } = useAuth();
   const navigate = useNavigate();
 
   const handleOnChange = async (authCode: string) => {
     if (authCode.length === 6) {
-      const next = () => {
-        navigate("/browse-connect", { replace: true });
-      };
-      const token = getTokenFromStorage();
-      const { session_token } = await verifyCode(authCode, token);
-      signIn(
-        {
-          fullName: "",
-          email: "",
-          profileImageUrl: "",
-          role: "member",
-        },
-        next
-      );
+      try {
+        const next = () => {
+          navigate("/browse-connect", { replace: true });
+        };
+        const token = getTokenFromStorage();
+        const { session_token } = await verifyCode(authCode, token);
+        const { email, role } = await decryptJWT<ISessionToken>(session_token);
+        signIn(
+          {
+            fullName: "",
+            email,
+            profileImageUrl: "",
+            role,
+          },
+          next
+        );
+      } catch (error) {
+      } finally {
+        localStorage.removeItem("session");
+      }
     }
   };
 

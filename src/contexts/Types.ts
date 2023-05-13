@@ -1,4 +1,4 @@
-export type Role = "admin" | "member" | "guest";
+export type TRole = "admin" | "member" | "guest";
 
 export interface IAuthContext {
   user: IUser;
@@ -11,7 +11,7 @@ export interface IAuthContext {
 
 export interface IUser {
   fullName: string;
-  role: Role;
+  role: TRole;
   email: string;
   profileImageUrl: string;
   isAuthenticated: boolean;
