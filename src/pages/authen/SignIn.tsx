@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, forwardRef, useState } from "react";
 import "./Authen.css";
 import { Link, useNavigate } from "react-router-dom";
 import { IFormSignIn } from "./AuthenType";
@@ -7,17 +7,24 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { signInSchema } from "./AuthenSchema";
 import { signUp } from "../../api/authentications/Authentication";
 import {
+  AlertProps,
   Box,
   Button,
   Container,
   Divider,
   Paper,
+  Snackbar,
   TextField,
   Typography,
 } from "@mui/material";
+import MuiAlert from "@mui/material/Alert";
 import { AutoAwesomeRounded } from "@mui/icons-material";
 import GoogleLogo from "../../assets/icon/google-logo";
 import GitHubLogo from "../../assets/icon/github-logo";
+
+const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
+  <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
+));
 
 const SignIn: FC = () => {
   const navigate = useNavigate();
@@ -28,12 +35,17 @@ const SignIn: FC = () => {
   } = useForm<IFormSignIn>({
     resolver: yupResolver(signInSchema),
   });
+  const [open, setOpen] = useState(false);
+  const handleClose = () => setOpen(false);
   const onSubmit = async ({ email }: IFormSignIn) => {
     try {
       const { access_token } = await signUp({ email });
       localStorage.setItem("session", JSON.stringify({ token: access_token }));
       navigate("/verify-code", { replace: true });
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+      setOpen(true);
+    }
   };
   return (
     <Container className="signin-container d-flex flex-column align-center">
@@ -98,6 +110,16 @@ const SignIn: FC = () => {
           </Typography>
         </Paper>
       </Box>
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={open}
+        autoHideDuration={5000}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+          Something went wrong!
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };
