@@ -242,6 +242,12 @@ code {
 .p-0 {
   padding: 0px !important;
 }
+.p-1 {
+  padding: 5px;
+}
+.p-2 {
+  padding: 10px;
+}
 .px-1 {
   padding-left: 5px;
   padding-right: 5px;

@@ -1,5 +1,7 @@
+import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
 import { Divider, Link, TextField, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
+import { isAxiosError } from "axios";
 import { decodeJwt } from "jose";
 import {
   forwardRef,
@@ -7,6 +9,7 @@ import {
   useEffect,
   useImperativeHandle,
   useRef,
+  useState,
 } from "react";
 import { useNavigate } from "react-router-dom";
 import { verifyCode } from "../../api/authentications/Authentication";
@@ -123,11 +126,7 @@ const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
     }, [autoFocus]);
 
     return (
-      <form
-        autoComplete="off"
-        className="d-flex align-center"
-        style={{ paddingBottom: "50px" }}
-      >
+      <form autoComplete="off" className="d-flex align-center">
         {[...Array(length)].map((_, i) => (
           <Fragment key={i}>
             <TextField
@@ -159,6 +158,7 @@ const AuthCode = forwardRef<AuthCodeRef, AuthCodeProps>(
 const VerifyCode = () => {
   const { signIn } = useAuth();
   const navigate = useNavigate();
+  const [errorMsg, setErrorMsg] = useState("");
   const token = getTokenFromStorage();
 
   const handleOnChange = async (authCode: string) => {
@@ -183,7 +183,13 @@ const VerifyCode = () => {
           },
           next
         );
-      } catch (error) {}
+      } catch (error) {
+        setErrorMsg(
+          isAxiosError(error)
+            ? error.response?.data.error
+            : "internal server error"
+        );
+      }
     }
   };
 
@@ -198,6 +204,23 @@ const VerifyCode = () => {
       </Typography>
       <Box className="signin-started align-center text-center justify-center full-width">
         <AuthCode onChange={handleOnChange} />
+        {errorMsg && (
+          <Box
+            className="d-flex align-center justify-center p-2 my-4"
+            sx={{
+              border: "1px solid #ff4a6d",
+              borderRadius: "4px",
+              backgroundColor: "#ffecf0",
+            }}
+          >
+            <WarningAmberRoundedIcon color="error" />
+            <Typography variant="subtitle2" className="pl-1">
+              {errorMsg === "invalid auth code"
+                ? "That code wasn't valid! Give it anther go!"
+                : errorMsg}
+            </Typography>
+          </Box>
+        )}
         <Box className="d-flex align-center justify-space-evenly my-4">
           <Link
             className="text-transform-capitalize d-flex align-center pointer"
