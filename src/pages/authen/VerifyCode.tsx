@@ -165,6 +165,7 @@ const VerifyCode = () => {
     if (authCode.length === 6) {
       try {
         const next = () => {
+          localStorage.removeItem("session");
           navigate("/browse-connect", { replace: true });
         };
         const { session_token } = await verifyCode(authCode, token);
@@ -182,10 +183,7 @@ const VerifyCode = () => {
           },
           next
         );
-      } catch (error) {
-      } finally {
-        localStorage.removeItem("session");
-      }
+      } catch (error) {}
     }
   };
 

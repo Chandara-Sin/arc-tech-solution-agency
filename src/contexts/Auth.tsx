@@ -11,9 +11,7 @@ const initialUser: IUser = {
 
 const getUserFromStorage = () => {
   const userStorage = localStorage.getItem("user");
-  const { user }: IAuthContext = userStorage
-    ? JSON.parse(userStorage)
-    : { user: initialUser };
+  const user: IUser = userStorage ? JSON.parse(userStorage) : initialUser;
   return user;
 };
 
