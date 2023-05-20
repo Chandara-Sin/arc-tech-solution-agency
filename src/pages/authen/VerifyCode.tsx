@@ -1,8 +1,3 @@
-import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
-import { Divider, Link, TextField, Typography } from "@mui/material";
-import { Box, Container } from "@mui/system";
-import { isAxiosError } from "axios";
-import { decodeJwt } from "jose";
 import {
   forwardRef,
   Fragment,
@@ -11,12 +6,17 @@ import {
   useRef,
   useState,
 } from "react";
+import "./Authen.css";
+import { WarningAmberRounded } from "@mui/icons-material";
+import { Divider, Link, TextField, Typography } from "@mui/material";
+import { Box, Container } from "@mui/system";
+import { isAxiosError } from "axios";
+import { decodeJwt } from "jose";
 import { useNavigate } from "react-router-dom";
 import { verifyCode } from "../../api/authentications/Authentication";
 import GmailLogo from "../../assets/icon/gmail-logo";
 import OutlookLogo from "../../assets/icon/outlook-logo";
 import { useAuth } from "../../contexts/Auth";
-import "./Authen.css";
 import { AuthCodeProps, AuthCodeRef, ISessionToken } from "./AuthenType";
 
 const getTokenFromStorage = () => {
@@ -213,7 +213,7 @@ const VerifyCode = () => {
               backgroundColor: "#ffecf0",
             }}
           >
-            <WarningAmberRoundedIcon color="error" />
+            <WarningAmberRounded color="error" />
             <Typography variant="subtitle2" className="pl-1">
               {errorMsg === "invalid auth code"
                 ? "That code wasn't valid! Give it anther go!"

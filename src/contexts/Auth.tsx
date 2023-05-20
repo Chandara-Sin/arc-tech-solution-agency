@@ -42,4 +42,4 @@ const AuthProvider = ({ children }: { children: ReactNode }) => (
   <AuthContext.Provider value={initialAuth}>{children}</AuthContext.Provider>
 );
 
-export { useAuth, AuthProvider, getUserFromStorage as getUserFromLocalStorage };
+export { useAuth, AuthProvider };

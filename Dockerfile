@@ -1,4 +1,4 @@
-FROM node:16.18.0-bullseye-slim AS builder
+FROM node:18.15.0-bullseye-slim AS builder
 WORKDIR /app
 COPY package.json yarn.lock .yarnrc.yml ./
 COPY .yarn ./.yarn

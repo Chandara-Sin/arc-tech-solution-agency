@@ -53,7 +53,7 @@
     ]
   },
   "engines": {
-    "node": ">=16.18.0",
+    "node": ">=18.0.0",
     "npm": "use yarn instead of npm."
   },
   "browserslist": {
