@@ -36,6 +36,7 @@ import Sidebar from "../sidebar/Sidebar";
 import HeaderNotify from "../../components/header-notify/HeaderNotify";
 import TooltipShortcut from "../../components/tooltip-shortcut/TooltipShortcut";
 import { recentHistories } from "./example-data";
+import { supabase } from "../../config/supabase";
 
 const SearchPopover: FC = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -245,10 +246,13 @@ const UserCard: FC = () => {
   const { signOut } = useAuth();
   const navigate = useNavigate();
   const [userStatus, setUserStatus] = useState(true);
-  const confirmLogout = () => {
+
+  const confirmLogout = async () => {
+    await supabase.auth.signOut();
     const next = () => navigate("/", { replace: true });
     signOut(next);
   };
+
   return (
     <Paper className="user-card">
       <Grid container>

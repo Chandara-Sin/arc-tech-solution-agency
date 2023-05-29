@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import "./Authen.css";
 import { Link, useNavigate } from "react-router-dom";
 import { IFormSignIn } from "./AuthenType";
@@ -19,8 +19,11 @@ import { AutoAwesomeRounded } from "@mui/icons-material";
 import GoogleLogo from "../../assets/icon/google-logo";
 import GitHubLogo from "../../assets/icon/github-logo";
 import Toast from "../../components/toast/Toast";
+import { supabase } from "../../config/supabase";
+import { useAuth } from "../../contexts/Auth";
 
 const SignIn: FC = () => {
+  const { signIn } = useAuth();
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -41,6 +44,47 @@ const SignIn: FC = () => {
       setOpen(true);
     }
   };
+
+  const onGoogleLogin = async () => {
+    try {
+      await supabase.auth.signInWithOAuth({
+        provider: "google",
+      });
+    } catch (error) {
+      console.error(error);
+      setOpen(true);
+    }
+  };
+
+  const getSession = () => {
+    const next = () => {
+      navigate("/browse-connect", { replace: true });
+    };
+    supabase.auth.getUser().then(
+      (res) => {
+        const user = res.data.user?.user_metadata;
+        if (user)
+          signIn(
+            {
+              fullName: user["full_name"],
+              email: user["email"],
+              role: "member",
+              profileImageUrl: "",
+            },
+            next
+          );
+      },
+      (err) => {
+        console.error(err);
+        setOpen(true);
+      }
+    );
+  };
+
+  useEffect(() => {
+    getSession();
+  }, []);
+
   return (
     <Container className="signin-container d-flex flex-column align-center">
       <Typography className="text-bold mb-2" variant="h3">
@@ -53,6 +97,7 @@ const SignIn: FC = () => {
         <Button
           variant="outlined"
           className="text-transform-none full-width auth-button auth-button-primary"
+          onClick={() => onGoogleLogin()}
         >
           <GoogleLogo />
           <Typography variant="body1" className="auth-button-text">
@@ -62,6 +107,7 @@ const SignIn: FC = () => {
         <Button
           variant="outlined"
           className="text-transform-none full-width auth-button auth-button-secondary mt-3"
+          onClick={async () => await supabase.auth.signOut()}
         >
           <GitHubLogo />
           <Typography variant="body1" className="auth-button-text">
