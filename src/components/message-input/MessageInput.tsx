@@ -469,7 +469,7 @@ const MessageAttachments: FC<IMessageAttachmentsProps> = (props) => {
         >
           <IconButton
             size="small"
-            onClick={(event) =>
+            onClick={() =>
               handleAttachmentChange("mention", !attachments.mention)
             }
           >

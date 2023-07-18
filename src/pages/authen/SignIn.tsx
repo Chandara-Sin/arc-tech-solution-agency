@@ -69,7 +69,7 @@ const SignIn: FC = () => {
               fullName: user["full_name"],
               email: user["email"],
               role: "member",
-              profileImageUrl: "",
+              profileImageUrl: user["avatar_url"],
             },
             next
           );
