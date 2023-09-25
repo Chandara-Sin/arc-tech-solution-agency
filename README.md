@@ -41,3 +41,12 @@
 - <span style="color:lightblue">**Cypress**</span> --intermediate
 - <span style="color:lightblue">**Premiere Pro**</span> --intermediate
 - <span style="color:lightblue">**Photoshop**</span> --intermediate
+
+## Development
+
+```sh
+yarn
+yarn dlx @yarnpkg/sdks vscode
+```
+
+_config ts version to this project_
