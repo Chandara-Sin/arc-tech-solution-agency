@@ -1035,12 +1035,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hookform/resolvers@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "@hookform/resolvers@npm:3.1.1"
+"@hookform/resolvers@npm:^3.3.1":
+  version: 3.3.1
+  resolution: "@hookform/resolvers@npm:3.3.1"
   peerDependencies:
     react-hook-form: ^7.0.0
-  checksum: 41da04f0995438364f129484011a84c0d4333ce1b4cb7815593f58ece51bbd88c87db9ea6b1f5d0b7ae3e47bfcdf1a3f8e2328c46800e884074048473b56d5b5
+  checksum: 1ddc250a8d6769fb11b03110b586677b03463276dda1cdfd0225ab94f46d422868f74b01bef85f785010cc3d836f0669d6b6c0ed752cae532d2badf3537b1e72
   languageName: node
   linkType: hard
 
@@ -1519,10 +1519,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remix-run/router@npm:1.6.3":
-  version: 1.6.3
-  resolution: "@remix-run/router@npm:1.6.3"
-  checksum: f6968b1626af930b42f8cb5a044f05e4fbce05af6c7947beb1704e45c9570944e3be16ee008b185e5e13baac97948299eb55341b2a359c3e2e54b9d6646ae167
+"@remix-run/router@npm:1.9.0":
+  version: 1.9.0
+  resolution: "@remix-run/router@npm:1.9.0"
+  checksum: 0537b0ff29879ac85077cb4c42eaca4a295b9efd71477848984c2f2dfa5741c9b83d3106a7bb72994a51a9adfeeab3b0f5a40f2dee8be3f0750feeeca2a6d513
   languageName: node
   linkType: hard
 
@@ -1549,64 +1549,73 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@supabase/functions-js@npm:^2.1.0":
-  version: 2.1.2
-  resolution: "@supabase/functions-js@npm:2.1.2"
+"@supabase/functions-js@npm:^2.1.5":
+  version: 2.1.5
+  resolution: "@supabase/functions-js@npm:2.1.5"
   dependencies:
-    cross-fetch: ^3.1.5
-  checksum: 55a3f1fc7b48f17e948f524f69dbc580b55ef276a5cc6a272a8dae15b347952f2db79144751d1e10c16259f105a4556e583830d8106f0983893be3873281bd76
+    "@supabase/node-fetch": ^2.6.14
+  checksum: f2ab8636af8d982270b61631a5120369ca10db101b4298da71be892e5d91a8ddaddcf7f51079ad0fe24731a15892b21bd7dbe41b997da9d4b90e4326d09632c8
   languageName: node
   linkType: hard
 
-"@supabase/gotrue-js@npm:^2.26.0":
-  version: 2.30.0
-  resolution: "@supabase/gotrue-js@npm:2.30.0"
+"@supabase/gotrue-js@npm:^2.54.0":
+  version: 2.54.0
+  resolution: "@supabase/gotrue-js@npm:2.54.0"
   dependencies:
-    cross-fetch: ^3.1.5
-  checksum: 81f7c1e3820187a5039997160493629c402fcc09fe45ef1db22592d321781629b8009f15591ce7a2bbecb4fae0513d418dfeff1314646d53c579fc5d75f64cfc
+    "@supabase/node-fetch": ^2.6.14
+  checksum: ce2e83536e96331e08bb89e17a0e2c4b6f888ed53f7da7ad03f58e1547d188d366536e8445fddf69850ec2e6ed82d12643ecf630fcc8dbd1c8b7e73d20e2eaa5
   languageName: node
   linkType: hard
 
-"@supabase/postgrest-js@npm:^1.7.0":
-  version: 1.7.1
-  resolution: "@supabase/postgrest-js@npm:1.7.1"
+"@supabase/node-fetch@npm:^2.6.14":
+  version: 2.6.14
+  resolution: "@supabase/node-fetch@npm:2.6.14"
   dependencies:
-    cross-fetch: ^3.1.5
-  checksum: 97f6e45a0420a304a20e89e7c2cf5790315708800965565ef34aa42b96dc97849462f2fd5c6e16095f29dc03c15d4671cd5f607a7f596095fc15e225e9e8074a
+    whatwg-url: ^5.0.0
+  checksum: 5c022875b096fe9fd3e4870f1eea4a4a48e199a3881e74f164b977639acad7e438fe8dc6129a8d3e97475a25149e5ede17e264965a83b5ceea86cef2446eb222
   languageName: node
   linkType: hard
 
-"@supabase/realtime-js@npm:^2.7.3":
-  version: 2.7.3
-  resolution: "@supabase/realtime-js@npm:2.7.3"
+"@supabase/postgrest-js@npm:^1.8.4":
+  version: 1.8.4
+  resolution: "@supabase/postgrest-js@npm:1.8.4"
+  dependencies:
+    "@supabase/node-fetch": ^2.6.14
+  checksum: e37f3046362986b739fc237b6aef9d08cf40e22fff667a3f98010f8638f91fce7019cc3300059d4405385181e7ef89ad85acbe2906d3fb0aa2d969a2a31b3d1e
+  languageName: node
+  linkType: hard
+
+"@supabase/realtime-js@npm:^2.7.4":
+  version: 2.7.4
+  resolution: "@supabase/realtime-js@npm:2.7.4"
   dependencies:
     "@types/phoenix": ^1.5.4
     "@types/websocket": ^1.0.3
     websocket: ^1.0.34
-  checksum: a6e789098ef7c388faf3a3b483ae91e1d45f8b7d02ae4ae1ad8ef0d7246678777aab1e0f3f2cbaf25549b27926c94bce9adc5c90f3f2693e1ccf780d5941411d
+  checksum: f718dd2a9fbf9068a6cdbda45fc0d8b14198424a1901fec942913b07d1206ac8e0abebfb7ad84bb16325a1e4bfa36bf6a14b1c71fca05ad038a82f6d210f1e8c
   languageName: node
   linkType: hard
 
-"@supabase/storage-js@npm:^2.5.1":
-  version: 2.5.1
-  resolution: "@supabase/storage-js@npm:2.5.1"
+"@supabase/storage-js@npm:^2.5.4":
+  version: 2.5.4
+  resolution: "@supabase/storage-js@npm:2.5.4"
   dependencies:
-    cross-fetch: ^3.1.5
-  checksum: bff8673f7c5fb967385bff812e5dec22ad85df6982f3dc2745f46ecd2a0ede280684490adea752b647a995c1d3b33895921d87c2f0e3dd61d5704964a5b59bbd
+    "@supabase/node-fetch": ^2.6.14
+  checksum: 034a918c1c5504174cc67c0335575fa647958a9c53eb7440c1f24a210177c60bde9990fde19eb8902c2bbe3bd823be01204e36ad290bcb8df2387ac5511ed2a4
   languageName: node
   linkType: hard
 
-"@supabase/supabase-js@npm:^2.25.0":
-  version: 2.25.0
-  resolution: "@supabase/supabase-js@npm:2.25.0"
+"@supabase/supabase-js@npm:^2.36.0":
+  version: 2.36.0
+  resolution: "@supabase/supabase-js@npm:2.36.0"
   dependencies:
-    "@supabase/functions-js": ^2.1.0
-    "@supabase/gotrue-js": ^2.26.0
-    "@supabase/postgrest-js": ^1.7.0
-    "@supabase/realtime-js": ^2.7.3
-    "@supabase/storage-js": ^2.5.1
-    cross-fetch: ^3.1.5
-  checksum: 01ab763f863473c5a499b65a4b953b44202e995f58d251249393bc5071cfcce172ca038a87b28b35c66ab91828d920d1a405f13445f702466e788e8c97f04a98
+    "@supabase/functions-js": ^2.1.5
+    "@supabase/gotrue-js": ^2.54.0
+    "@supabase/node-fetch": ^2.6.14
+    "@supabase/postgrest-js": ^1.8.4
+    "@supabase/realtime-js": ^2.7.4
+    "@supabase/storage-js": ^2.5.4
+  checksum: c95d50b3e9c26c18bb71a00e6e8e7cf3915bf8df23e0d77afee34365e4c133edaa62711fbc5cb73b3984a793e63e41aed8de97ea7293fc5574afb539b3aba470
   languageName: node
   linkType: hard
 
@@ -2508,15 +2517,6 @@ __metadata:
     parse-json: ^5.0.0
     path-type: ^4.0.0
   checksum: 836d5d8efa750f3fb17b03d6ca74cd3154ed025dffd045304b3ef59637f662bde1e5dc88f8830080d180ec60841719cf4ea2ce73fb21ec694b16865c478ff297
-  languageName: node
-  linkType: hard
-
-"cross-fetch@npm:^3.1.5":
-  version: 3.1.6
-  resolution: "cross-fetch@npm:3.1.6"
-  dependencies:
-    node-fetch: ^2.6.11
-  checksum: 704b3519ab7de488328cc49a52cf1aa14132ec748382be5b9557b22398c33ffa7f8c2530e8a97ed8cb55da52b0a9740a9791d361271c4591910501682d981d9c
   languageName: node
   linkType: hard
 
@@ -4368,20 +4368,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.6.11":
-  version: 2.6.11
-  resolution: "node-fetch@npm:2.6.11"
-  dependencies:
-    whatwg-url: ^5.0.0
-  peerDependencies:
-    encoding: ^0.1.0
-  peerDependenciesMeta:
-    encoding:
-      optional: true
-  checksum: 249d0666a9497553384d46b5ab296ba223521ac88fed4d8a17d6ee6c2efb0fc890f3e8091cafe7f9fba8151a5b8d925db2671543b3409a56c3cd522b468b47b3
-  languageName: node
-  linkType: hard
-
 "node-gyp-build@npm:^4.3.0":
   version: 4.6.0
   resolution: "node-gyp-build@npm:4.6.0"
@@ -4725,12 +4711,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:^7.45.0-next.1":
-  version: 7.45.0-next.1
-  resolution: "react-hook-form@npm:7.45.0-next.1"
+"react-hook-form@npm:^7.46.2":
+  version: 7.46.2
+  resolution: "react-hook-form@npm:7.46.2"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18
-  checksum: bf95151170f5ef834849c040a4e8509b11b5828e98a0dcf8cbd15fdc9e7d38af099b9e65a2f154562d5cf59d089fae6e7623c77b99cd4fb2c6adc852c700b704
+  checksum: 5ad2b478337fed3ab1a7bee79844d89a85485626fb1afd4acba54e28adb8f6663d37efefa9000b6ddb33f7de23b765bfac9a1d12e10c63e71463317a307134cf
   languageName: node
   linkType: hard
 
@@ -4762,27 +4748,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:^6.13.0":
-  version: 6.13.0
-  resolution: "react-router-dom@npm:6.13.0"
+"react-router-dom@npm:^6.16.0":
+  version: 6.16.0
+  resolution: "react-router-dom@npm:6.16.0"
   dependencies:
-    "@remix-run/router": 1.6.3
-    react-router: 6.13.0
+    "@remix-run/router": 1.9.0
+    react-router: 6.16.0
   peerDependencies:
     react: ">=16.8"
     react-dom: ">=16.8"
-  checksum: f51131063c2d5e127b6b3f3f813c6d4988d0f37694a06697dc9d4a4d9d3825e2a4487ec9b81a1d356eb269018814d884ffc2e3d9ff056a46ae59c99c9e7e1086
+  checksum: 18b398924bb0f0d97cf2f71dab71d860b960a7a267b2f77388990c662bb6d8738bdc3042d92f713fd63d269ae9ad90df39c8e97661b6ba758bbb7386b9f20ae0
   languageName: node
   linkType: hard
 
-"react-router@npm:6.13.0":
-  version: 6.13.0
-  resolution: "react-router@npm:6.13.0"
+"react-router@npm:6.16.0":
+  version: 6.16.0
+  resolution: "react-router@npm:6.16.0"
   dependencies:
-    "@remix-run/router": 1.6.3
+    "@remix-run/router": 1.9.0
   peerDependencies:
     react: ">=16.8"
-  checksum: 31a187005d05e063c59324564a283cd28052eaf848ad446c87658f4fc48fa9543329fe8a14d7be14d9bbf62410d383f8cf1cf13898a838bf9c1e3201fe93384c
+  checksum: b31c187e3fdcdf7294ffdad6ff834e14d012840c94d8ee8c7fbe451062a8fcb6e31e8bc7827fb1ff45445dd40fad2b8c96a7e98f0ac1c3eb1d716c257a0821c9
   languageName: node
   linkType: hard
 
@@ -5047,7 +5033,7 @@ __metadata:
     "@babel/preset-typescript": ^7.21.5
     "@emotion/react": ^11.11.1
     "@emotion/styled": ^11.11.0
-    "@hookform/resolvers": ^3.1.1
+    "@hookform/resolvers": ^3.3.1
     "@mui/base": ^5.0.0-beta.16
     "@mui/icons-material": ^5.14.9
     "@mui/lab": ^5.0.0-alpha.145
@@ -5055,7 +5041,7 @@ __metadata:
     "@mui/styles": ^5.14.10
     "@mui/system": ^5.14.10
     "@mui/x-date-pickers": ^6.15.0
-    "@supabase/supabase-js": ^2.25.0
+    "@supabase/supabase-js": ^2.36.0
     "@testing-library/jest-dom": ^5.16.5
     "@testing-library/react": ^14.0.0
     "@testing-library/user-event": ^14.4.3
@@ -5071,12 +5057,12 @@ __metadata:
     jose: ^4.14.6
     react: ^18.2.0
     react-dom: ^18.2.0
-    react-hook-form: ^7.45.0-next.1
-    react-router-dom: ^6.13.0
+    react-hook-form: ^7.46.2
+    react-router-dom: ^6.16.0
     typescript: ^5.2.2
     vite: ^4.4.9
     vite-plugin-svgr: ^4.0.0
-    yup: ^1.2.0
+    yup: ^1.3.0
   languageName: unknown
   linkType: soft
 
@@ -5694,14 +5680,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yup@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "yup@npm:1.2.0"
+"yup@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "yup@npm:1.3.0"
   dependencies:
     property-expr: ^2.0.5
     tiny-case: ^1.0.3
     toposort: ^2.0.2
     type-fest: ^2.19.0
-  checksum: f0cdceb144e358c6155670f3e27404b65b090cc12594fde6db2699523661e13542aaf87ebe8e542b67f29a5f3f9bc5f23a3a3bb09e17f10d125353d35b841fac
+  checksum: ab10e58b749785570af878409e87524c84d3836e27d4513ff8f55d777e87191539f4d5310dba8f57cfa6668d658f55bce966ca2ec46ee85a2be05c2fa9510f2c
   languageName: node
   linkType: hard
