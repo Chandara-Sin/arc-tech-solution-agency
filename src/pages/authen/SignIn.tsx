@@ -49,6 +49,13 @@ const SignIn: FC = () => {
     try {
       await supabase.auth.signInWithOAuth({
         provider: "google",
+        options: {
+          queryParams: {
+            access_type: "offline",
+            prompt: "consent",
+          },
+          redirectTo: "/signin",
+        },
       });
     } catch (error) {
       console.error(error);
@@ -56,31 +63,29 @@ const SignIn: FC = () => {
     }
   };
 
-  const getSession = () => {
+  const getSession = async () => {
     const next = () => {
       navigate("/browse-connect", { replace: true });
     };
-    supabase.auth.getUser().then(
-      (res) => {
-        const user = res.data.user?.user_metadata;
-        if (user)
-          signIn(
-            {
-              fullName: user["full_name"],
-              email: user["email"],
-              role: "member",
-              profileImageUrl: user["avatar_url"],
-            },
-            next
-          );
-      },
-      (err) => {
-        console.error(err);
+    const { data, error } = await supabase.auth.getUser();
+    const user = data.user?.user_metadata;
+    if (user)
+      signIn(
+        {
+          fullName: user["full_name"],
+          email: user["email"],
+          role: "member",
+          profileImageUrl: user["avatar_url"],
+        },
+        next
+      );
+    if (error) {
+      if (error.message !== "invalid claim: missing sub claim") {
+        console.error(error);
         setOpen(true);
       }
-    );
+    }
   };
-
   useEffect(() => {
     getSession();
   }, []);

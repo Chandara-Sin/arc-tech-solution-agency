@@ -20,6 +20,7 @@ const user = getUserFromStorage();
 const initialAuth: IAuthContext = {
   user,
   signIn(user, cb) {
+    localStorage.clear();
     localStorage.setItem(
       "user",
       JSON.stringify({ ...user, isAuthenticated: true })
