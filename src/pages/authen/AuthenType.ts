@@ -22,3 +22,7 @@ export interface ISessionToken extends JWTPayload {
   role: TRole;
   name: string;
 }
+
+export interface IAuthen {
+  provider: "";
+}

@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import "./Authen.css";
 import { Link, useNavigate } from "react-router-dom";
-import { IFormSignIn } from "./AuthenType";
+import { IAuthen, IFormSignIn } from "./AuthenType";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signInSchema } from "./AuthenSchema";
@@ -46,18 +46,19 @@ const SignIn: FC = () => {
   };
 
   const onGoogleLogin = async () => {
-    try {
-      await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: {
-          queryParams: {
-            access_type: "offline",
-            prompt: "consent",
-          },
-          redirectTo: "/signin",
+    localStorage.setItem("auth", JSON.stringify({ provider: "google" }));
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        queryParams: {
+          access_type: "offline",
+          prompt: "consent",
         },
-      });
-    } catch (error) {
+        redirectTo: "/signin",
+      },
+    });
+    if (error) {
+      localStorage.clear();
       console.error(error);
       setOpen(true);
     }
@@ -92,7 +93,11 @@ const SignIn: FC = () => {
   };
 
   useEffect(() => {
-    getSession();
+    const authStorage = localStorage.getItem("auth");
+    const auth: IAuthen = authStorage
+      ? JSON.parse(authStorage)
+      : { provider: "" };
+    if (auth.provider) getSession();
   }, []);
 
   return (
