@@ -7,14 +7,21 @@ export interface IToastProps {
   anchorOrigin?: SnackbarOrigin;
   onClose: VoidFunction;
   severity: AlertColor;
+  title?: string;
 }
+
+export const initToastProps: IToastProps = {
+  open: false,
+  onClose: () => {},
+  severity: "info",
+};
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
   <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
 ));
 
 const Toast: FC<IToastProps> = (props) => {
-  const { open, onClose, anchorOrigin, severity } = props;
+  const { open, onClose, anchorOrigin, severity, title } = props;
   return (
     <Snackbar
       anchorOrigin={anchorOrigin ?? { vertical: "top", horizontal: "center" }}
@@ -23,7 +30,7 @@ const Toast: FC<IToastProps> = (props) => {
       onClose={onClose}
     >
       <Alert onClose={onClose} severity={severity} sx={{ width: "100%" }}>
-        Something went wrong!
+        {title || "Something went wrong!"}
       </Alert>
     </Snackbar>
   );

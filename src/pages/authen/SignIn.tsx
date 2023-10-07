@@ -18,7 +18,10 @@ import {
 import { AutoAwesomeRounded } from "@mui/icons-material";
 import GoogleLogo from "../../assets/icon/google-logo";
 import GitHubLogo from "../../assets/icon/github-logo";
-import Toast from "../../components/toast/Toast";
+import Toast, {
+  IToastProps,
+  initToastProps,
+} from "../../components/toast/Toast";
 import { supabase } from "../../config/supabase";
 import { useAuth } from "../../contexts/Auth";
 
@@ -32,8 +35,10 @@ const SignIn: FC = () => {
   } = useForm<IFormSignIn>({
     resolver: yupResolver(signInSchema),
   });
-  const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
+  const [toast, setToast] =
+    useState<Omit<IToastProps, "onClose">>(initToastProps);
+  const handleClose = () => setToast(initToastProps);
+  const onLoading = toast.open && toast.severity === "info";
   const onSubmit = async ({ email }: IFormSignIn) => {
     try {
       const { access_token } = await signUp({ email });
@@ -41,7 +46,7 @@ const SignIn: FC = () => {
       navigate("/verify-code", { replace: true });
     } catch (error) {
       console.error(error);
-      setOpen(true);
+      setToast({ open: true, severity: "error" });
     }
   };
 
@@ -60,12 +65,13 @@ const SignIn: FC = () => {
     if (error) {
       localStorage.clear();
       console.error(error);
-      setOpen(true);
+      setToast({ open: true, severity: "error" });
     }
   };
 
   const getSession = async () => {
     const next = () => {
+      setToast(initToastProps);
       navigate("/browse-connect", { replace: true });
     };
     const {
@@ -87,17 +93,25 @@ const SignIn: FC = () => {
     if (error) {
       if (error.message !== "invalid claim: missing sub claim") {
         console.error(error);
-        setOpen(true);
+        setToast({ open: true, severity: "error" });
       }
     }
   };
 
   useEffect(() => {
     const authStorage = localStorage.getItem("auth");
-    const auth: IAuthen = authStorage
+    const { provider }: IAuthen = authStorage
       ? JSON.parse(authStorage)
       : { provider: "" };
-    if (auth.provider) getSession();
+    if (provider) {
+      setToast({
+        open: true,
+        severity: "info",
+        title: `Signing in ${provider}...`,
+        anchorOrigin: { vertical: "top", horizontal: "right" },
+      });
+      getSession();
+    }
   }, []);
 
   return (
@@ -113,6 +127,7 @@ const SignIn: FC = () => {
           variant="outlined"
           className="text-transform-none full-width auth-button auth-button-primary"
           onClick={() => onGoogleLogin()}
+          disabled={onLoading}
         >
           <GoogleLogo />
           <Typography variant="body1" className="auth-button-text">
@@ -123,6 +138,7 @@ const SignIn: FC = () => {
           variant="outlined"
           className="text-transform-none full-width auth-button auth-button-secondary mt-3"
           onClick={async () => await supabase.auth.signOut()}
+          disabled={onLoading}
         >
           <GitHubLogo />
           <Typography variant="body1" className="auth-button-text">
@@ -143,12 +159,14 @@ const SignIn: FC = () => {
             error={!!errors.email}
             helperText={errors?.email?.message}
             {...register("email")}
+            disabled={onLoading}
           />
           <Button
             variant="contained"
             className="signin-button text-transform-none my-4"
             fullWidth
             type="submit"
+            disabled={onLoading}
           >
             <Typography variant="body1" className="auth-button-text">
               Sign in with Email
@@ -165,7 +183,13 @@ const SignIn: FC = () => {
           </Typography>
         </Paper>
       </Box>
-      <Toast open={open} onClose={handleClose} severity="error" />
+      <Toast
+        open={toast.open}
+        onClose={handleClose}
+        severity={toast.severity}
+        title={toast.title}
+        anchorOrigin={toast.anchorOrigin}
+      />
     </Container>
   );
 };
