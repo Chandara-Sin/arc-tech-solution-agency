@@ -13,7 +13,7 @@ export interface IToastProps {
 export const initToastProps: IToastProps = {
   open: false,
   onClose: () => {},
-  severity: "info",
+  severity: "error",
 };
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => (

@@ -39,6 +39,7 @@ const SignIn: FC = () => {
     useState<Omit<IToastProps, "onClose">>(initToastProps);
   const handleClose = () => setToast(initToastProps);
   const onLoading = toast.open && toast.severity === "info";
+
   const onSubmit = async ({ email }: IFormSignIn) => {
     try {
       const { access_token } = await signUp({ email });
@@ -46,7 +47,7 @@ const SignIn: FC = () => {
       navigate("/verify-code", { replace: true });
     } catch (error) {
       console.error(error);
-      setToast({ open: true, severity: "error" });
+      setToast({ ...initToastProps, open: true });
     }
   };
 
@@ -65,7 +66,7 @@ const SignIn: FC = () => {
     if (error) {
       localStorage.clear();
       console.error(error);
-      setToast({ open: true, severity: "error" });
+      setToast({ ...initToastProps, open: true });
     }
   };
 
@@ -90,11 +91,10 @@ const SignIn: FC = () => {
         },
         next
       );
-    if (error) {
-      if (error.message !== "invalid claim: missing sub claim") {
-        console.error(error);
-        setToast({ open: true, severity: "error" });
-      }
+
+    if (error?.message !== "invalid claim: missing sub claim") {
+      console.error(error);
+      setToast({ ...initToastProps, open: true });
     }
   };
 
