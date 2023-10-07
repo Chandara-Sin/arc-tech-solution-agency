@@ -6,6 +6,7 @@ const initialUser: IUser = {
   email: "",
   role: "guest",
   profileImageUrl: "",
+  provider: "",
   isAuthenticated: false,
 };
 

@@ -180,6 +180,7 @@ const VerifyCode = () => {
             email,
             profileImageUrl: "",
             role,
+            provider: "",
           },
           next
         );

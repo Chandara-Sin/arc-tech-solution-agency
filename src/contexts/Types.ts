@@ -14,5 +14,6 @@ export interface IUser {
   role: TRole;
   email: string;
   profileImageUrl: string;
+  provider: string;
   isAuthenticated: boolean;
 }

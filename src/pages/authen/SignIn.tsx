@@ -67,15 +67,19 @@ const SignIn: FC = () => {
     const next = () => {
       navigate("/browse-connect", { replace: true });
     };
-    const { data, error } = await supabase.auth.getUser();
-    const user = data.user?.user_metadata;
-    if (user)
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
+    const userMetadata = user?.user_metadata;
+    if (userMetadata)
       signIn(
         {
-          fullName: user["full_name"],
-          email: user["email"],
+          fullName: userMetadata["full_name"],
+          email: userMetadata["email"],
           role: "member",
-          profileImageUrl: user["avatar_url"],
+          profileImageUrl: userMetadata["avatar_url"],
+          provider: user.app_metadata.provider ?? "",
         },
         next
       );
@@ -86,6 +90,7 @@ const SignIn: FC = () => {
       }
     }
   };
+
   useEffect(() => {
     getSession();
   }, []);
