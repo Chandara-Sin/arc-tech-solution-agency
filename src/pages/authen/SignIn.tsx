@@ -93,6 +93,7 @@ const SignIn: FC = () => {
       );
 
     if (error?.message !== "invalid claim: missing sub claim") {
+      localStorage.clear();
       console.error(error);
       setToast({ ...initToastProps, open: true });
     }
