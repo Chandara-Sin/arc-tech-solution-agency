@@ -22,7 +22,7 @@ import BrowseConnect from "../pages/browse-connect";
 import BroweDrafts from "../pages/browse-drafts";
 
 // Admin
-import Dashboard from "../pages-admin/dashboard";
+import Dashboard from "../pages/admin/dashboard";
 
 // Error Pages
 import Error from "../pages/_error";
