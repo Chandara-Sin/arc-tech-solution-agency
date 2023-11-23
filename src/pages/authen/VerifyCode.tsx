@@ -13,7 +13,7 @@ import { Box, Container } from "@mui/system";
 import { isAxiosError } from "axios";
 import { decodeJwt } from "jose";
 import { useNavigate } from "react-router-dom";
-import { verifyCode } from "../../api/authentications/Authentication";
+import { verifyCode } from "../../services/authentications/Authentication";
 import GmailLogo from "../../assets/icon/gmail-logo";
 import OutlookLogo from "../../assets/icon/outlook-logo";
 import { useAuth } from "../../contexts/Auth";

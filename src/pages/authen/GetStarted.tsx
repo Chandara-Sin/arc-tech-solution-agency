@@ -5,7 +5,7 @@ import { IFormSignIn } from "./AuthenType";
 import { signInSchema } from "./AuthenSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signUp } from "../../api/authentications/Authentication";
+import { signUp } from "../../services/authentications/Authentication";
 import Toast from "../../components/toast/Toast";
 import {
   Box,
