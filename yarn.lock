@@ -2636,13 +2636,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "clsx@npm:1.2.1"
-  checksum: 5ded6f61f15f1fa0350e691ccec43a28b12fb8e64c8e94715f2a937bc3722d4c3ed41d6e945c971fc4dcc2a7213a43323beaf2e1c28654af63ba70c9968a8643
-  languageName: node
-  linkType: hard
-
 "clsx@npm:^2.0.0":
   version: 2.0.0
   resolution: "clsx@npm:2.0.0"
@@ -2961,14 +2954,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"emoji-picker-react@npm:^4.4.9":
-  version: 4.4.9
-  resolution: "emoji-picker-react@npm:4.4.9"
-  dependencies:
-    clsx: "npm:^1.2.1"
+"emoji-picker-react@npm:^4.5.16":
+  version: 4.5.16
+  resolution: "emoji-picker-react@npm:4.5.16"
   peerDependencies:
     react: ">=16"
-  checksum: bed6ac5edd86fd486449066bb501f275537e9ef74e4f438e6695c8cb41db483e599f079b427637464e383fc1bd499da260ec6631fc8573b767c473c96263878c
+  checksum: 6d149c822f2913de993a7da9ad0d79b6abf35f94ff18477bfff01a413dfa30146a1491678e8551dac5859a6f1506e7ea62a39404d561c13662c04ce1902541ad
   languageName: node
   linkType: hard
 
@@ -5345,7 +5336,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:^4.2.0"
     axios: "npm:^1.6.2"
     dayjs: "npm:^1.11.10"
-    emoji-picker-react: "npm:^4.4.9"
+    emoji-picker-react: "npm:^4.5.16"
     eslint: "npm:^8.50.0"
     jose: "npm:^5.1.1"
     react: "npm:^18.2.0"
