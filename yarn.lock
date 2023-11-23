@@ -1041,12 +1041,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hookform/resolvers@npm:^3.3.1":
-  version: 3.3.1
-  resolution: "@hookform/resolvers@npm:3.3.1"
+"@hookform/resolvers@npm:^3.3.2":
+  version: 3.3.2
+  resolution: "@hookform/resolvers@npm:3.3.2"
   peerDependencies:
     react-hook-form: ^7.0.0
-  checksum: 8ef4c4bad0ed7d53a07cec8350988418ed90c0da1c10dd4b06d8c5bdf4beae759c3b359a90b3d234d288b47259995e22487c3d4dc4b6b59f2c29d09280887e27
+  checksum: 354930674c708c8b1c974fc944ad8f3980f9fed99e97ae57cb288c23f398b49276458755b45a1014de6dd2a587270377c38057cb16fb65b16c72431b96a34f81
   languageName: node
   linkType: hard
 
@@ -1541,12 +1541,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@supabase/gotrue-js@npm:^2.54.0":
-  version: 2.54.0
-  resolution: "@supabase/gotrue-js@npm:2.54.0"
+"@supabase/gotrue-js@npm:^2.56.0":
+  version: 2.57.0
+  resolution: "@supabase/gotrue-js@npm:2.57.0"
   dependencies:
     "@supabase/node-fetch": "npm:^2.6.14"
-  checksum: 7c442b1172bb826553dd3617229de31e813ea6f77b677dc8c7aef2412421640b19c02fcd3bbf00228a23368554af7307f349b7ef3bb94f30ac28c2e4c16a20be
+  checksum: 51995bf01c64a8a09619ce67582ab3296e1e09d6cde3202afd86bbf6332b4da16d0962a1ac8457bec6bc664af1d383811dff1435f476ed7a3315b1b98ecc9120
   languageName: node
   linkType: hard
 
@@ -1559,23 +1559,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@supabase/postgrest-js@npm:^1.8.4":
-  version: 1.8.4
-  resolution: "@supabase/postgrest-js@npm:1.8.4"
+"@supabase/postgrest-js@npm:^1.8.6":
+  version: 1.9.0
+  resolution: "@supabase/postgrest-js@npm:1.9.0"
   dependencies:
     "@supabase/node-fetch": "npm:^2.6.14"
-  checksum: b0e9493216c5fa00f13b1f22767d63fe3901b1bad9b82a8c6a07952d2a220b9787348960856f6e208a1380028fd78c2ca313f5a3892372f6e4df4ee54173b030
+  checksum: 4de582f3c0990de458a3b186be96ee32b22f4cc0110671a4280b852139c96386b91e135752f210de272825b81980394590538f3a7b9395f71f3e2196ba3a2041
   languageName: node
   linkType: hard
 
-"@supabase/realtime-js@npm:^2.7.4":
-  version: 2.7.4
-  resolution: "@supabase/realtime-js@npm:2.7.4"
+"@supabase/realtime-js@npm:^2.8.4":
+  version: 2.8.4
+  resolution: "@supabase/realtime-js@npm:2.8.4"
   dependencies:
+    "@supabase/node-fetch": "npm:^2.6.14"
     "@types/phoenix": "npm:^1.5.4"
     "@types/websocket": "npm:^1.0.3"
     websocket: "npm:^1.0.34"
-  checksum: 3f3c13e4e4bde51ab9286fdee3ac1a2a9dc8d825288b85d0e2582a35313aab1160907dbb4c6fbc1d91a42cc4f7f02bdf3e8d9cf1b336653772ab816022dd8352
+  checksum: 8a1dcac2293fc9839b99fa21fbdf1ce605c874b0ca59bd7c326c950b7f7ad89125bcfc1dc2e20e0340aece662dc9dfcecb7018406fa53e3c393b514c1dd5b7b1
   languageName: node
   linkType: hard
 
@@ -1588,17 +1589,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@supabase/supabase-js@npm:^2.36.0":
-  version: 2.36.0
-  resolution: "@supabase/supabase-js@npm:2.36.0"
+"@supabase/supabase-js@npm:^2.38.5":
+  version: 2.38.5
+  resolution: "@supabase/supabase-js@npm:2.38.5"
   dependencies:
     "@supabase/functions-js": "npm:^2.1.5"
-    "@supabase/gotrue-js": "npm:^2.54.0"
+    "@supabase/gotrue-js": "npm:^2.56.0"
     "@supabase/node-fetch": "npm:^2.6.14"
-    "@supabase/postgrest-js": "npm:^1.8.4"
-    "@supabase/realtime-js": "npm:^2.7.4"
+    "@supabase/postgrest-js": "npm:^1.8.6"
+    "@supabase/realtime-js": "npm:^2.8.4"
     "@supabase/storage-js": "npm:^2.5.4"
-  checksum: 6286abba598044a816b54aab2a92a537a1c56c07a15c96a38e2a3641eb1af3d7d6d9fb2bfb3d1ba49a202f7df91fdc5720a3ee96fcd4a3b0a8a31d99c216b7a3
+  checksum: ab3117445b0d302cd0b17f622192e8a0d0e6acdaefbb8cd022c72ee1d5257474bfc0f9de2d83f0cca99be9c6b555b5114e7b73f0ff2c4281b4baa69036abc86e
   languageName: node
   linkType: hard
 
@@ -2210,14 +2211,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.5.0":
-  version: 1.5.0
-  resolution: "axios@npm:1.5.0"
+"axios@npm:^1.6.2":
+  version: 1.6.2
+  resolution: "axios@npm:1.6.2"
   dependencies:
     follow-redirects: "npm:^1.15.0"
     form-data: "npm:^4.0.0"
     proxy-from-env: "npm:^1.1.0"
-  checksum: 128433020b1fe9a460121735016f377adc6109a1f62b61795b1a80704de0a70affb0d580c8abd057e28af5f343cb4fb9a17a0b2512ea7f314578bbe492851a23
+  checksum: 612bc93f8f738a518e7c5f9de9cc782bcd36aac6bae279160ef6a10260378e21c1786520eab3336898e3d66e0839ebdf739f327fb6d0431baa4d3235703a7652
   languageName: node
   linkType: hard
 
@@ -3906,10 +3907,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jose@npm:^4.14.6":
-  version: 4.14.6
-  resolution: "jose@npm:4.14.6"
-  checksum: 7bb72ba25467e12ea854498d91045d2f943f787b8ec3e546593d162a1a56844b9742e957bed9cd1e4d30295b5de926cf7ff58a4e6837f24c5bc338d07146eec4
+"jose@npm:^5.1.1":
+  version: 5.1.1
+  resolution: "jose@npm:5.1.1"
+  checksum: b925c5dbb49c46561b748178f70b7aa7439444b87fe9c00e1e209d5dcf838a2e250b6282c47a3b7c1967e76ec73484d40f97f1139c37d1edf1a7e6ff26d6e547
   languageName: node
   linkType: hard
 
@@ -5050,7 +5051,7 @@ __metadata:
     "@babel/preset-typescript": "npm:^7.23.0"
     "@emotion/react": "npm:^11.11.1"
     "@emotion/styled": "npm:^11.11.0"
-    "@hookform/resolvers": "npm:^3.3.1"
+    "@hookform/resolvers": "npm:^3.3.2"
     "@mui/base": "npm:^5.0.0-beta.24"
     "@mui/icons-material": "npm:^5.14.18"
     "@mui/lab": "npm:^5.0.0-alpha.153"
@@ -5058,7 +5059,7 @@ __metadata:
     "@mui/styles": "npm:^5.14.18"
     "@mui/system": "npm:^5.14.18"
     "@mui/x-date-pickers": "npm:^6.18.1"
-    "@supabase/supabase-js": "npm:^2.36.0"
+    "@supabase/supabase-js": "npm:^2.38.5"
     "@testing-library/jest-dom": "npm:^6.1.3"
     "@testing-library/react": "npm:^14.0.0"
     "@testing-library/user-event": "npm:^14.5.1"
@@ -5067,11 +5068,11 @@ __metadata:
     "@types/react": "npm:^18.2.25"
     "@types/react-dom": "npm:^18.2.5"
     "@vitejs/plugin-react": "npm:^4.1.0"
-    axios: "npm:^1.5.0"
+    axios: "npm:^1.6.2"
     dayjs: "npm:^1.11.10"
     emoji-picker-react: "npm:^4.4.9"
     eslint: "npm:^8.50.0"
-    jose: "npm:^4.14.6"
+    jose: "npm:^5.1.1"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     react-hook-form: "npm:^7.46.2"
@@ -5079,7 +5080,7 @@ __metadata:
     typescript: "npm:^5.2.2"
     vite: "npm:^4.4.9"
     vite-plugin-svgr: "npm:^4.0.0"
-    yup: "npm:^1.3.0"
+    yup: "npm:^1.3.2"
   languageName: unknown
   linkType: soft
 
@@ -5690,14 +5691,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yup@npm:^1.3.0":
-  version: 1.3.0
-  resolution: "yup@npm:1.3.0"
+"yup@npm:^1.3.2":
+  version: 1.3.2
+  resolution: "yup@npm:1.3.2"
   dependencies:
     property-expr: "npm:^2.0.5"
     tiny-case: "npm:^1.0.3"
     toposort: "npm:^2.0.2"
     type-fest: "npm:^2.19.0"
-  checksum: 536ff4741e621a7cf7f1fc892056503d68dd0f05b8309646c97978cd44a630d606622a95c11d4a4a113454b085da79308b9bf85de0a2b2a7a22a5a355a44e27c
+  checksum: 68ea930cbbb159ecbfd9e6d256d237a9f0f24ca05ee8e92c0a1058eee73988f3fabcd39a05cf2eded4d394d4813206e8deb90caef610feae88abab9801d1d6af
   languageName: node
   linkType: hard
