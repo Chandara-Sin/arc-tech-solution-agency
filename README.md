@@ -1,10 +1,10 @@
-# Profile
+# Welcome
 
-## Hola!
+> Hola! I'm a passionate **Product Developer** with a love for crafting things that matter.
 
-### _My name is Chandara Sin (Product Developer)_
+**My Mission:** To create intuitive and innovative products that solve real-world problems.
 
-## Skills😉😉
+**Skills:**
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
@@ -33,16 +33,18 @@
 ![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)
 ![Jest](https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white)
 
-## Tools 😎
+**Tools I wield:**
 
-- <span style="color:lightblue">**Swagger**</span> --intermediate
-- <span style="color:lightblue">**Jenkins**</span> --intermediate
-- <span style="color:lightblue">**Figma**</span> --intermediate
-- <span style="color:lightblue">**Cypress**</span> --intermediate
-- <span style="color:lightblue">**Premiere Pro**</span> --intermediate
-- <span style="color:lightblue">**Photoshop**</span> --intermediate
+- Swagger
+- Jenkins
+- Figma
+- Cypress
+- Premiere Pro ✨
+- Photoshop 🪄
 
 ## Development
+
+[![Code Style: Prettier](https://img.shields.io/badge/Code_Style-Prettier-fb6f92.svg?style=flat-square)](https://prettier.io/)
 
 ```sh
 yarn
